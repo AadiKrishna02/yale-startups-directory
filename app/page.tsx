@@ -18,13 +18,19 @@ interface Startup {
   [key: string]: string | undefined;
 }
 
+interface FilterOptions {
+  industry: string[];
+  stage: string[];
+  timeline: string[];
+}
+
 const StartupsDirectory = () => {
   const [startups, setStartups] = useState<Startup[]>([]);
   const [filteredStartups, setFilteredStartups] = useState<Startup[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('industry');
+  const [filterType, setFilterType] = useState<keyof FilterOptions>('industry');
   const [selectedFilter, setSelectedFilter] = useState('All');
-  const [filterOptions, setFilterOptions] = useState({
+  const [filterOptions, setFilterOptions] = useState<FilterOptions>({
     industry: ['All'],
     stage: ['All'],
     timeline: ['All']
@@ -140,9 +146,10 @@ const StartupsDirectory = () => {
           data.push(rowData);
         });
 
-        const uniqueIndustries = ['All', ...new Set(data.map(startup => startup.industry).filter(Boolean))];
-        const uniqueStages = ['All', ...new Set(data.map(startup => startup.stage).filter(Boolean))];
-        const uniqueTimelines = ['All', ...new Set(data.map(startup => startup.timeline).filter(Boolean))];
+        // Filter out undefined values and ensure string type
+        const uniqueIndustries = ['All', ...new Set(data.map(startup => startup.industry).filter((value): value is string => value !== undefined))];
+        const uniqueStages = ['All', ...new Set(data.map(startup => startup.stage).filter((value): value is string => value !== undefined))];
+        const uniqueTimelines = ['All', ...new Set(data.map(startup => startup.timeline).filter((value): value is string => value !== undefined))];
         
         setFilterOptions({
           industry: uniqueIndustries,
