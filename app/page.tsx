@@ -39,6 +39,7 @@ const StartupsDirectory = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Navigation items
   const navItems = [
     { name: 'Directory', href: '#' },
     { name: 'Submit', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform' },
@@ -146,7 +147,6 @@ const StartupsDirectory = () => {
           data.push(rowData);
         });
 
-        // Filter out undefined values and ensure string type
         const uniqueIndustries = ['All', ...new Set(data.map(startup => startup.industry).filter((value): value is string => value !== undefined))];
         const uniqueStages = ['All', ...new Set(data.map(startup => startup.stage).filter((value): value is string => value !== undefined))];
         const uniqueTimelines = ['All', ...new Set(data.map(startup => startup.timeline).filter((value): value is string => value !== undefined))];
@@ -243,6 +243,12 @@ const StartupsDirectory = () => {
     </div>
   );
 
+  const handleFilterTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = e.target.value as keyof FilterOptions;
+    setFilterType(newValue);
+    setSelectedFilter('All');
+  };
+
   return (
     <>
       <Header />
@@ -271,10 +277,7 @@ const StartupsDirectory = () => {
                 <select
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-base focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all text-gray-700"
                   value={filterType}
-                  onChange={(e) => {
-                    setFilterType(e.target.value);
-                    setSelectedFilter('All');
-                  }}
+                  onChange={handleFilterTypeChange}
                 >
                   <option value="industry">Industry</option>
                   <option value="stage">Stage</option>
