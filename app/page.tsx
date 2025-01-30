@@ -10,11 +10,11 @@ interface Startup {
   description?: string;
   industry?: string;
   stage?: string;
-  problem?: string;
-  solution?: string;
+  // problem?: string;
+  website?: string;
   team?: string;
-  funding?: string;
-  timeline?: string;
+  // funding?: string;
+  // timeline?: string;
   [key: string]: string | undefined; // Allow for dynamic property access
 }
 
@@ -169,15 +169,15 @@ const StartupsDirectory = () => {
       }}
     >
       <h3 className="text-xl font-semibold mb-3 text-blue-900 font-inter">{startup.name}</h3>
-      <div className="space-y-1 mb-4">
+      <div className="space-y-1 mb-8">
         <p className="text-sm text-blue-600 font-medium">{startup.industry}</p>
         <p className="text-sm text-gray-500 font-medium">{startup.stage || 'Stage not specified'}</p>
       </div>
       <p className="text-gray-700 text-base line-clamp-2 mb-4">{startup.description}</p>
-      <p className="text-gray-800 text-base line-clamp-2">
+      {/* <p className="text-gray-800 text-base line-clamp-2">
         <span className="text-blue-700 font-medium">Solution: </span>
         {startup.solution || 'Not provided'}
-      </p>
+      </p> */}
     </div>
   );
 
@@ -212,11 +212,9 @@ const StartupsDirectory = () => {
       </div>
       
       {[
-        { title: 'Problem', content: startup.problem },
-        { title: 'Solution', content: startup.solution },
-        { title: 'Team Details', content: startup.team },
-        { title: 'Funding To Date', content: startup.funding },
-        { title: 'Timeline for Funding', content: startup.timeline }
+        { title: 'Description', content: startup.description },
+        { title: 'Website', content: startup.website },
+        { title: 'Yale Affiliation', content: startup.team }
       ].map(section => (
         <section key={section.title} className="bg-blue-50 p-5 rounded-lg border border-blue-100">
           <h3 className="font-semibold text-lg mb-2 text-blue-800">{section.title}</h3>
