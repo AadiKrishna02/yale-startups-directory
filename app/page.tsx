@@ -4,9 +4,23 @@ import React, { useState, useEffect } from 'react';
 import { Search, Filter, Menu, X } from 'lucide-react';
 import ExcelJS from 'exceljs';
 
+// Define interface for startup data
+interface Startup {
+  name?: string;
+  description?: string;
+  industry?: string;
+  stage?: string;
+  problem?: string;
+  solution?: string;
+  team?: string;
+  funding?: string;
+  timeline?: string;
+  [key: string]: string | undefined; // Allow for dynamic property access
+}
+
 const StartupsDirectory = () => {
-  const [startups, setStartups] = useState([]);
-  const [filteredStartups, setFilteredStartups] = useState([]);
+  const [startups, setStartups] = useState<Startup[]>([]);
+  const [filteredStartups, setFilteredStartups] = useState<Startup[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('industry');
   const [selectedFilter, setSelectedFilter] = useState('All');
@@ -15,7 +29,7 @@ const StartupsDirectory = () => {
     stage: ['All'],
     timeline: ['All']
   });
-  const [selectedStartup, setSelectedStartup] = useState(null);
+  const [selectedStartup, setSelectedStartup] = useState<Startup | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -97,19 +111,19 @@ const StartupsDirectory = () => {
         await workbook.xlsx.load(arrayBuffer);
         
         const worksheet = workbook.worksheets[0];
-        const data = [];
+        const data: Startup[] = [];
         
         const headers = worksheet.getRow(1).values.slice(1);
         
         worksheet.eachRow((row, rowNumber) => {
           if (rowNumber === 1) return;
           
-          const rowData = {};
+          const rowData: Startup = {};
           row.values.slice(1).forEach((value, index) => {
-            if (value && typeof value === 'object' && value.text) {
+            if (value && typeof value === 'object' && 'text' in value) {
               rowData[headers[index]] = value.text;
             } else {
-              rowData[headers[index]] = value;
+              rowData[headers[index]] = value?.toString();
             }
           });
           data.push(rowData);
@@ -146,7 +160,7 @@ const StartupsDirectory = () => {
     setFilteredStartups(filtered);
   }, [searchTerm, selectedFilter, filterType, startups]);
 
-  const StartupCard = ({ startup }) => (
+  const StartupCard = ({ startup }: { startup: Startup }) => (
     <div 
       className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-200 cursor-pointer p-8 border border-gray-100 hover:border-blue-100 h-64 group relative overflow-hidden"
       onClick={() => {
@@ -167,7 +181,7 @@ const StartupsDirectory = () => {
     </div>
   );
 
-  const Modal = ({ isOpen, onClose, children }) => {
+  const Modal = ({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) => {
     if (!isOpen) return null;
 
     return (
@@ -187,7 +201,7 @@ const StartupsDirectory = () => {
     );
   };
 
-  const StartupDetails = ({ startup }) => (
+  const StartupDetails = ({ startup }: { startup: Startup }) => (
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold mb-2 text-blue-900">{startup.name}</h2>
