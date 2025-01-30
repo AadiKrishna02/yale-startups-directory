@@ -2,9 +2,10 @@
 const nextConfig = {
   output: 'export',
   images: {
-      unoptimized: true
+    unoptimized: true,
   },
-  basePath: '/yale-startups-directory', // Assuming your repository will be named 'yale-startups'
+  basePath: '/yale-startups-directory',
+  assetPrefix: '/yale-startups-directory/'
 }
 
 module.exports = nextConfig
