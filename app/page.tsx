@@ -3,19 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, Menu, X } from 'lucide-react';
 import ExcelJS from 'exceljs';
+import Image from 'next/image';
 
-// Define interface for startup data
 interface Startup {
   name?: string;
   description?: string;
   industry?: string;
   stage?: string;
-  // problem?: string;
-  website?: string;
+  problem?: string;
+  solution?: string;
   team?: string;
-  // funding?: string;
-  // timeline?: string;
-  [key: string]: string | undefined; // Allow for dynamic property access
+  funding?: string;
+  timeline?: string;
+  [key: string]: string | undefined;
 }
 
 const StartupsDirectory = () => {
@@ -33,7 +33,6 @@ const StartupsDirectory = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Navigation items
   const navItems = [
     { name: 'Directory', href: '#' },
     { name: 'Submit', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform' },
@@ -46,14 +45,18 @@ const StartupsDirectory = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-24">
           <div className="flex items-center">
-            {/* Logo */}
             <a href="#" className="flex items-center space-x-3">
-              <img src="/Logo.png" alt="Yale Logo" className="h-16 w-auto" />
-              {/* <span className="text-xl font-semibold text-blue-900">Yale Startups</span> */}
+              <Image
+                src="/Logo.png"
+                alt="Yale Logo"
+                width={64}
+                height={64}
+                className="h-16 w-auto"
+                priority
+              />
             </a>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <a
@@ -66,7 +69,6 @@ const StartupsDirectory = () => {
             ))}
           </div>
 
-          {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -81,7 +83,6 @@ const StartupsDirectory = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
@@ -113,23 +114,32 @@ const StartupsDirectory = () => {
         const worksheet = workbook.worksheets[0];
         const data: Startup[] = [];
         
-        const headers = worksheet.getRow(1).values.slice(1);
+        const row1 = worksheet.getRow(1);
+        const headers = row1.values ? (row1.values as (string | undefined)[]).slice(1) : [];
+        
+        if (headers.length === 0) {
+          throw new Error('No headers found in Excel file');
+        }
         
         worksheet.eachRow((row, rowNumber) => {
           if (rowNumber === 1) return;
           
           const rowData: Startup = {};
-          row.values.slice(1).forEach((value, index) => {
-            if (value && typeof value === 'object' && 'text' in value) {
-              rowData[headers[index]] = value.text;
-            } else {
-              rowData[headers[index]] = value?.toString();
+          const values = row.values as (string | ExcelJS.CellValue | undefined)[];
+          
+          values.slice(1).forEach((value, index) => {
+            const header = headers[index];
+            if (header) {
+              if (value && typeof value === 'object' && 'text' in value) {
+                rowData[header] = value.text;
+              } else {
+                rowData[header] = value?.toString();
+              }
             }
           });
           data.push(rowData);
         });
 
-        // Collect unique values for each filter type
         const uniqueIndustries = ['All', ...new Set(data.map(startup => startup.industry).filter(Boolean))];
         const uniqueStages = ['All', ...new Set(data.map(startup => startup.stage).filter(Boolean))];
         const uniqueTimelines = ['All', ...new Set(data.map(startup => startup.timeline).filter(Boolean))];
@@ -152,8 +162,8 @@ const StartupsDirectory = () => {
 
   useEffect(() => {
     const filtered = startups.filter(startup => {
-      const matchesSearch = startup.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          startup.description?.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = (startup.name?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+                          (startup.description?.toLowerCase() || '').includes(searchTerm.toLowerCase());
       const matchesFilter = selectedFilter === 'All' || startup[filterType] === selectedFilter;
       return matchesSearch && matchesFilter;
     });
@@ -169,15 +179,15 @@ const StartupsDirectory = () => {
       }}
     >
       <h3 className="text-xl font-semibold mb-3 text-blue-900 font-inter">{startup.name}</h3>
-      <div className="space-y-1 mb-8">
+      <div className="space-y-1 mb-4">
         <p className="text-sm text-blue-600 font-medium">{startup.industry}</p>
         <p className="text-sm text-gray-500 font-medium">{startup.stage || 'Stage not specified'}</p>
       </div>
       <p className="text-gray-700 text-base line-clamp-2 mb-4">{startup.description}</p>
-      {/* <p className="text-gray-800 text-base line-clamp-2">
+      <p className="text-gray-800 text-base line-clamp-2">
         <span className="text-blue-700 font-medium">Solution: </span>
         {startup.solution || 'Not provided'}
-      </p> */}
+      </p>
     </div>
   );
 
@@ -212,9 +222,11 @@ const StartupsDirectory = () => {
       </div>
       
       {[
-        { title: 'Description', content: startup.description },
-        { title: 'Website', content: startup.website },
-        { title: 'Yale Affiliation', content: startup.team }
+        { title: 'Problem', content: startup.problem },
+        { title: 'Solution', content: startup.solution },
+        { title: 'Team Details', content: startup.team },
+        { title: 'Funding To Date', content: startup.funding },
+        { title: 'Timeline for Funding', content: startup.timeline }
       ].map(section => (
         <section key={section.title} className="bg-blue-50 p-5 rounded-lg border border-blue-100">
           <h3 className="font-semibold text-lg mb-2 text-blue-800">{section.title}</h3>
@@ -229,13 +241,11 @@ const StartupsDirectory = () => {
       <Header />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-32 px-8 pb-8">
         <div className="max-w-7xl mx-auto space-y-12">
-          {/* Page Title */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-5xl font-bold text-blue-900 font-inter tracking-tight mb-4">Yale Startup Directory</h1>
             <p className="text-gray-600 text-lg">Discover and connect with startups from the Yale ecosystem</p>
           </div>
           
-          {/* Search and Filter */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-12">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
@@ -251,13 +261,12 @@ const StartupsDirectory = () => {
               
               <div className="flex items-center gap-3">
                 <Filter className="h-5 w-5 text-gray-400" />
-                {/* Filter Type Selector */}
                 <select
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-base focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all text-gray-700"
                   value={filterType}
                   onChange={(e) => {
                     setFilterType(e.target.value);
-                    setSelectedFilter('All'); // Reset selected value when changing filter type
+                    setSelectedFilter('All');
                   }}
                 >
                   <option value="industry">Industry</option>
@@ -265,7 +274,6 @@ const StartupsDirectory = () => {
                   <option value="timeline">Timeline</option>
                 </select>
                 
-                {/* Filter Value Selector */}
                 <select
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-base focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all text-gray-700"
                   value={selectedFilter}
@@ -281,14 +289,12 @@ const StartupsDirectory = () => {
             </div>
           </div>
           
-          {/* Startup Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredStartups.map((startup, index) => (
               <StartupCard key={index} startup={startup} />
             ))}
           </div>
           
-          {/* Modal */}
           <Modal 
             isOpen={isModalOpen} 
             onClose={() => {
@@ -299,7 +305,6 @@ const StartupsDirectory = () => {
             {selectedStartup && <StartupDetails startup={selectedStartup} />}
           </Modal>
 
-          {/* Footer */}
           <div className="mt-32 mb-16 border-t border-gray-200"></div>
           <footer className="pt-10 pb-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
