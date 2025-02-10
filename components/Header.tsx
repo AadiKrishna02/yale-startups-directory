@@ -6,12 +6,12 @@ import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { 
-    name: 'Submit', 
+    name: 'Submit Your Startup', 
     href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform',
     isExternal: true
   },
   { 
-    name: 'About', 
+    name: 'About Us', 
     href: '/about',
     isExternal: false 
   },
