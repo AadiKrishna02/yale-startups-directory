@@ -222,7 +222,7 @@ export default function StartupsDirectory() {
           <div className="absolute -left-1/4 bottom-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-8 relative">
+        <div className="max-w-6xl mx-auto space-y-10 relative">
           {/* Hero Section */}
           <div className="text-center max-w-3xl mx-auto mb-16 relative">
             <div className="absolute inset-0 -z-10">
