@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, Menu, X } from 'lucide-react';
+import { Search, Filter, X } from 'lucide-react';
 import ExcelJS from 'exceljs';
 import Link from 'next/link';
+import Header from '@/components/Header';
 
 interface Startup {
   name?: string;
@@ -38,122 +39,6 @@ export default function StartupsDirectory() {
   });
   const [selectedStartup, setSelectedStartup] = useState<Startup | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const navItems = [
-    { 
-      name: 'Submit', 
-      href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform',
-      isExternal: true 
-    },
-    { 
-      name: 'About', 
-      href: '/about',
-      isExternal: false 
-    },
-    { 
-      name: 'Contact', 
-      href: '#',
-      isExternal: false 
-    },
-    { 
-      name: 'Log In', 
-      href: '#',
-      isExternal: false,
-      isBoxed: true
-    },
-  ];
-
-  const Header = () => (
-    <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-200">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-3">
-              <img
-                src="/Logo.png"
-                alt="Yale Logo"
-                className="h-10 w-auto"
-              />
-            </Link>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              item.isExternal ? (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors ${
-                    item.isBoxed
-                      ? 'border border-blue-700 rounded-lg px-3 py-1.5 bg-blue-100'
-                      : ''
-                  }`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors ${
-                    item.isBoxed
-                      ? 'border border-blue-700 rounded-lg px-3 py-1.5 bg-blue-100'
-                      : ''
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              )
-            ))}
-          </div>
-
-          <div className="flex items-center md:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-600 hover:text-blue-700"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {isMobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                item.isExternal ? (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-gray-50 rounded-md"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-gray-50 rounded-md"
-                  >
-                    {item.name}
-                  </Link>
-                )
-              ))}
-            </div>
-          </div>
-        )}
-      </nav>
-    </header>
-  );
 
   const Modal = ({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) => {
     if (!isOpen) return null;
@@ -316,7 +201,7 @@ export default function StartupsDirectory() {
             <div className="absolute inset-0 -z-10">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-white/50 to-blue-50/50 rounded-3xl blur-xl"></div>
             </div>
-            <h1 className="text-5xl font-bold text-blue-700 tracking-tight mb-4">Yale Startup Directory</h1>
+            <h1 className="text-5xl font-bold text-blue-950 tracking-tight mb-4">Yale Startup Directory</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">Discover and connect with innovative startups from the Yale ecosystem</p>
           </div>
           
@@ -391,67 +276,61 @@ export default function StartupsDirectory() {
               <div className="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-blue-300 blur-3xl"></div>
             </div>
             
-            <div className="max-w-6xl mx-auto px-4 sm:px-12 lg:px-24 relative">
-              <div className="py-8">
-                {/* Logo and Description Section */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-blue-700/30">
-                  <div className="md:col-span-5 flex flex-col items-center md:items-start">
-                    <img
-                      src="/Logo.png"
-                      alt="Yale Logo"
-                      className="h-16 w-auto mb-4 brightness-0 invert"
-                    />
-                    <h4 className="text-lg font-semibold text-white/90 mb-2">Yale Startup Directory</h4>
-                    <p className="text-sm text-blue-100/80 text-center md:text-left">
-                      Connecting Yale startups with resources, talent, and funding opportunities.
-                    </p>
-                  </div>
-
-                  {/* Contact Section */}
-                  <div className="md:col-span-3 flex flex-col md:items-start items-center">
-                    <h4 className="text-base font-semibold text-white/90 mb-3">Contact</h4>
-                    <div className="space-y-2">
-                      <p className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                        <a href="mailto:startups@yale.edu">startups@yale.edu</a>
-                      </p>
-                      <p className="text-sm text-blue-100/80">New Haven, CT</p>
-                    </div>
-                  </div>
-
-                  {/* Quick Links Section */}
-                  <div className="md:col-span-4 flex flex-col md:items-start items-center">
-                    <h4 className="text-base font-semibold text-white/90 mb-3">Quick Links</h4>
-                    <ul className="space-y-2 text-center md:text-left">
-                      <li>
-                        <Link href="/about" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                          About Us
-                        </Link>
-                      </li>
-                      <li>
-                        <a 
-                          href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform" 
-                          className="text-sm text-blue-100/80 hover:text-white/90 transition-colors"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Submit Your Startup
-                        </a>
-                      </li>
-                      <li>
-                        <Link href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                          Privacy Policy
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Copyright Section */}
-                <div className="pt-6 text-center">
-                  <p className="text-sm text-blue-100/70">
-                    © {new Date().getFullYear()} Yale Startup Directory. All rights reserved.
+            <div className="relative py-8 px-4 sm:px-12 lg:px-24">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-blue-700/30">
+                <div className="md:col-span-5 flex flex-col items-center md:items-start">
+                  <img
+                    src="/Logo.png"
+                    alt="Yale Logo"
+                    className="h-16 w-auto mb-4 brightness-0 invert"
+                  />
+                  <h4 className="text-lg font-semibold text-white/90 mb-2">Yale Startup Directory</h4>
+                  <p className="text-sm text-blue-100/80 text-center md:text-left">
+                    Connecting Yale startups with resources, talent, and funding opportunities.
                   </p>
                 </div>
+
+                <div className="md:col-span-3 flex flex-col md:items-start items-center">
+                  <h4 className="text-base font-semibold text-white/90 mb-3">Contact</h4>
+                  <div className="space-y-2">
+                    <p className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
+                      <a href="mailto:aadi.krishna@yale.edu">aadi.krishna@yale.edu</a>
+                    </p>
+                    <p className="text-sm text-blue-100/80">New Haven, CT</p>
+                  </div>
+                </div>
+
+                <div className="md:col-span-4 flex flex-col md:items-start items-center">
+                  <h4 className="text-base font-semibold text-white/90 mb-3">Quick Links</h4>
+                  <ul className="space-y-2 text-center md:text-left">
+                    <li>
+                      <Link href="/about" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
+                        About Us
+                      </Link>
+                    </li>
+                    <li>
+                      <a 
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform" 
+                        className="text-sm text-blue-100/80 hover:text-white/90 transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Submit Your Startup
+                      </a>
+                    </li>
+                    <li>
+                      <Link href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
+                        Privacy Policy
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="pt-6 text-center">
+                <p className="text-sm text-blue-100/70">
+                  © {new Date().getFullYear()} Yale Startup Directory. All rights reserved.
+                </p>
               </div>
             </div>
           </footer>
