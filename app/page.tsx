@@ -5,7 +5,7 @@ import { Search, Filter, X } from 'lucide-react';
 import ExcelJS from 'exceljs';
 import Link from 'next/link';
 import Header from '@/components/Header';
-// import Footer from '@/components/Footer';
+import Footer from '@/components/Footer';
 
 interface Startup {
   name?: string;
