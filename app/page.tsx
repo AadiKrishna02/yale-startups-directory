@@ -215,14 +215,14 @@ export default function StartupsDirectory() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-24 px-4 sm:px-12 lg:px-24 pb-8 relative">
+      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-32 px-4 sm:px-12 lg:px-24 pb-8 relative">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -right-1/4 top-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute -left-1/4 bottom-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-10 relative">
+        <div className="max-w-6xl mx-auto space-y-8 relative">
           {/* Hero Section */}
           <div className="text-center max-w-3xl mx-auto mb-16 relative">
             <div className="absolute inset-0 -z-10">
