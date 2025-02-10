@@ -268,10 +268,10 @@ export default function StartupsDirectory() {
           >
             {selectedStartup && <StartupDetails startup={selectedStartup} />}
           </Modal>
+          <Footer />
 
         </div>
       </main>
-      <Footer />
     </>
   );
 }
