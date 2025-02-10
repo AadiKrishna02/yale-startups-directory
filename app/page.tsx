@@ -24,7 +24,7 @@ interface Startup {
 interface FilterOptions {
   industry: string[];
   stage: string[];
-  timeline: string[];
+  team: string[];
 }
 
 export default function StartupsDirectory() {
@@ -36,7 +36,7 @@ export default function StartupsDirectory() {
   const [filterOptions, setFilterOptions] = useState<FilterOptions>({
     industry: ['All'],
     stage: ['All'],
-    timeline: ['All']
+    team: ['All']
   });
   const [selectedStartup, setSelectedStartup] = useState<Startup | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -158,12 +158,12 @@ export default function StartupsDirectory() {
 
         const uniqueIndustries = ['All', ...new Set(data.map(startup => startup.industry).filter((value): value is string => value !== undefined))];
         const uniqueStages = ['All', ...new Set(data.map(startup => startup.stage).filter((value): value is string => value !== undefined))];
-        const uniqueTimelines = ['All', ...new Set(data.map(startup => startup.timeline).filter((value): value is string => value !== undefined))];
+        const uniqueTeam = ['All', ...new Set(data.map(startup => startup.team).filter((value): value is string => value !== undefined))];
         
         setFilterOptions({
           industry: uniqueIndustries,
           stage: uniqueStages,
-          timeline: uniqueTimelines
+          team: uniqueTeam
         });
         
         setStartups(data);
@@ -232,7 +232,7 @@ export default function StartupsDirectory() {
                   >
                     <option value="industry">Industry</option>
                     <option value="stage">Stage</option>
-                    <option value="timeline">Timeline</option>
+                    <option value="team">Team</option>
                   </select>
                 </div>
                 
