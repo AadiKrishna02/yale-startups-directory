@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}', // Added src directory
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -34,12 +35,6 @@ module.exports = {
           900: '#111827',
         },
       },
-      lineClamp: {
-        1: '1',
-        2: '2',
-        3: '3',
-        4: '4',
-      },
       spacing: {
         '128': '32rem',
       },
@@ -56,7 +51,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-  ],
-};
+  plugins: [], // Removed @tailwindcss/line-clamp as it's now included in core
+}
