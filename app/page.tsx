@@ -166,8 +166,15 @@ export default function StartupsDirectory() {
           team: uniqueTeam
         });
         
-        setStartups(data);
-        setFilteredStartups(data);
+        // Sort data alphabetically by name
+        const sortedData = data.sort((a, b) => {
+          const nameA = (a.name || '').toLowerCase();
+          const nameB = (b.name || '').toLowerCase();
+          return nameA.localeCompare(nameB);
+        });
+        
+        setStartups(sortedData);
+        setFilteredStartups(sortedData);
       } catch (error) {
         console.error('Error loading startup data:', error);
       }
@@ -183,7 +190,15 @@ export default function StartupsDirectory() {
       const matchesFilter = selectedFilter === 'All' || startup[filterType] === selectedFilter;
       return matchesSearch && matchesFilter;
     });
-    setFilteredStartups(filtered);
+    
+    // Maintain alphabetical order in filtered results
+    const sortedFiltered = filtered.sort((a, b) => {
+      const nameA = (a.name || '').toLowerCase();
+      const nameB = (b.name || '').toLowerCase();
+      return nameA.localeCompare(nameB);
+    });
+    
+    setFilteredStartups(sortedFiltered);
   }, [searchTerm, selectedFilter, filterType, startups]);
 
   return (
