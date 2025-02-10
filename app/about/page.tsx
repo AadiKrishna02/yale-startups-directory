@@ -128,7 +128,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Footer */}
+{/*           {/* Footer */}
           <footer className="bg-gradient-to-br from-blue-800 via-blue-900 to-blue-950 mt-24 relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
@@ -192,8 +192,8 @@ export default function AboutPage() {
                   © {new Date().getFullYear()} Yale Startup Directory. All rights reserved.
                 </p>
               </div>
-            </div>
-          </footer>
+            </div> */}
+          <Footer />
         </div>
       </div>
     </>
