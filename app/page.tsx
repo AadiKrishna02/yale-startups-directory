@@ -316,7 +316,7 @@ export default function StartupsDirectory() {
             <div className="absolute inset-0 -z-10">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-white/50 to-blue-50/50 rounded-3xl blur-xl"></div>
             </div>
-            <h1 className="text-5xl font-bold text-blue-950 tracking-tight mb-4">Yale Startup Directory</h1>
+            <h1 className="text-5xl font-bold text-blue-700 tracking-tight mb-4">Yale Startup Directory</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">Discover and connect with innovative startups from the Yale ecosystem</p>
           </div>
           
