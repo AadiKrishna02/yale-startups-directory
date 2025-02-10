@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, Menu, X } from 'lucide-react';
 import ExcelJS from 'exceljs';
+import Link from 'next/link';
 
 interface Startup {
   name?: string;
@@ -40,10 +41,27 @@ export default function StartupsDirectory() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Submit', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform' },
-    { name: 'About', href: '#' },
-    { name: 'Contact', href: '#' },
-    { name: 'Log In', href: '#', isBoxed: true},
+    { 
+      name: 'Submit', 
+      href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform',
+      isExternal: true 
+    },
+    { 
+      name: 'About', 
+      href: '/about',
+      isExternal: false 
+    },
+    { 
+      name: 'Contact', 
+      href: '#',
+      isExternal: false 
+    },
+    { 
+      name: 'Log In', 
+      href: '#',
+      isExternal: false,
+      isBoxed: true
+    },
   ];
 
   const Header = () => (
@@ -51,31 +69,47 @@ export default function StartupsDirectory() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <a href="https://www.yucp.org/" className="flex items-center space-x-3">
+            <Link href="/" className="flex items-center space-x-3">
               <img
                 src="/Logo.png"
                 alt="Yale Logo"
                 className="h-10 w-auto"
               />
-            </a>
+            </Link>
           </div>
-    
+
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors ${
-                  item.isBoxed
-                    ? 'border border-blue-700 rounded-lg px-3 py-1.5 bg-blue-100'
-                    : ''
-                }`}
-              >
-                {item.name}
-              </a>
+              item.isExternal ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors ${
+                    item.isBoxed
+                      ? 'border border-blue-700 rounded-lg px-3 py-1.5 bg-blue-100'
+                      : ''
+                  }`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors ${
+                    item.isBoxed
+                      ? 'border border-blue-700 rounded-lg px-3 py-1.5 bg-blue-100'
+                      : ''
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
-    
+
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -89,18 +123,30 @@ export default function StartupsDirectory() {
             </button>
           </div>
         </div>
-    
+
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-gray-50 rounded-md"
-                >
-                  {item.name}
-                </a>
+                item.isExternal ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-gray-50 rounded-md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-gray-50 rounded-md"
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
             </div>
           </div>
@@ -366,7 +412,7 @@ export default function StartupsDirectory() {
                     <h4 className="text-base font-semibold text-white/90 mb-3">Contact</h4>
                     <div className="space-y-2">
                       <p className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                        <a href="mailto:aadi.krishna@yale.edu">aadi.krishna@yale.edu</a>
+                        <a href="mailto:startups@yale.edu">startups@yale.edu</a>
                       </p>
                       <p className="text-sm text-blue-100/80">New Haven, CT</p>
                     </div>
@@ -377,22 +423,24 @@ export default function StartupsDirectory() {
                     <h4 className="text-base font-semibold text-white/90 mb-3">Quick Links</h4>
                     <ul className="space-y-2 text-center md:text-left">
                       <li>
-                        <a href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
+                        <Link href="/about" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
                           About Us
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <a 
                           href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform" 
                           className="text-sm text-blue-100/80 hover:text-white/90 transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
                           Submit Your Startup
                         </a>
                       </li>
                       <li>
-                        <a href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
+                        <Link href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
                           Privacy Policy
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
