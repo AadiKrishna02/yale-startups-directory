@@ -353,7 +353,7 @@ const StartupsDirectory = () => {
                       </li>
                       <li>
                         <a href="#" className="text-sm text-blue-100 hover:text-white transition-colors">
-                          Privacy Policy
+                          Meet Our Team
                         </a>
                       </li>
                     </ul>
