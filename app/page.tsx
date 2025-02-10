@@ -366,7 +366,7 @@ export default function StartupsDirectory() {
                     <h4 className="text-base font-semibold text-white/90 mb-3">Contact</h4>
                     <div className="space-y-2">
                       <p className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                        <a href="mailto:startups@yale.edu">startups@yale.edu</a>
+                        <a href="mailto:aadi.krishna@yale.edu">aadi.krishna@yale.edu</a>
                       </p>
                       <p className="text-sm text-blue-100/80">New Haven, CT</p>
                     </div>
