@@ -17,15 +17,9 @@ const navItems = [
   },
   { 
     name: 'YUCP', 
-    href: 'www.YUCP.org',
+    href: 'https://www.yucp.org',
     isExternal: true 
-  },
-  // { 
-  //   name: 'Log In', 
-  //   href: '#',
-  //   isExternal: false,
-  //   isBoxed: true
-  // },
+  }
 ];
 
 export default function Header() {
@@ -51,11 +45,7 @@ export default function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors ${
-                    item.isBoxed
-                      ? 'border border-blue-700 rounded-lg px-3 py-1.5 bg-blue-100'
-                      : ''
-                  }`}
+                  className="text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -65,11 +55,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors ${
-                    item.isBoxed
-                      ? 'border border-blue-700 rounded-lg px-3 py-1.5 bg-blue-100'
-                      : ''
-                  }`}
+                  className="text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors"
                 >
                   {item.name}
                 </Link>
