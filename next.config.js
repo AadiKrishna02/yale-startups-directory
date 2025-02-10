@@ -1,13 +1,7 @@
 // next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true,
-  }
-  // Remove these lines:
-  // basePath: '/yale-startups-directory',
-  // assetPrefix: '/yale-startups-directory/'
+  // That's it! Empty config or add other options as needed
 }
 
 module.exports = nextConfig
