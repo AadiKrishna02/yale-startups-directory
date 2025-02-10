@@ -55,7 +55,7 @@ const StartupsDirectory = () => {
               <img
                 src="/Logo.png"
                 alt="Yale Logo"
-                className="h-12 w-auto"
+                className="h-10 w-auto"
               />
             </a>
           </div>
@@ -245,8 +245,8 @@ const StartupsDirectory = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-24 px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-24 px-4 sm:px-12 lg:px-24 pb-8">
+        <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h1 className="text-4xl font-bold text-blue-900 tracking-tight mb-3">Yale Startup Directory</h1>
             <p className="text-base text-gray-600">Discover and connect with startups from the Yale ecosystem</p>
