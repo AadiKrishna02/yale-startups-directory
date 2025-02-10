@@ -156,7 +156,14 @@ export default function StartupsDirectory() {
           data.push(rowData);
         });
 
-        const uniqueIndustries = ['All', ...new Set(data.map(startup => startup.industry).filter((value): value is string => value !== undefined))];
+        // Split combined industries (only on commas) and flatten the array
+        const allIndustries = data
+          .map(startup => startup.industry?.split(',').map(i => i.trim()))
+          .filter((value): value is string[] => value !== undefined)
+          .flat();
+        
+        // Get unique industries and sort them alphabetically
+        const uniqueIndustries = ['All', ...new Set(allIndustries)].sort();
         const uniqueStages = ['All', ...new Set(data.map(startup => startup.stage).filter((value): value is string => value !== undefined))];
         const uniqueTeam = ['All', ...new Set(data.map(startup => startup.team).filter((value): value is string => value !== undefined))];
         
@@ -187,7 +194,11 @@ export default function StartupsDirectory() {
     const filtered = startups.filter(startup => {
       const matchesSearch = (startup.name?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
                           (startup.description?.toLowerCase() || '').includes(searchTerm.toLowerCase());
-      const matchesFilter = selectedFilter === 'All' || startup[filterType] === selectedFilter;
+      const matchesFilter = 
+        selectedFilter === 'All' || 
+        (filterType === 'industry' 
+          ? startup.industry?.split(',').map(i => i.trim()).includes(selectedFilter)
+          : startup[filterType] === selectedFilter);
       return matchesSearch && matchesFilter;
     });
     
