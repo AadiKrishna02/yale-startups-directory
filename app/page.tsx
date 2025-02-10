@@ -41,10 +41,11 @@ const StartupsDirectory = () => {
 
   // Navigation items
   const navItems = [
-    { name: 'Directory', href: '#' },
+    // { name: 'Directory', href: '#' },
     { name: 'Submit', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform' },
     { name: 'About', href: '#' },
     { name: 'Contact', href: '#' },
+    { name: 'Log In', href: '#', isBoxed: true},
   ];
 
   const Header = () => (
@@ -52,30 +53,31 @@ const StartupsDirectory = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-24">
           <div className="flex items-center">
-            <a href="#" className="flex items-center space-x-3">
-              <Image
+            <a href="https://www.yucp.org/" className="flex items-center space-x-3">
+              <img
                 src="/Logo.png"
                 alt="Yale Logo"
-                width={64}
-                height={64}
                 className="h-16 w-auto"
-                priority
               />
             </a>
           </div>
-
+  
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-600 hover:text-blue-700 px-3 py-2 text-base font-medium transition-colors"
+                className={`text-gray-600 hover:text-blue-700 px-3 py-2 text-base font-medium transition-colors ${
+                  item.isBoxed
+                    ? 'border border-blue-700 rounded-lg px-4 py-2 bg-blue-100'
+                    : ''
+                }`}
               >
                 {item.name}
               </a>
             ))}
           </div>
-
+  
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -89,7 +91,7 @@ const StartupsDirectory = () => {
             </button>
           </div>
         </div>
-
+  
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
@@ -186,15 +188,15 @@ const StartupsDirectory = () => {
       }}
     >
       <h3 className="text-xl font-semibold mb-3 text-blue-900 font-inter">{startup.name}</h3>
-      <div className="space-y-1 mb-4">
+      <div className="space-y-1 mb-7">
         <p className="text-sm text-blue-600 font-medium">{startup.industry}</p>
         <p className="text-sm text-gray-500 font-medium">{startup.stage || 'Stage not specified'}</p>
       </div>
       <p className="text-gray-700 text-base line-clamp-2 mb-4">{startup.description}</p>
-      <p className="text-gray-800 text-base line-clamp-2">
+      {/* <p className="text-gray-800 text-base line-clamp-2">
         <span className="text-blue-700 font-medium">Solution: </span>
         {startup.solution || 'Not provided'}
-      </p>
+      </p> */}
     </div>
   );
 
@@ -229,11 +231,11 @@ const StartupsDirectory = () => {
       </div>
       
       {[
-        { title: 'Problem', content: startup.problem },
-        { title: 'Solution', content: startup.solution },
-        { title: 'Team Details', content: startup.team },
-        { title: 'Funding To Date', content: startup.funding },
-        { title: 'Timeline for Funding', content: startup.timeline }
+        { title: 'Description', content: startup.description },
+        { title: 'Website', content: startup.website },
+        { title: 'Yale Affiliation', content: startup.team },
+        // { title: 'Funding To Date', content: startup.funding },
+        // { title: 'Timeline for Funding', content: startup.timeline }
       ].map(section => (
         <section key={section.title} className="bg-blue-50 p-5 rounded-lg border border-blue-100">
           <h3 className="font-semibold text-lg mb-2 text-blue-800">{section.title}</h3>
