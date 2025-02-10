@@ -308,29 +308,65 @@ const StartupsDirectory = () => {
             {selectedStartup && <StartupDetails startup={selectedStartup} />}
           </Modal>
 
-          <div className="mt-24 mb-12 border-t border-gray-200"></div>
-          <footer className="pt-8 pb-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="space-y-3">
-                <h4 className="text-base font-semibold text-blue-900">Yale Startup Directory</h4>
-                <p className="text-sm text-gray-600">Connecting Yale startups with resources, talent, and funding opportunities.</p>
+          <footer className="bg-gradient-to-br from-blue-900 to-blue-800 mt-24">
+            <div className="max-w-6xl mx-auto px-4 sm:px-12 lg:px-24">
+              <div className="py-12">
+                {/* Logo and Description Section */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-blue-700/50">
+                  <div className="md:col-span-4 flex flex-col items-center md:items-start">
+                    <img
+                      src="/Logo.png"
+                      alt="Yale Logo"
+                      className="h-12 w-auto mb-4 brightness-0 invert"
+                    />
+                    <h4 className="text-lg font-semibold text-white mb-3">Yale Startup Directory</h4>
+                    <p className="text-sm text-blue-100 text-center md:text-left">
+                      Connecting Yale startups with resources, talent, and funding opportunities.
+                    </p>
+                  </div>
+
+                  {/* Contact Section */}
+                  <div className="md:col-span-4 flex flex-col md:items-start items-center">
+                    <h4 className="text-lg font-semibold text-white mb-4">Contact</h4>
+                    <div className="space-y-2">
+                      <p className="text-sm text-blue-100">Email: startups@yale.edu</p>
+                      <p className="text-sm text-blue-100">Location: New Haven, CT</p>
+                    </div>
+                  </div>
+
+                  {/* Quick Links Section */}
+                  <div className="md:col-span-4 flex flex-col md:items-start items-center">
+                    <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul className="space-y-2 text-center md:text-left">
+                      <li>
+                        <a href="#" className="text-sm text-blue-100 hover:text-white transition-colors">
+                          About Us
+                        </a>
+                      </li>
+                      <li>
+                        <a 
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform" 
+                          className="text-sm text-blue-100 hover:text-white transition-colors"
+                        >
+                          Submit Your Startup
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" className="text-sm text-blue-100 hover:text-white transition-colors">
+                          Privacy Policy
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Copyright Section */}
+                <div className="pt-8 text-center">
+                  <p className="text-sm text-blue-200">
+                    © {new Date().getFullYear()} Yale Startup Directory. All rights reserved.
+                  </p>
+                </div>
               </div>
-              <div className="space-y-3">
-                <h4 className="text-base font-semibold text-blue-900">Contact</h4>
-                <p className="text-sm text-gray-600">Email: startups@yale.edu</p>
-                <p className="text-sm text-gray-600">Location: New Haven, CT</p>
-              </div>
-              <div className="space-y-3">
-                <h4 className="text-base font-semibold text-blue-900">Links</h4>
-                <ul className="space-y-2">
-                  <li><a href="#" className="text-sm text-gray-600 hover:text-blue-700">About Us</a></li>
-                  <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform" className="text-sm text-gray-600 hover:text-blue-700">Submit Your Startup</a></li>
-                  <li><a href="#" className="text-sm text-gray-600 hover:text-blue-700">Privacy Policy</a></li>
-                </ul>
-              </div>
-            </div>
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <p className="text-center text-gray-500 text-sm">© {new Date().getFullYear()} Yale Startup Directory. All rights reserved.</p>
             </div>
           </footer>
         </div>
