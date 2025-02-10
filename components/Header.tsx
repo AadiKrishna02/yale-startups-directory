@@ -11,7 +11,7 @@ const navItems = [
     isExternal: true
   },
   { 
-    name: 'About Us', 
+    name: 'About', 
     href: '/about',
     isExternal: false 
   },
