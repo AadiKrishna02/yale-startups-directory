@@ -56,7 +56,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                  Privacy Policy
+                  Meet Our Team
                 </Link>
               </li>
             </ul>
