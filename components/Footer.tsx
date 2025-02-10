@@ -5,14 +5,14 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-blue-800 via-blue-900 to-blue-950 mt-24 relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-blue-800 via-blue-900 to-blue-950 w-full relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
         <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-blue-400 blur-3xl"></div>
         <div className="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-blue-300 blur-3xl"></div>
       </div>
       
-      <div className="relative py-8 px-4 sm:px-12 lg:px-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-12 lg:px-24 py-8 relative">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-blue-700/30">
           <div className="md:col-span-5 flex flex-col items-center md:items-start">
             <img
@@ -55,9 +55,14 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                  Meet Our Team
-                </Link>
+                <a 
+                  href="https://www.yucp.org"
+                  className="text-sm text-blue-100/80 hover:text-white/90 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  YUCP
+                </a>
               </li>
             </ul>
           </div>
