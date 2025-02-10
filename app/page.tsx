@@ -55,7 +55,7 @@ const StartupsDirectory = () => {
               <img
                 src="/Logo.png"
                 alt="Yale Logo"
-                className="h-10 w-auto"
+                className="h-12 w-auto"
               />
             </a>
           </div>
