@@ -317,7 +317,7 @@ const StartupsDirectory = () => {
                     <img
                       src="/Logo.png"
                       alt="Yale Logo"
-                      className="h-12 w-auto mb-4 brightness-0 invert"
+                      className="h-18 w-auto mb-4 brightness-0 invert"
                     />
                     <h4 className="text-lg font-semibold text-white mb-3">Yale Startup Directory</h4>
                     <p className="text-sm text-blue-100 text-center md:text-left">
