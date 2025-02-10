@@ -179,18 +179,29 @@ const StartupsDirectory = () => {
 
   const StartupCard = ({ startup }: { startup: Startup }) => (
     <div 
-      className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer p-6 border border-gray-100 hover:border-blue-100 h-56 group relative overflow-hidden"
+      className="group bg-white/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100/50 hover:border-blue-200 h-56 relative overflow-hidden"
       onClick={() => {
         setSelectedStartup(startup);
         setIsModalOpen(true);
       }}
     >
-      <h3 className="text-lg font-semibold mb-2 text-blue-900">{startup.name}</h3>
-      <div className="space-y-1 mb-4">
-        <p className="text-sm text-blue-600 font-medium">{startup.industry}</p>
-        <p className="text-xs text-gray-500 font-medium">{startup.stage || 'Stage not specified'}</p>
+      {/* Hover effect background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-blue-50/0 to-blue-100/0 group-hover:from-blue-50/50 group-hover:via-blue-50/30 group-hover:to-blue-100/50 transition-all duration-300"></div>
+      
+      <div className="relative p-6">
+        <h3 className="text-lg font-semibold mb-2 text-blue-950 group-hover:text-blue-800 transition-colors">{startup.name}</h3>
+        <div className="space-y-1.5 mb-4">
+          <div className="flex items-center space-x-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-blue-500"></span>
+            <p className="text-sm text-blue-700 font-medium">{startup.industry}</p>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-gray-300"></span>
+            <p className="text-xs text-gray-600 font-medium">{startup.stage || 'Stage not specified'}</p>
+          </div>
+        </div>
+        <p className="text-sm text-gray-600 line-clamp-2 group-hover:text-gray-700 transition-colors">{startup.description}</p>
       </div>
-      <p className="text-sm text-gray-700 line-clamp-2">{startup.description}</p>
     </div>
   );
 
@@ -198,17 +209,19 @@ const StartupsDirectory = () => {
     if (!isOpen) return null;
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-        <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6">
-          <div className="flex justify-end">
+      <div className="fixed inset-0 bg-gray-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div className="bg-white/95 backdrop-blur-md rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-2xl border border-gray-100 relative">
+          <div className="absolute right-4 top-4">
             <button
               onClick={onClose}
-              className="text-blue-700 hover:text-blue-500 font-bold text-xl"
+              className="bg-blue-50 hover:bg-blue-100 text-blue-700 hover:text-blue-800 rounded-full p-2 transition-all duration-200"
             >
-              ✕
+              <X className="h-5 w-5" />
             </button>
           </div>
-          {children}
+          <div className="mt-2">
+            {children}
+          </div>
         </div>
       </div>
     );
@@ -245,40 +258,54 @@ const StartupsDirectory = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-24 px-4 sm:px-12 lg:px-24 pb-8">
-        <div className="max-w-6xl mx-auto space-y-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h1 className="text-4xl font-bold text-blue-900 tracking-tight mb-3">Yale Startup Directory</h1>
-            <p className="text-base text-gray-600">Discover and connect with startups from the Yale ecosystem</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-24 px-4 sm:px-12 lg:px-24 pb-8 relative">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -right-1/4 top-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute -left-1/4 bottom-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto space-y-8 relative">
+          {/* Hero Section */}
+          <div className="text-center max-w-3xl mx-auto mb-16 relative">
+            <div className="absolute inset-0 -z-10">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-white/50 to-blue-50/50 rounded-3xl blur-xl"></div>
+            </div>
+            <h1 className="text-5xl font-bold text-blue-950 tracking-tight mb-4 bg-clip-text">Yale Startup Directory</h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Discover and connect with innovative startups from the Yale ecosystem</p>
           </div>
           
-          <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 mb-8">
-            <div className="flex flex-col sm:flex-row gap-3">
+          {/* Search and Filter Section */}
+          <div className="bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-6 mb-12">
+            <div className="flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                  <Search className="h-4 w-4 text-blue-500" />
+                </div>
                 <input
                   type="text"
                   placeholder="Search startups..."
-                  className="w-full pl-10 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all"
+                  className="w-full pl-10 pr-4 py-3 text-sm bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all placeholder-gray-400"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-              </div>
               
-              <div className="flex items-center gap-3">
-                <Filter className="h-4 w-4 text-gray-400" />
-                <select
-                  className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all text-gray-700"
-                  value={filterType}
-                  onChange={handleFilterTypeChange}
-                >
-                  <option value="industry">Industry</option>
-                  <option value="stage">Stage</option>
-                  <option value="timeline">Timeline</option>
-                </select>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center bg-white border border-gray-200 rounded-lg px-3 py-3">
+                  <Filter className="h-4 w-4 text-blue-500 mr-2" />
+                  <select
+                    className="bg-transparent border-none text-sm focus:ring-0 text-gray-700 pr-8"
+                    value={filterType}
+                    onChange={handleFilterTypeChange}
+                  >
+                    <option value="industry">Industry</option>
+                    <option value="stage">Stage</option>
+                    <option value="timeline">Timeline</option>
+                  </select>
+                </div>
                 
                 <select
-                  className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:bg-white transition-all text-gray-700"
+                  className="bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 text-gray-700 pr-8"
                   value={selectedFilter}
                   onChange={(e) => setSelectedFilter(e.target.value)}
                 >
@@ -292,7 +319,7 @@ const StartupsDirectory = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredStartups.map((startup, index) => (
               <StartupCard key={index} startup={startup} />
             ))}
