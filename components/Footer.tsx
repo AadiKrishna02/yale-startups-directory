@@ -70,7 +70,7 @@ export default function Footer() {
 
         <div className="pt-6 text-center">
           <p className="text-sm text-blue-100/70">
-            © {new Date().getFullYear()} Yale Startup Directory. All rights reserved.
+            © {new Date().getFullYear()} Yale Undergraduate Capital Partners. All rights reserved.
           </p>
         </div>
       </div>
