@@ -130,8 +130,8 @@ export default function AboutPage() {
           </div>
 
           <Footer />
-        </div>
-      </div>
+{/*         </div>
+      </div> */}
     </>
   );
 }
