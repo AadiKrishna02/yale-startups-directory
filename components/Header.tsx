@@ -16,16 +16,16 @@ const navItems = [
     isExternal: false 
   },
   { 
-    name: 'Contact', 
-    href: '#',
-    isExternal: false 
+    name: 'YUCP', 
+    href: 'www.YUCP.org',
+    isExternal: true 
   },
-  { 
-    name: 'Log In', 
-    href: '#',
-    isExternal: false,
-    isBoxed: true
-  },
+  // { 
+  //   name: 'Log In', 
+  //   href: '#',
+  //   isExternal: false,
+  //   isBoxed: true
+  // },
 ];
 
 export default function Header() {
