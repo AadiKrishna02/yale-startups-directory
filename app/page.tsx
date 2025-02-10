@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, Menu, X } from 'lucide-react';
 import ExcelJS from 'exceljs';
-import Image from 'next/image';
 
 interface Startup {
   name?: string;
@@ -41,7 +40,6 @@ const StartupsDirectory = () => {
 
   // Navigation items
   const navItems = [
-    // { name: 'Directory', href: '#' },
     { name: 'Submit', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform' },
     { name: 'About', href: '#' },
     { name: 'Contact', href: '#' },
@@ -187,16 +185,12 @@ const StartupsDirectory = () => {
         setIsModalOpen(true);
       }}
     >
-      <h3 className="text-xl font-semibold mb-3 text-blue-900 font-inter">{startup.name}</h3>
+      <h3 className="text-xl font-semibold mb-3 text-blue-900">{startup.name}</h3>
       <div className="space-y-1 mb-7">
         <p className="text-sm text-blue-600 font-medium">{startup.industry}</p>
         <p className="text-sm text-gray-500 font-medium">{startup.stage || 'Stage not specified'}</p>
       </div>
       <p className="text-gray-700 text-base line-clamp-2 mb-4">{startup.description}</p>
-      {/* <p className="text-gray-800 text-base line-clamp-2">
-        <span className="text-blue-700 font-medium">Solution: </span>
-        {startup.solution || 'Not provided'}
-      </p> */}
     </div>
   );
 
@@ -229,13 +223,10 @@ const StartupsDirectory = () => {
           <p className="text-base text-gray-500 font-medium">{startup.stage || 'Stage not specified'}</p>
         </div>
       </div>
-      
-      {[
+  {[
         { title: 'Description', content: startup.description },
         { title: 'Website', content: startup.website },
-        { title: 'Yale Affiliation', content: startup.team },
-        // { title: 'Funding To Date', content: startup.funding },
-        // { title: 'Timeline for Funding', content: startup.timeline }
+        { title: 'Yale Affiliation', content: startup.team }
       ].map(section => (
         <section key={section.title} className="bg-blue-50 p-5 rounded-lg border border-blue-100">
           <h3 className="font-semibold text-lg mb-2 text-blue-800">{section.title}</h3>
@@ -257,7 +248,7 @@ const StartupsDirectory = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-32 px-8 pb-8">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-5xl font-bold text-blue-900 font-inter tracking-tight mb-4">Yale Startup Directory</h1>
+            <h1 className="text-5xl font-bold text-blue-900 tracking-tight mb-4">Yale Startup Directory</h1>
             <p className="text-gray-600 text-lg">Discover and connect with startups from the Yale ecosystem</p>
           </div>
           
