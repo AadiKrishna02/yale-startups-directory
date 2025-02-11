@@ -161,6 +161,21 @@ export default function AboutPage() {
             </div>
           </div>
 
+          {/* About YUCP Section */}
+          <div className="pb-24">
+            <h2 className="text-4xl font-bold text-center text-blue-950 mb-8">About YUCP</h2>
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-lg text-gray-700 mb-6">
+                YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
+                  and has built an impressive track record of connecting startups with opportunities.
+              </p>
+{/*               <p className="text-lg text-gray-700">
+                Our mission is to bridge the gap between Yale's innovative startups and the resources they need to succeed,
+                whether that's connecting with investors, finding team members, or gaining visibility in the startup ecosystem.
+              </p> */}
+            </div>
+          </div>
+
           {/* Network Section */}
           <div className="pb-24">
             <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">Our Network</h2>
@@ -175,22 +190,6 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-
-          {/* About YUCP Section */}
-          <div className="pb-24">
-            <h2 className="text-4xl font-bold text-center text-blue-950 mb-8">About YUCP</h2>
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="text-lg text-gray-700 mb-6">
-                Yale Undergraduate Capital Partners (YUCP) is a student-led organization dedicated to fostering entrepreneurship
-                and innovation within the Yale community. As a proud member of the Collegiate Capital Partners network, which spans
-                five universities, we have built an impressive track record of connecting startups with opportunities.
-              </p>
-              <p className="text-lg text-gray-700">
-                Our mission is to bridge the gap between Yale's innovative startups and the resources they need to succeed,
-                whether that's connecting with investors, finding team members, or gaining visibility in the startup ecosystem.
-              </p>
             </div>
           </div>
 
