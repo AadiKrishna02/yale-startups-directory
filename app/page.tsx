@@ -467,7 +467,7 @@ export default function HomePage() {
     {
       icon: <BookOpen className="w-8 h-8" />,
       title: "Yale Startup Pitchbook",
-      description: "An exclusive opportunity to present your venture to our extensive network of investors. Selected startups will be featured in our curated pitchbook distributed to top-tier VCs.",
+      description: "An exclusive opportunity to present your venture to an extensive set of global investors, including our network. Selected startups will be featured in our curated pitchbook distributed to top-tier VCs.",
       cta: {
         text: "Coming Soon!",
         isComingSoon: true
@@ -621,12 +621,12 @@ export default function HomePage() {
                 To join the Yale Startup Directory, please fill out our brief form. Startups will continue to be 
                 added on a rolling basis.
               </p>
-              <p className="text-gray-600 text-lg">
+{/*               <p className="text-gray-600 text-lg">
                 Questions? Contact us at{' '}
                 <a href="mailto:aadi.krishna@yale.edu" className="text-blue-600 hover:text-blue-700 font-medium">
                   aadi.krishna@yale.edu
                 </a>
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
