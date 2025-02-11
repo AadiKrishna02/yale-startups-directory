@@ -36,11 +36,11 @@ export default function AboutPage() {
       icon: <Database className="w-8 h-8" />,
       title: "Yale Startup Directory",
       description: "A comprehensive database showcasing the innovative startups emerging from Yale's entrepreneurial ecosystem. Get discovered by investors, potential team members, and collaborators.",
-      features: [
-        "Public visibility for your startup",
-        "Connect with potential team members",
-        "Join Yale's startup community"
-      ],
+      // features: [
+      //   "Public visibility for your startup",
+      //   "Connect with potential team members",
+      //   "Join Yale's startup community"
+      // ],
       cta: {
         text: "Submit Your Startup",
         link: "https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform"
@@ -50,11 +50,11 @@ export default function AboutPage() {
       icon: <BookOpen className="w-8 h-8" />,
       title: "Yale Startup Pitchbook",
       description: "An exclusive opportunity to present your venture to our extensive network of investors. Selected startups will be featured in our curated pitchbook distributed to top-tier VCs.",
-      features: [
-        "Direct investor exposure",
-        "Professional pitch presentation",
-        "Targeted fundraising opportunities"
-      ],
+      // features: [
+      //   "Direct investor exposure",
+      //   "Professional pitch presentation",
+      //   "Targeted fundraising opportunities"
+      // ],
       cta: {
         text: "Coming Soon!",
         isComingSoon: true
@@ -109,9 +109,8 @@ export default function AboutPage() {
                 Connecting Yale's most innovative startups with resources, talent, and investment opportunities.
               </p>
               <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-                We are thrilled to announce that Yale Undergraduate Capital Partners (YUCP) is launching the 
-                <span className="font-semibold text-blue-900"> Yale Startup Directory</span> – the largest 
-                online database showcasing startups at Yale.
+                Yale Undergraduate Capital Partners (YUCP) is thrilled to announce the launch of the 
+                <span className="font-semibold text-blue-900"> Yale Startup Directory</span> and <span className="font-semibold text-blue-900"> Yale Startup Pitchbook </span>!
               </p>
             </div>
           </div>
@@ -135,19 +134,6 @@ export default function AboutPage() {
                 </p>
               </div>
             ))}
-          </div>
-
-          {/* About Section */}
-          <div className="max-w-3xl mx-auto mb-24 text-center">
-            <p className="text-lg text-gray-700 mb-6">
-              YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
-              and has built an impressive track record of connecting startups with opportunities.
-            </p>
-            <p className="text-lg text-gray-700">
-              For startups seeking funding, we're excited to announce our upcoming 
-              <span className="font-semibold text-blue-900"> Yale Startup Pitchbook</span>, designed to 
-              present your venture to an extensive network of investors.
-            </p>
           </div>
 
           {/* Offerings Section */}
@@ -189,6 +175,19 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+          
+          {/* About Section */}
+          <div className="max-w-3xl mx-auto mb-24 text-center">
+            <p className="text-lg text-gray-700 mb-6">
+              YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
+              and has built an impressive track record of connecting startups with opportunities.
+            </p>
+{/*             <p className="text-lg text-gray-700">
+              For startups seeking funding, we're excited to announce our upcoming 
+              <span className="font-semibold text-blue-900"> Yale Startup Pitchbook</span>, designed to 
+              present your venture to an extensive network of investors.
+            </p> */}
+          </div>
 
           {/* Network Section */}
           <div className="mb-32">
@@ -214,9 +213,8 @@ export default function AboutPage() {
             <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
               <h3 className="text-2xl font-semibold text-blue-900 mb-4">Join the Directory</h3>
               <p className="text-gray-700 mb-6 text-lg">
-                To join the Yale Startup Directory, please fill out our brief form by 
-                <span className="font-semibold"> February 10, 2025</span>. Startups will continue to be 
-                added on a rolling basis afterward.
+                To join the Yale Startup Directory, please fill out our brief form by. Startups will continue to be 
+                added on a rolling basis.
               </p>
               <p className="text-gray-600 text-lg">
                 Questions? Contact us at{' '}
