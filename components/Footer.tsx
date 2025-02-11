@@ -22,7 +22,7 @@ export default function Footer() {
                 alt="Yale Logo"
                 className="h-16 w-auto mb-4 brightness-0 invert"
               />
-              <h4 className="text-base font-semibold text-white/90 mb-2">Yale Startup Directory</h4>
+              <h4 className="text-base font-semibold text-white/90 mb-2">Yale Pitchbook</h4>
               <p className="text-sm text-blue-100/80 text-center md:text-left max-w-xl">
                 Connecting Yale startups with resources, talent, and funding opportunities. Join our growing community of innovators and entrepreneurs.
               </p>
