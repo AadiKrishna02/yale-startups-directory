@@ -85,7 +85,7 @@ export default function HomePage() {
 
       <main className="bg-white relative">
         {/* Curved Separator */}
-        <div className="absolute top-0 inset-x-0 h-24 bg-blue-800">
+        <div className="absolute top-0 inset-x-0 h-32 bg-blue-800">
           <svg className="absolute bottom-0 w-full h-24 transform translate-y-1/2" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 48h1440V0C1440 0 1320 48 720 48S0 0 0 0v48z" fill="white"/>
           </svg>
@@ -93,7 +93,7 @@ export default function HomePage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
           {/* Initiatives Section */}
-          <div className="pt-24 mb-24">
+          <div className="pt-24 mb-16">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <h2 className="text-4xl font-bold text-blue-950 mb-6">Our Initiatives</h2>
               <p className="text-xl text-gray-700 leading-relaxed">
