@@ -27,7 +27,7 @@ interface FilterOptions {
   team: string[];
 }
 
-export default function StartupsDirectory() {
+export default function Page() {
   const [startups, setStartups] = useState<Startup[]>([]);
   const [filteredStartups, setFilteredStartups] = useState<Startup[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -402,3 +402,4 @@ export default function StartupsDirectory() {
       <Footer />
     </div>
   );
+}
