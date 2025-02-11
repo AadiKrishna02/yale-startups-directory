@@ -1,23 +1,10 @@
 'use client';
 
 import React from 'react';
-import { ArrowUpRight, Users, Eye, Briefcase, Database, BookOpen } from 'lucide-react';
+import { ArrowUpRight, Users, Eye, Briefcase, Database, BookOpen, ChevronDown } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-
-interface OfferingCTA {
-  text: string;
-  link?: string;
-  isComingSoon?: boolean;
-}
-
-interface Offering {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  cta: OfferingCTA;
-}
 
 export default function HomePage() {
   const benefits = [
@@ -44,123 +31,86 @@ export default function HomePage() {
     { number: "$23M", label: "Investments Facilitated" }
   ];
 
-  const offerings: Offering[] = [
-    {
-      icon: <Database className="w-8 h-8" />,
-      title: "Yale Startup Directory",
-      description: "A comprehensive database showcasing the innovative startups emerging from Yale's entrepreneurial ecosystem. Get discovered by investors, potential team members, and collaborators.",
-      cta: {
-        text: "View Directory",
-        link: "/directory"
-      }
-    },
-    {
-      icon: <BookOpen className="w-8 h-8" />,
-      title: "Yale Startup Pitchbook",
-      description: "An exclusive opportunity to present your venture to an extensive set of global investors, including our network. Selected startups will be featured in our curated pitchbook distributed to top-tier VCs.",
-      cta: {
-        text: "Coming Soon!",
-        isComingSoon: true
-      }
-    }
-  ];
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <div className="relative bg-gradient-to-b from-blue-900 to-blue-800">
-        {/* Abstract Background Pattern */}
+      {/* Hero Section with Enhanced Visual Elements */}
+      <div className="relative min-h-screen flex items-center bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800">
+        {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute w-full h-full">
-            <svg className="absolute transform translate-x-1/3 translate-y-1/4 opacity-10" width="404" height="384" fill="none" viewBox="0 0 404 384">
-              <defs>
-                <pattern id="d3eb07ae-5182-43e6-857d-35c643af9034" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <rect x="0" y="0" width="4" height="4" className="text-blue-400" fill="currentColor" />
-                </pattern>
-              </defs>
-              <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)" />
-            </svg>
-            <svg className="absolute transform -translate-x-1/3 -translate-y-1/4 opacity-10" width="404" height="384" fill="none" viewBox="0 0 404 384">
-              <defs>
-                <pattern id="d3eb07ae-5182-43e6-857d-35c643af9035" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <rect x="0" y="0" width="4" height="4" className="text-blue-400" fill="currentColor" />
-                </pattern>
-              </defs>
-              <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9035)" />
-            </svg>
+            {/* Enhanced Grid Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f46e520_1px,transparent_1px),linear-gradient(to_bottom,#4f46e520_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+            
+            {/* Glowing Orbs */}
+            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
           </div>
-          
-          {/* Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-800/50 via-transparent to-transparent"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-700/30 via-transparent to-transparent"></div>
-          
-          {/* Animated Circles */}
-          <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
         </div>
 
-        {/* Hero Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold !text-white mb-8 leading-tight">
+        {/* Hero Content with Enhanced Layout */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+          <div className="text-center max-w-4xl mx-auto space-y-8">
+            <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
               Yale Pitchbook
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed">
+            <p className="text-2xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
               Connecting Yale startups with resources, talent, and investment opportunities.
             </p>
-            <p className="text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed">
-              Yale Undergraduate Capital Partners (YUCP) is thrilled to announce the launch of the{' '}
-              <Link href="/directory" className="font-semibold text-white hover:text-blue-100 transition-colors">
-                Yale Startup Directory
-              </Link>{' '}
-              and <span className="font-semibold text-white">Yale Startup Pitchbook</span>!
-            </p>
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-12">
+              <Link
+                href="/directory"
+                className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-lg hover:bg-blue-50 transition-all duration-300 text-lg font-medium overflow-hidden"
+              >
+                <span className="relative z-10">View Directory</span>
+                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </Link>
+              <a
+                href="#learn-more"
+                className="group inline-flex items-center gap-2 text-white hover:text-blue-200 transition-colors text-lg"
+              >
+                Learn More
+                <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+              </a>
+            </div>
           </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronDown className="w-8 h-8 text-white/50" />
         </div>
       </div>
 
-      <main className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Offerings Section */}
-          <div className="pt-12 pb-24">
-            <div className="grid md:grid-cols-2 gap-12">
-              {offerings.map((offering, index) => (
-                <div key={index} className="bg-white/95 rounded-2xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100">
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="bg-blue-100 rounded-xl p-4 text-blue-600">
-                      {offering.icon}
-                    </div>
-                    <h3 className="text-2xl font-bold text-blue-950">{offering.title}</h3>
-                  </div>
-                  <p className="text-gray-600 mb-8 text-lg">
-                    {offering.description}
-                  </p>
-                  {offering.cta.isComingSoon ? (
-                    <div className="text-2xl font-bold text-blue-600 tracking-wide">
-                      {offering.cta.text}
-                    </div>
-                  ) : offering.cta.link ? (
-                    <Link
-                      href={offering.cta.link}
-                      className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
-                    >
-                      {offering.cta.text}
-                      <ArrowUpRight className="w-5 h-5" />
-                    </Link>
-                  ) : null}
-                </div>
-              ))}
-            </div>
+      <main className="bg-white relative">
+        {/* Curved Separator */}
+        <div className="absolute top-0 inset-x-0 h-32 bg-blue-800">
+          <svg className="absolute bottom-0 w-full h-24 transform translate-y-1/2" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48h1440V0C1440 0 1320 48 720 48S0 0 0 0v48z" fill="white"/>
+          </svg>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
+          {/* Stats Section with Enhanced Design */}
+          <div className="grid md:grid-cols-3 gap-8 mb-24">
+            {stats.map((stat, index) => (
+              <div key={index} className="group bg-gradient-to-br from-blue-900 to-blue-950 p-8 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-300">
+                <div className="text-5xl font-bold text-white mb-3 bg-clip-text">{stat.number}</div>
+                <div className="text-blue-200 text-lg font-light">{stat.label}</div>
+              </div>
+            ))}
           </div>
 
-          {/* Benefits Section */}
-          <div className="pb-24">
-            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">Why Join?</h2>
+          {/* Benefits Section with Enhanced Cards */}
+          <div className="pb-24" id="learn-more">
+            <h2 className="text-4xl font-bold text-center text-blue-950 mb-16">Why Join?</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {benefits.map((benefit, index) => (
-                <div key={index} className="group bg-white/95 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                  <div className="bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center mb-6 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                <div key={index} 
+                  className="group bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200"
+                >
+                  <div className="bg-blue-100 rounded-2xl w-16 h-16 flex items-center justify-center mb-6 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 transform group-hover:rotate-6">
                     {benefit.icon}
                   </div>
                   <h3 className="text-xl font-semibold text-blue-950 mb-4 group-hover:text-blue-600 transition-colors">
@@ -174,34 +124,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* About YUCP Section with Stats */}
-          <div className="pb-24">
-            <h2 className="text-4xl font-bold text-center text-blue-950 mb-8">About YUCP</h2>
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <p className="text-lg text-gray-700 mb-6">
-                YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
-                and has built an impressive track record of connecting startups with opportunities.
-              </p>
-            </div>
-            <div className="bg-blue-900 rounded-2xl p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-800 to-blue-950"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-700/50 via-transparent to-transparent"></div>
-              <div className="relative grid md:grid-cols-3 gap-12 text-center">
-                {stats.map((stat, index) => (
-                  <div key={index} className="group">
-                    <div className="text-5xl font-bold text-white mb-3">{stat.number}</div>
-                    <div className="text-blue-200 text-lg">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Section */}
+          {/* Contact Section with Enhanced Design */}
           <div className="max-w-3xl mx-auto text-center mb-24">
-            <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
-              <h3 className="text-2xl font-semibold text-blue-900 mb-4">Join the Directory</h3>
-              <p className="text-gray-700 mb-6 text-lg">
+            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-12 border border-blue-100 shadow-lg">
+              <h3 className="text-3xl font-bold text-blue-900 mb-6">Join the Directory</h3>
+              <p className="text-gray-700 mb-8 text-lg">
                 To join the Yale Startup Directory, please fill out our brief form. Startups will continue to be 
                 added on a rolling basis.
               </p>
@@ -209,7 +136,7 @@ export default function HomePage() {
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
+                className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
               >
                 Join Now
                 <ArrowUpRight className="w-5 h-5" />
