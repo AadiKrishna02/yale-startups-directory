@@ -36,11 +36,6 @@ export default function AboutPage() {
       icon: <Database className="w-8 h-8" />,
       title: "Yale Startup Directory",
       description: "A comprehensive database showcasing the innovative startups emerging from Yale's entrepreneurial ecosystem. Get discovered by investors, potential team members, and collaborators.",
-      // features: [
-      //   "Public visibility for your startup",
-      //   "Connect with potential team members",
-      //   "Join Yale's startup community"
-      // ],
       cta: {
         text: "Submit Your Startup",
         link: "https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform"
@@ -50,11 +45,7 @@ export default function AboutPage() {
       icon: <BookOpen className="w-8 h-8" />,
       title: "Yale Startup Pitchbook",
       description: "An exclusive opportunity to present your venture to our extensive network of investors. Selected startups will be featured in our curated pitchbook distributed to top-tier VCs.",
-      // features: [
-      //   "Direct investor exposure",
-      //   "Professional pitch presentation",
-      //   "Targeted fundraising opportunities"
-      // ],
+
       cta: {
         text: "Coming Soon!",
         isComingSoon: true
@@ -67,22 +58,22 @@ export default function AboutPage() {
       <Header />
       
       {/* Enhanced Hero Section with Background Pattern */}
-      <div className="relative bg-gradient-to-b from-blue-50 to-white">
+      <div className="relative bg-gradient-to-b from-blue-900 to-blue-800">
         {/* Abstract Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute w-full h-full">
-            <svg className="absolute transform translate-x-1/3 translate-y-1/4 opacity-20" width="404" height="384" fill="none" viewBox="0 0 404 384">
+            <svg className="absolute transform translate-x-1/3 translate-y-1/4 opacity-10" width="404" height="384" fill="none" viewBox="0 0 404 384">
               <defs>
                 <pattern id="d3eb07ae-5182-43e6-857d-35c643af9034" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <rect x="0" y="0" width="4" height="4" className="text-blue-200" fill="currentColor" />
+                  <rect x="0" y="0" width="4" height="4" className="text-blue-400" fill="currentColor" />
                 </pattern>
               </defs>
               <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)" />
             </svg>
-            <svg className="absolute transform -translate-x-1/3 -translate-y-1/4 opacity-20" width="404" height="384" fill="none" viewBox="0 0 404 384">
+            <svg className="absolute transform -translate-x-1/3 -translate-y-1/4 opacity-10" width="404" height="384" fill="none" viewBox="0 0 404 384">
               <defs>
                 <pattern id="d3eb07ae-5182-43e6-857d-35c643af9035" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <rect x="0" y="0" width="4" height="4" className="text-blue-200" fill="currentColor" />
+                  <rect x="0" y="0" width="4" height="4" className="text-blue-400" fill="currentColor" />
                 </pattern>
               </defs>
               <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9035)" />
@@ -90,27 +81,27 @@ export default function AboutPage() {
           </div>
           
           {/* Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 via-transparent to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/50 to-blue-50/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-800/50 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-700/30 via-transparent to-transparent"></div>
           
           {/* Animated Circles */}
-          <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-96 h-96 bg-blue-300/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
         </div>
 
         {/* Hero Content */}
         <div className="relative pt-32 pb-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-6xl font-bold text-blue-950 mb-8 leading-tight">
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight bg-clip-text">
                 Yale Pitchbook
               </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed">
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed">
                 Connecting Yale's most innovative startups with resources, talent, and investment opportunities.
               </p>
-              <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed">
                 Yale Undergraduate Capital Partners (YUCP) is thrilled to announce the launch of the 
-                <span className="font-semibold text-blue-900"> Yale Startup Directory</span> and <span className="font-semibold text-blue-900"> Yale Startup Pitchbook </span>!
+                <span className="font-semibold text-white"> Yale Startup Directory</span> and <span className="font-semibold text-white"> Yale Startup Pitchbook</span>!
               </p>
             </div>
           </div>
@@ -149,14 +140,7 @@ export default function AboutPage() {
                 <p className="text-gray-600 mb-8 text-lg">
                   {offering.description}
                 </p>
-                <ul className="space-y-4 mb-10">
-                  {offering.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-gray-700">
-                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+
                 {offering.cta.isComingSoon ? (
                   <div className="text-2xl font-bold text-blue-600 tracking-wide">
                     {offering.cta.text}
@@ -182,15 +166,10 @@ export default function AboutPage() {
               YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
               and has built an impressive track record of connecting startups with opportunities.
             </p>
-{/*             <p className="text-lg text-gray-700">
-              For startups seeking funding, we're excited to announce our upcoming 
-              <span className="font-semibold text-blue-900"> Yale Startup Pitchbook</span>, designed to 
-              present your venture to an extensive network of investors.
-            </p> */}
           </div>
 
           {/* Network Section */}
-          <div className="mb-32">
+          <div className="mb-16">
             <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">
               Our Network
             </h2>
@@ -213,7 +192,7 @@ export default function AboutPage() {
             <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
               <h3 className="text-2xl font-semibold text-blue-900 mb-4">Join the Directory</h3>
               <p className="text-gray-700 mb-6 text-lg">
-                To join the Yale Startup Directory, please fill out our brief form by. Startups will continue to be 
+                To join the Yale Startup Directory, please fill out our brief form. Startups will continue to be 
                 added on a rolling basis.
               </p>
               <p className="text-gray-600 text-lg">
