@@ -1,27 +1,27 @@
 const YaleInstitutions = () => {
   const institutions = [
     {
-      name: "Yale School of Management",
+      name: "School of Management",
       logo: "/SOM.png"
     },
     {
-      name: "Yale College",
+      name: "College",
       logo: "/College.png"
     },
     {
-      name: "Yale School of Engineering",
+      name: "School of Engineering",
       logo: "/SEAS.jpg"
     },
     {
-      name: "Yale School of Public Health",
+      name: "School of Public Health",
       logo: "/MPH.png"
     },
     {
-      name: "Yale Faculty of Arts & Sciences",
+      name: "Faculty of Arts & Sciences",
       logo: "/Faculty.png"
     },
     {
-      name: "Yale University Alumni",
+      name: "University Alumni",
       logo: "/Alumni.png"
     }
   ];
