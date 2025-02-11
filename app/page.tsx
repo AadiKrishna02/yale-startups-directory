@@ -92,14 +92,67 @@ export default function HomePage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
-          {/* Stats Section with Enhanced Design */}
-          <div className="grid md:grid-cols-3 gap-8 mb-24">
-            {stats.map((stat, index) => (
-              <div key={index} className="group bg-gradient-to-br from-blue-900 to-blue-950 p-8 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-300">
-                <div className="text-5xl font-bold text-white mb-3 bg-clip-text">{stat.number}</div>
-                <div className="text-blue-200 text-lg font-light">{stat.label}</div>
+          {/* Initiatives Section */}
+          <div className="mb-24">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="group bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="bg-blue-100 rounded-xl p-4 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                    <Database className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-blue-950">Yale Startup Directory</h3>
+                </div>
+                <p className="text-gray-600 mb-8 text-lg">
+                  A comprehensive database showcasing the innovative startups emerging from Yale's entrepreneurial ecosystem. Get discovered by investors, potential team members, and collaborators.
+                </p>
+                <Link
+                  href="/directory"
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
+                >
+                  View Directory
+                  <ArrowUpRight className="w-5 h-5" />
+                </Link>
               </div>
-            ))}
+
+              <div className="group bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="bg-blue-100 rounded-xl p-4 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                    <BookOpen className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-blue-950">Yale Startup Pitchbook</h3>
+                </div>
+                <p className="text-gray-600 mb-8 text-lg">
+                  An exclusive opportunity to present your venture to an extensive set of global investors, including our network. Selected startups will be featured in our curated pitchbook distributed to top-tier VCs.
+                </p>
+                <div className="text-2xl font-bold text-blue-600 tracking-wide">
+                  Coming Soon!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* About YUCP Section */}
+          <div className="mb-24">
+            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">About YUCP</h2>
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <p className="text-xl text-gray-700 leading-relaxed">
+                YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
+                and has built an impressive track record of connecting startups with opportunities.
+              </p>
+            </div>
+
+            {/* Stats with new design */}
+            <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-12 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f46e510_1px,transparent_1px),linear-gradient(to_bottom,#4f46e510_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+              <div className="relative grid md:grid-cols-3 gap-12">
+                {stats.map((stat, index) => (
+                  <div key={index} className="group text-center transform hover:-translate-y-1 transition-all duration-300">
+                    <div className="text-5xl font-bold text-white mb-3 bg-clip-text">{stat.number}</div>
+                    <div className="text-blue-200 text-lg font-light">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Benefits Section with Enhanced Cards */}
