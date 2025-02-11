@@ -29,9 +29,12 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-3 group">
+            <Link href="/" className="flex items-center group">
               <div className="flex items-center">
-                <span className="text-gray-900 font-semibold mr-2">Yale Pitchbook by</span>
+                <div className="flex items-baseline">
+                  <span className="text-blue-800 font-bold text-xl tracking-tight mr-1">Yale Pitchbook</span>
+                  <span className="text-gray-500 text-sm font-normal ml-2 mr-3">by</span>
+                </div>
                 <img
                   src="/Logo.png"
                   alt="YUCP Logo"
