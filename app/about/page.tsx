@@ -34,7 +34,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-24">
+      <main className="flex-grow bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-32">
         {/* Main Content */}
         <div className="max-w-6xl mx-auto px-4 sm:px-12 lg:px-24 relative">
           {/* Background decorative elements */}
