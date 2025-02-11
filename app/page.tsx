@@ -93,7 +93,15 @@ export default function HomePage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
           {/* Initiatives Section */}
-          <div className="mb-24">
+          <div className="pt-40 mb-24">
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <h2 className="text-4xl font-bold text-blue-950 mb-6">Our Initiatives</h2>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                We provide two key platforms to support Yale's startup ecosystem. The Directory offers 
+                immediate visibility for all Yale startups, while the Pitchbook provides curated 
+                opportunities for investment-ready ventures.
+              </p>
+            </div>
             <div className="grid md:grid-cols-2 gap-12">
               <div className="group bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
                 <div className="flex items-center gap-4 mb-8">
