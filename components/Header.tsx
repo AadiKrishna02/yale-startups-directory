@@ -33,7 +33,7 @@ export default function Header() {
               <div className="flex items-center">
                 <div className="flex items-baseline">
                   <span className="text-blue-800 font-bold text-xl tracking-tight mr-1">Yale Pitchbook</span>
-                  <span className="text-gray-500 text-sm font-normal ml-1 mr-1">by</span>
+                  <span className="text-gray-500 text-sm font-normal ml-1">by</span>
                 </div>
                 <img
                   src="/Logo.png"
