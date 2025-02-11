@@ -45,7 +45,6 @@ export default function AboutPage() {
       icon: <BookOpen className="w-8 h-8" />,
       title: "Yale Startup Pitchbook",
       description: "An exclusive opportunity to present your venture to our extensive network of investors. Selected startups will be featured in our curated pitchbook distributed to top-tier VCs.",
-
       cta: {
         text: "Coming Soon!",
         isComingSoon: true
@@ -57,7 +56,6 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      {/* Enhanced Hero Section with Background Pattern */}
       <div className="relative bg-gradient-to-b from-blue-900 to-blue-800">
         {/* Abstract Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
@@ -111,69 +109,64 @@ export default function AboutPage() {
 
       <main className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Benefits Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mb-24 -mt-16">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="group bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                <div className="bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center mb-6 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                  {benefit.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-blue-950 mb-4 group-hover:text-blue-600 transition-colors">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
           {/* Offerings Section */}
-          <div className="grid md:grid-cols-2 gap-12 mb-32">
-            {offerings.map((offering, index) => (
-              <div key={index} className="bg-white/95 rounded-2xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="bg-blue-100 rounded-xl p-4 text-blue-600">
-                    {offering.icon}
+          <div className="pt-12 pb-24">
+            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">Our Initiatives</h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              {offerings.map((offering, index) => (
+                <div key={index} className="bg-white/95 rounded-2xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100">
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="bg-blue-100 rounded-xl p-4 text-blue-600">
+                      {offering.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold text-blue-950">{offering.title}</h3>
                   </div>
-                  <h2 className="text-2xl font-bold text-blue-950">{offering.title}</h2>
+                  <p className="text-gray-600 mb-8 text-lg">
+                    {offering.description}
+                  </p>
+                  {offering.cta.isComingSoon ? (
+                    <div className="text-2xl font-bold text-blue-600 tracking-wide">
+                      {offering.cta.text}
+                    </div>
+                  ) : (
+                    <a
+                      href={offering.cta.link}
+                      className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {offering.cta.text}
+                      <ArrowUpRight className="w-5 h-5" />
+                    </a>
+                  )}
                 </div>
-                <p className="text-gray-600 mb-8 text-lg">
-                  {offering.description}
-                </p>
-
-                {offering.cta.isComingSoon ? (
-                  <div className="text-2xl font-bold text-blue-600 tracking-wide">
-                    {offering.cta.text}
-                  </div>
-                ) : (
-                  <a
-                    href={offering.cta.link}
-                    className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {offering.cta.text}
-                    <ArrowUpRight className="w-5 h-5" />
-                  </a>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          
-          {/* About Section */}
-          <div className="max-w-3xl mx-auto mb-24 text-center">
-            <p className="text-lg text-gray-700 mb-6">
-              YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
-              and has built an impressive track record of connecting startups with opportunities.
-            </p>
+
+          {/* Benefits Section */}
+          <div className="pb-24">
+            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">Why Join Us</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="group bg-white/95 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                  <div className="bg-blue-100 rounded-lg w-12 h-12 flex items-center justify-center mb-6 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-blue-950 mb-4 group-hover:text-blue-600 transition-colors">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-600">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Network Section */}
-          <div className="mb-16">
-            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">
-              Our Network
-            </h2>
+          <div className="pb-24">
+            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">Our Network</h2>
             <div className="bg-blue-900 rounded-2xl p-12 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-800 to-blue-950"></div>
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-700/50 via-transparent to-transparent"></div>
@@ -185,6 +178,22 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* About YUCP Section */}
+          <div className="pb-24">
+            <h2 className="text-4xl font-bold text-center text-blue-950 mb-8">About YUCP</h2>
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-lg text-gray-700 mb-6">
+                Yale Undergraduate Capital Partners (YUCP) is a student-led organization dedicated to fostering entrepreneurship
+                and innovation within the Yale community. As a proud member of the Collegiate Capital Partners network, which spans
+                five universities, we have built an impressive track record of connecting startups with opportunities.
+              </p>
+              <p className="text-lg text-gray-700">
+                Our mission is to bridge the gap between Yale's innovative startups and the resources they need to succeed,
+                whether that's connecting with investors, finding team members, or gaining visibility in the startup ecosystem.
+              </p>
             </div>
           </div>
 
