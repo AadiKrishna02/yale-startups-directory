@@ -90,8 +90,8 @@ export default function AboutPage() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative pt-32 pb-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
             <div className="text-center max-w-4xl mx-auto">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight bg-clip-text">
                 Yale Pitchbook
@@ -105,10 +105,11 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
         </div>
       </div>
 
-      <main className="flex-grow bg-gradient-to-br from-white via-white to-gray-50">
+      <main className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Benefits Grid */}
           <div className="grid md:grid-cols-3 gap-8 mb-24 -mt-16">
