@@ -37,13 +37,13 @@ export default function Header() {
             <Link href="/" className="flex items-center group">
               <div className="flex items-center">
                 <div className="flex items-baseline">
-                  <span className="text-blue-800 font-bold text-xl tracking-tight mr-1">Yale Pitchbook</span>
+                  <span className="text-blue-800 font-bold text-2xl tracking-tight mr-1">Yale Pitchbook</span>
                   <span className="text-gray-500 text-sm font-normal ml-1">by</span>
                 </div>
                 <img
                   src="/Logo.png"
                   alt="YUCP Logo"
-                  className="h-12 w-auto group-hover:opacity-80 transition-opacity"
+                  className="h-8 w-auto group-hover:opacity-80 transition-opacity"
                 />
               </div>
             </Link>
