@@ -50,7 +50,7 @@ export default function AboutPage() {
                 About Yale Startup Directory
               </h1>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Connecting Yale's most promising startups with resources, talent, and opportunities.
+                Connecting Yale's startups with resources, talent, and opportunities.
               </p>
             </div>
 
