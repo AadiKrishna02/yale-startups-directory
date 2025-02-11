@@ -88,22 +88,19 @@ export default function AboutPage() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-            <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight bg-clip-text">
-                Yale Pitchbook
-              </h1>
-              <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed">
-                Connecting Yale's most innovative startups with resources, talent, and investment opportunities.
-              </p>
-              <p className="text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed">
-                Yale Undergraduate Capital Partners (YUCP) is thrilled to announce the launch of the 
-                <span className="font-semibold text-white"> Yale Startup Directory</span> and <span className="font-semibold text-white"> Yale Startup Pitchbook</span>!
-              </p>
-            </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight bg-clip-text">
+              Yale Pitchbook
+            </h1>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed">
+              Connecting Yale's most innovative startups with resources, talent, and investment opportunities.
+            </p>
+            <p className="text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed">
+              Yale Undergraduate Capital Partners (YUCP) is thrilled to announce the launch of the 
+              <span className="font-semibold text-white"> Yale Startup Directory</span> and <span className="font-semibold text-white"> Yale Startup Pitchbook</span>!
+            </p>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
         </div>
       </div>
 
