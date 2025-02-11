@@ -27,7 +27,7 @@ export default function HomePage() {
 
   const stats = [
     { number: "60+", label: "VC Partners" },
-    { number: "$27B", label: "Assets Managed" },
+    { number: "$27B", label: "AUM" },
     { number: "$23M", label: "Investments Facilitated" }
   ];
 
