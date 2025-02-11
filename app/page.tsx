@@ -310,7 +310,7 @@ export default function StartupsDirectory() {
             <div className="absolute inset-0 -z-10">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-white/50 to-blue-50/50 rounded-3xl blur-xl"></div>
             </div>
-            <h1 className="text-5xl font-bold text-blue-950 tracking-tight mb-4">Yale Startup Directory</h1>
+            <h1 className="text-4xl font-bold text-blue-900 tracking-tight mb-4">Yale Startup Directory</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">Discover and connect with innovative startups from the Yale ecosystem</p>
           </div>
           
@@ -358,6 +358,19 @@ export default function StartupsDirectory() {
               </div>
             </div>
           </div>
+
+          {/* Results Counter */}
+          <div className="flex justify-between items-center mb-6">
+            <p className="text-sm text-gray-600">
+              Showing {(currentPage - 1) * startupsPerPage + 1} - {Math.min(currentPage * startupsPerPage, filteredStartups.length)} of {filteredStartups.length} startups
+              {searchTerm && ` matching "${searchTerm}"`}
+              {selectedFilter !== 'All' && ` in ${filterType}: ${selectedFilter}`}
+            </p>
+            
+            <div className="text-sm text-gray-500">
+              Page {currentPage} of {Math.ceil(filteredStartups.length / startupsPerPage)}
+            </div>
+          </div>
           
           {/* Startup Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -386,8 +399,6 @@ export default function StartupsDirectory() {
         </div>
       </main>
       
-      {/* Footer moved outside of max-width container */}
       <Footer />
     </div>
   );
-}
