@@ -111,7 +111,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-bold text-blue-950">Yale Startup Directory</h3>
                 </div>
                 <p className="text-gray-600 mb-8 text-lg">
-                  A comprehensive database showcasing the innovative startups emerging from Yale's entrepreneurial ecosystem. Get discovered by investors, potential team members, and collaborators.
+                  A comprehensive database showcasing startups emerging from Yale's entrepreneurial ecosystem. Get discovered by investors, potential team members, and users.
                 </p>
                 <Link
                   href="/directory"
@@ -130,8 +130,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-bold text-blue-950">Yale Startup Pitchbook</h3>
                 </div>
                 <p className="text-gray-600 mb-8 text-lg">
-                  An exclusive opportunity to present your venture to an extensive set of global investors, including our network. Selected startups will be featured in our curated pitchbook distributed to top-tier VCs.
-                </p>
+                  A unique opportunity for select startups to be featured in our curated pitchbook distributed to an extensive set of global investors, including our network.
                 <div className="text-2xl font-bold text-blue-600 tracking-wide">
                   Coming Soon!
                 </div>
