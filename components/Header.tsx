@@ -1,7 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
   { 
@@ -28,22 +29,40 @@ const navItems = [
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const headerClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    scrolled 
+      ? 'bg-white/80 backdrop-blur-md border-b border-gray-200' 
+      : 'bg-white border-b border-gray-200'
+  }`;
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-200">
+    <header className={headerClasses}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link href="/" className="flex items-center group">
               <div className="flex items-center">
                 <div className="flex items-baseline">
-                  <span className="text-blue-800 font-bold text-xl tracking-tight mr-1">Yale Pitchbook</span>
-                  <span className="text-gray-500 text-sm font-normal ml-1">by</span>
+                  <span className="font-bold text-xl tracking-tight text-blue-800">Yale Pitchbook</span>
+                  <span className="text-sm font-normal ml-0.5 text-gray-500">by</span>
                 </div>
                 <img
                   src="/Logo.png"
                   alt="YUCP Logo"
-                  className="h-12 w-auto group-hover:opacity-80 transition-opacity"
+                  className="h-12 w-auto ml-1 group-hover:opacity-80 transition-opacity"
                 />
               </div>
             </Link>
@@ -54,7 +73,7 @@ export default function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors"
+                  className="px-3 py-1.5 text-sm font-medium transition-colors text-gray-600 hover:text-blue-700"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -64,7 +83,11 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors"
+                  className={`px-3 py-1.5 text-sm font-medium transition-colors ${
+                    !scrolled && isHomePage 
+                      ? 'text-blue-100 hover:text-white' 
+                      : 'text-gray-600 hover:text-blue-700'
+                  }`}
                 >
                   {item.name}
                 </Link>
@@ -74,7 +97,9 @@ export default function Header() {
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-600 hover:text-blue-700"
+              className={`${
+                !scrolled && isHomePage ? 'text-white' : 'text-gray-600 hover:text-blue-700'
+              }`}
             >
               {isMobileMenuOpen ? (
                 <X className="h-5 w-5" />
@@ -85,7 +110,7 @@ export default function Header() {
           </div>
         </div>
         {isMobileMenuOpen && (
-          <div className="md:hidden">
+          <div className="md:hidden bg-white">
             <div className="pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 item.isExternal ? (
