@@ -131,6 +131,7 @@ export default function HomePage() {
                 </div>
                 <p className="text-gray-600 mb-8 text-lg">
                   A unique opportunity for select startups to be featured in our curated pitchbook distributed to an extensive set of global investors, including our network.
+                </p>
                 <div className="text-2xl font-bold text-blue-600 tracking-wide">
                   Coming Soon!
                 </div>
