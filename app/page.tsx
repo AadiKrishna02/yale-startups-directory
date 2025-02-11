@@ -156,7 +156,7 @@ export default function HomePage() {
 
           {/* Benefits Section */}
           <div className="pb-24">
-            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">Why Join</h2>
+            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">Why Join?</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {benefits.map((benefit, index) => (
                 <div key={index} className="group bg-white/95 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
