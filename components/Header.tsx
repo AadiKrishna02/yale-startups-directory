@@ -5,8 +5,13 @@ import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { 
-    name: 'About', 
-    href: '/about',
+    name: 'Yale Startup Directory', 
+    href: '/directory',
+    isExternal: false 
+  },
+  { 
+    name: 'Yale Startup Pitchbook', 
+    href: '#',
     isExternal: false 
   },
   { 
