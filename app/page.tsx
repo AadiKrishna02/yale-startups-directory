@@ -34,7 +34,7 @@ export default function StartupsDirectory() {
   const [filterType, setFilterType] = useState<keyof FilterOptions>('industry');
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
-  const startupsPerPage = 15;
+  const startupsPerPage = 30;
   const [filterOptions, setFilterOptions] = useState<FilterOptions>({
     industry: ['All'],
     stage: ['All'],
