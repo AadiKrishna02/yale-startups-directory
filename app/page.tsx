@@ -6,6 +6,7 @@ import ExcelJS from 'exceljs';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import YaleInstitutions from '@/components/YaleInstitutions';
 
 interface Startup {
   name?: string;
@@ -385,6 +386,9 @@ export default function Page() {
           {filteredStartups.length > startupsPerPage && (
             <PaginationControl totalItems={filteredStartups.length} />
           )}
+
+          {/* Yale Institutions Section */}
+          <YaleInstitutions />
 
           {/* Modal */}
           <Modal 
