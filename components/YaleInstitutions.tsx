@@ -2,27 +2,33 @@ const YaleInstitutions = () => {
   const institutions = [
     {
       name: "Yale School of Management",
-      logo: "/SOM.png"
+      logo: "/SOM.png",
+      description: "Yale School of Management"
     },
     {
       name: "Yale College",
-      logo: "/College.png"
+      logo: "/College.png",
+      description: "Yale College"
     },
     {
       name: "Yale School of Engineering",
-      logo: "/SEAS.jpg"
+      logo: "/SEAS.jpg",
+      description: "Yale School of Engineering & Applied Sciences"
     },
     {
       name: "Yale School of Medicine",
-      logo: "/MPH.png"
+      logo: "/MPH.png",
+      description: "Yale School of Public Health"
     },
     {
       name: "Yale Law School",
-      logo: "/Alumni.png"
+      logo: "/Faculty.png",
+      description: "Yale Faculty of Arts & Sciences"
     },
     {
       name: "Tsai CITY",
-      logo: "/Faculty.png"
+      logo: "/Alumni.png",
+      description: "Yale University Alumni"
     }
   ];
 
@@ -90,3 +96,5 @@ const YaleInstitutions = () => {
     </section>
   );
 };
+
+export default YaleInstitutions;
