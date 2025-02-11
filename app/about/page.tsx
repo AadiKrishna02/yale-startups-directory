@@ -94,7 +94,7 @@ export default function AboutPage() {
               Yale Pitchbook
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Connecting Yale's most innovative startups with resources, talent, and investment opportunities.
+              Connecting Yale startups with resources, talent, and investment opportunities.
             </p>
             <p className="text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed">
               Yale Undergraduate Capital Partners (YUCP) is thrilled to announce the launch of the 
