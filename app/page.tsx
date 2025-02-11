@@ -139,29 +139,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* About YUCP Section */}
-          <div className="mb-24">
-            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">About YUCP</h2>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <p className="text-xl text-gray-700 leading-relaxed">
-                YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
-                and has built an impressive track record of connecting startups with opportunities.
-              </p>
-            </div>
-
-            {/* Stats with new design */}
-            <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f46e510_1px,transparent_1px),linear-gradient(to_bottom,#4f46e510_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-              <div className="relative grid md:grid-cols-3 gap-12">
-                {stats.map((stat, index) => (
-                  <div key={index} className="group text-center transform hover:-translate-y-1 transition-all duration-300">
-                    <div className="text-5xl font-bold text-white mb-3 bg-clip-text">{stat.number}</div>
-                    <div className="text-blue-200 text-lg font-light">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
 
           {/* Benefits Section with Enhanced Cards */}
           <div className="pb-24" id="learn-more">
@@ -204,6 +181,31 @@ export default function HomePage() {
               </a>
             </div>
           </div>
+
+          {/* About YUCP Section */}
+          <div className="mb-24">
+            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">About YUCP</h2>
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <p className="text-xl text-gray-700 leading-relaxed">
+                YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
+                and has built an impressive track record of connecting startups with opportunities.
+              </p>
+            </div>
+
+            {/* Stats with new design */}
+            <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-12 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f46e510_1px,transparent_1px),linear-gradient(to_bottom,#4f46e510_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+              <div className="relative grid md:grid-cols-3 gap-12">
+                {stats.map((stat, index) => (
+                  <div key={index} className="group text-center transform hover:-translate-y-1 transition-all duration-300">
+                    <div className="text-5xl font-bold text-white mb-3 bg-clip-text">{stat.number}</div>
+                    <div className="text-blue-200 text-lg font-light">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </main>
       <Footer />
