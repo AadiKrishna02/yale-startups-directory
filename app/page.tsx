@@ -33,6 +33,8 @@ export default function StartupsDirectory() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<keyof FilterOptions>('industry');
   const [selectedFilter, setSelectedFilter] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
+  const startupsPerPage = 15;
   const [filterOptions, setFilterOptions] = useState<FilterOptions>({
     industry: ['All'],
     stage: ['All'],
@@ -111,6 +113,91 @@ export default function StartupsDirectory() {
       ))}
     </div>
   );
+
+  const PaginationControl = ({ totalItems }: { totalItems: number }) => {
+    const totalPages = Math.ceil(totalItems / startupsPerPage);
+    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+    
+    // Calculate visible page numbers
+    const getVisiblePages = () => {
+      let start = Math.max(1, currentPage - 2);
+      let end = Math.min(totalPages, currentPage + 2);
+      
+      // Adjust the range if we're near the start or end
+      if (currentPage <= 3) {
+        end = Math.min(5, totalPages);
+      }
+      if (currentPage >= totalPages - 2) {
+        start = Math.max(1, totalPages - 4);
+      }
+      
+      return pageNumbers.slice(start - 1, end);
+    };
+
+    const visiblePages = getVisiblePages();
+
+    return (
+      <div className="flex justify-center items-center space-x-2 mt-12">
+        <button
+          onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+          disabled={currentPage === 1}
+          className="px-3 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-gray-600 transition-colors"
+        >
+          Previous
+        </button>
+        
+        {currentPage > 3 && (
+          <>
+            <button
+              onClick={() => setCurrentPage(1)}
+              className="px-3 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+            >
+              1
+            </button>
+            {currentPage > 4 && (
+              <span className="px-2 text-gray-400">...</span>
+            )}
+          </>
+        )}
+        
+        {visiblePages.map(number => (
+          <button
+            key={number}
+            onClick={() => setCurrentPage(number)}
+            className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              currentPage === number
+                ? 'bg-blue-600 text-white border border-blue-600'
+                : 'border border-gray-200 text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+            }`}
+          >
+            {number}
+          </button>
+        ))}
+        
+        {currentPage < totalPages - 2 && (
+          <>
+            {currentPage < totalPages - 3 && (
+              <span className="px-2 text-gray-400">...</span>
+            )}
+            <button
+              onClick={() => setCurrentPage(totalPages)}
+              className="px-3 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+            >
+              {totalPages}
+            </button>
+          </>
+        )}
+        
+        <button
+          onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+          disabled={currentPage === totalPages}
+          className="px-3 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-gray-600 transition-colors"
+        >
+          Next
+        </button>
+      </div>
+    );
+  };
 
   const handleFilterTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = e.target.value as keyof FilterOptions;
@@ -191,6 +278,7 @@ export default function StartupsDirectory() {
   }, []);
 
   useEffect(() => {
+    setCurrentPage(1); // Reset to first page when filter/search changes
     const filtered = startups.filter(startup => {
       const matchesSearch = (startup.name?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
                           (startup.description?.toLowerCase() || '').includes(searchTerm.toLowerCase());
@@ -279,10 +367,17 @@ export default function StartupsDirectory() {
           
           {/* Startup Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredStartups.map((startup, index) => (
-              <StartupCard key={index} startup={startup} />
-            ))}
+            {filteredStartups
+              .slice((currentPage - 1) * startupsPerPage, currentPage * startupsPerPage)
+              .map((startup, index) => (
+                <StartupCard key={index} startup={startup} />
+              ))}
           </div>
+
+          {/* Pagination */}
+          {filteredStartups.length > startupsPerPage && (
+            <PaginationControl totalItems={filteredStartups.length} />
+          )}
 
           {/* Modal */}
           <Modal 
