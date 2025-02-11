@@ -47,7 +47,7 @@ export default function AboutPage() {
             {/* Hero Section */}
             <div className="text-center mb-20">
               <h1 className="text-4xl md:text-5xl font-bold text-blue-950 mb-6">
-                About Yale Startup Directory
+                Yale Pitchbook
               </h1>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Connecting Yale's startups with resources, talent, and opportunities.
