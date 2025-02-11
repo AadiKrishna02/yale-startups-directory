@@ -118,12 +118,10 @@ export default function StartupsDirectory() {
     const totalPages = Math.ceil(totalItems / startupsPerPage);
     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
     
-    // Calculate visible page numbers
     const getVisiblePages = () => {
       let start = Math.max(1, currentPage - 2);
       let end = Math.min(totalPages, currentPage + 2);
       
-      // Adjust the range if we're near the start or end
       if (currentPage <= 3) {
         end = Math.min(5, totalPages);
       }
@@ -243,13 +241,11 @@ export default function StartupsDirectory() {
           data.push(rowData);
         });
 
-        // Split combined industries (only on commas) and flatten the array
         const allIndustries = data
           .map(startup => startup.industry?.split(',').map(i => i.trim()))
           .filter((value): value is string[] => value !== undefined)
           .flat();
         
-        // Get unique industries and sort them alphabetically
         const uniqueIndustries = ['All', ...new Set(allIndustries)].sort();
         const uniqueStages = ['All', ...new Set(data.map(startup => startup.stage).filter((value): value is string => value !== undefined))];
         const uniqueTeam = ['All', ...new Set(data.map(startup => startup.team).filter((value): value is string => value !== undefined))];
@@ -260,7 +256,6 @@ export default function StartupsDirectory() {
           team: uniqueTeam
         });
         
-        // Sort data alphabetically by name
         const sortedData = data.sort((a, b) => {
           const nameA = (a.name || '').toLowerCase();
           const nameB = (b.name || '').toLowerCase();
@@ -278,7 +273,7 @@ export default function StartupsDirectory() {
   }, []);
 
   useEffect(() => {
-    setCurrentPage(1); // Reset to first page when filter/search changes
+    setCurrentPage(1);
     const filtered = startups.filter(startup => {
       const matchesSearch = (startup.name?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
                           (startup.description?.toLowerCase() || '').includes(searchTerm.toLowerCase());
@@ -290,7 +285,6 @@ export default function StartupsDirectory() {
       return matchesSearch && matchesFilter;
     });
     
-    // Maintain alphabetical order in filtered results
     const sortedFiltered = filtered.sort((a, b) => {
       const nameA = (a.name || '').toLowerCase();
       const nameB = (b.name || '').toLowerCase();
@@ -301,9 +295,9 @@ export default function StartupsDirectory() {
   }, [searchTerm, selectedFilter, filterType, startups]);
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-32 px-4 sm:px-12 lg:px-24 pb-8 relative">
+      <main className="flex-grow bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-32 px-4 sm:px-12 lg:px-24 pb-8 relative">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -right-1/4 top-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
@@ -389,10 +383,11 @@ export default function StartupsDirectory() {
           >
             {selectedStartup && <StartupDetails startup={selectedStartup} />}
           </Modal>
-          <Footer />
-
         </div>
       </main>
-    </>
+      
+      {/* Footer moved outside of max-width container */}
+      <Footer />
+    </div>
   );
 }
