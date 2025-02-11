@@ -45,8 +45,13 @@ export default function Footer() {
               <h4 className="text-sm font-semibold text-white/90 mb-4">Quick Links</h4>
               <ul className="space-y-2 text-center md:text-left">
                 <li>
-                  <Link href="/about" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                    About
+                  <Link href="/directory" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
+                    Yale Startup Directory
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
+                    Yale Startup Pitchbook
                   </Link>
                 </li>
                 <li>
