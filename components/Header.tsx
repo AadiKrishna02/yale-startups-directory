@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+
 const navItems = [
   { 
     name: 'Yale Startup Directory', 
@@ -24,8 +25,10 @@ const navItems = [
     isExternal: true 
   }
 ];
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-200">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,7 +51,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               item.isExternal ? (
-
+                <a
                   key={item.name}
                   href={item.href}
                   className="text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors"
@@ -86,7 +89,7 @@ export default function Header() {
             <div className="pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 item.isExternal ? (
-
+                  <a
                     key={item.name}
                     href={item.href}
                     className="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-gray-50 rounded-md"
