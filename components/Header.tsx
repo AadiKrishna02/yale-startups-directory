@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
@@ -30,15 +29,17 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-3">
-              <img
-                src="/Logo.png"
-                alt="Yale Logo"
-                className="h-12 w-auto"
-              />
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="flex items-center">
+                <span className="text-gray-900 font-semibold mr-2">Yale Pitchbook by</span>
+                <img
+                  src="/Logo.png"
+                  alt="YUCP Logo"
+                  className="h-12 w-auto group-hover:opacity-80 transition-opacity"
+                />
+              </div>
             </Link>
           </div>
-
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               item.isExternal ? (
@@ -62,7 +63,6 @@ export default function Header() {
               )
             ))}
           </div>
-
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -76,7 +76,6 @@ export default function Header() {
             </button>
           </div>
         </div>
-
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
