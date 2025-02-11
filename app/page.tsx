@@ -416,6 +416,19 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
+interface OfferingCTA {
+  text: string;
+  link?: string;
+  isComingSoon?: boolean;
+}
+
+interface Offering {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  cta: OfferingCTA;
+}
+
 export default function HomePage() {
   const benefits = [
     {
@@ -441,7 +454,7 @@ export default function HomePage() {
     { number: "$23M", label: "Investments Facilitated" }
   ];
 
-  const offerings = [
+  const offerings: Offering[] = [
     {
       icon: <Database className="w-8 h-8" />,
       title: "Yale Startup Directory",
@@ -519,7 +532,6 @@ export default function HomePage() {
 
       <main className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Rest of the content remains the same */}
           {/* Offerings Section */}
           <div className="pt-12 pb-24">
             <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">Our Initiatives</h2>
@@ -539,7 +551,7 @@ export default function HomePage() {
                     <div className="text-2xl font-bold text-blue-600 tracking-wide">
                       {offering.cta.text}
                     </div>
-                  ) : (
+                  ) : offering.cta.link ? (
                     <Link
                       href={offering.cta.link}
                       className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
@@ -547,7 +559,7 @@ export default function HomePage() {
                       {offering.cta.text}
                       <ArrowUpRight className="w-5 h-5" />
                     </Link>
-                  )}
+                  ) : null}
                 </div>
               ))}
             </div>
