@@ -59,13 +59,13 @@ export default function HomePage() {
               Connecting Yale startups with resources, talent, and investment opportunities.
             </p>
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-12">
-{/*               <Link
+              <Link
                 href="/directory"
                 className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-lg hover:bg-blue-50 transition-all duration-300 text-lg font-medium overflow-hidden"
               >
                 <span className="relative z-10">View Directory</span>
                 <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </Link> */}
+              </Link>
               <a
                 href="#learn-more"
                 className="group inline-flex items-center gap-2 text-white hover:text-blue-200 transition-colors text-lg"
