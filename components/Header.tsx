@@ -11,7 +11,7 @@ const navItems = [
   },
   { 
     name: 'Yale Startup Pitchbook', 
-    href: '#',
+    // href: '#',
     isExternal: false 
   },
   { 
