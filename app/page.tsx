@@ -11,30 +11,33 @@ export default function HomePage() {
     {
       icon: <Eye className="w-6 h-6" />,
       title: "Gain Visibility with Leading Investors",
-      description: "Connect directly with top-tier venture capital firms and angel investors actively looking for innovative Yale startups."
+      description:
+        "Connect directly with top-tier venture capital firms and angel investors actively looking for innovative Yale startups.",
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Connect with Talented Team Members",
-      description: "Find co-founders and team members from Yale's diverse pool of talented individuals across various disciplines."
+      description:
+        "Find co-founders and team members from Yale's diverse pool of talented individuals across various disciplines.",
     },
     {
       icon: <Briefcase className="w-6 h-6" />,
       title: "Amplify Your Reach",
-      description: "Showcase your startup to the Yale and larger entrepreneurial community, expanding your network and opportunities."
-    }
+      description:
+        "Showcase your startup to the Yale and larger entrepreneurial community, expanding your network and opportunities.",
+    },
   ];
 
   const stats = [
     { number: "60+", label: "VC Partners" },
     { number: "$27B", label: "AUM" },
-    { number: "$23M", label: "Investments Facilitated" }
+    { number: "$23M", label: "Investments Facilitated" },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       {/* Hero Section with Initiatives */}
       <div className="relative min-h-screen bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800 py-24">
         {/* Animated Background Elements */}
@@ -42,7 +45,7 @@ export default function HomePage() {
           <div className="absolute w-full h-full">
             {/* Enhanced Grid Pattern */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f46e520_1px,transparent_1px),linear-gradient(to_bottom,#4f46e520_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-            
+
             {/* Glowing Orbs */}
             <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
@@ -54,9 +57,7 @@ export default function HomePage() {
           <div className="text-center max-w-4xl mx-auto mb-20">
             <h2 className="text-4xl font-bold text-white mb-6">Our Initiatives</h2>
             <p className="text-xl text-blue-100 leading-relaxed">
-              We provide two key platforms to support Yale's startup ecosystem. The Directory offers 
-              a central hub for all Yale startups, while the Pitchbook provides curated 
-              opportunities for investment-ready ventures.
+              We provide two key platforms to support Yale's startup ecosystem. The Directory offers a central hub for all Yale startups, while the Pitchbook provides curated opportunities for investment-ready ventures.
             </p>
           </div>
 
@@ -90,12 +91,9 @@ export default function HomePage() {
               <p className="text-blue-100 mb-8 text-lg">
                 A unique opportunity for select startups to be featured in our curated pitchbook distributed to an extensive set of global investors, including our network.
               </p>
-              <div className="text-2xl font-bold text-blue-200 tracking-wide">
-                Coming Soon!
-              </div>
+              <div className="text-2xl font-bold text-blue-200 tracking-wide">Coming Soon!</div>
             </div>
           </div>
-
         </div>
 
         {/* Scroll Indicator */}
@@ -110,7 +108,8 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold text-center text-blue-950 mb-16">Why Join?</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {benefits.map((benefit, index) => (
-              <div key={index} 
+              <div
+                key={index}
                 className="group bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200"
               >
                 <div className="bg-blue-100 rounded-2xl w-16 h-16 flex items-center justify-center mb-6 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 transform group-hover:rotate-6">
@@ -119,58 +118,55 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-blue-950 mb-4 group-hover:text-blue-600 transition-colors">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-600">
-                  {benefit.description}
-                </p>
+                <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
           </div>
         </div>
 
-          {/* Contact Section with Enhanced Design */}
-          <div className="max-w-3xl mx-auto text-center mb-24">
-            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-12 border border-blue-100 shadow-lg">
-              <h3 className="text-3xl font-bold text-blue-900 mb-6">Join the Directory</h3>
-              <p className="text-gray-700 mb-8 text-lg">
-                To join the Yale Startup Directory, please fill out our brief form. Startups will continue to be 
-                added on a rolling basis.
-              </p>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
-              >
-                Join Now
-                <ArrowUpRight className="w-5 h-5" />
-              </a>
-            </div>
+        {/* Contact Section with Enhanced Design */}
+        <div className="max-w-3xl mx-auto text-center mb-24">
+          <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-12 border border-blue-100 shadow-lg">
+            <h3 className="text-3xl font-bold text-blue-900 mb-6">Join the Directory</h3>
+            <p className="text-gray-700 mb-8 text-lg">
+              To join the Yale Startup Directory, please fill out our brief form. Startups will continue to be added on a rolling basis.
+            </p>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
+            >
+              Join Now
+              <ArrowUpRight className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+
+        {/* About YUCP Section */}
+        <div className="mb-24">
+          <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">About YUCP</h2>
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <p className="text-xl text-gray-700 leading-relaxed">
+              YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities and has built an impressive track record of connecting startups with opportunities.
+            </p>
           </div>
 
-          {/* About YUCP Section */}
-          <div className="mb-24">
-            <h2 className="text-4xl font-bold text-center text-blue-950 mb-12">About YUCP</h2>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <p className="text-xl text-gray-700 leading-relaxed">
-                YUCP is a proud member of the Collegiate Capital Partners network, which spans five universities 
-                and has built an impressive track record of connecting startups with opportunities.
-              </p>
-            </div>
-
-            {/* Stats with new design */}
-            <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f46e510_1px,transparent_1px),linear-gradient(to_bottom,#4f46e510_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-              <div className="relative grid md:grid-cols-3 gap-12">
-                {stats.map((stat, index) => (
-                  <div key={index} className="group text-center transform hover:-translate-y-1 transition-all duration-300">
-                    <div className="text-5xl font-bold text-white mb-3 bg-clip-text">{stat.number}</div>
-                    <div className="text-blue-200 text-lg font-light">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
+          {/* Stats with new design */}
+          <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-12 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f46e510_1px,transparent_1px),linear-gradient(to_bottom,#4f46e510_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+            <div className="relative grid md:grid-cols-3 gap-12">
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="group text-center transform hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="text-5xl font-bold text-white mb-3 bg-clip-text">{stat.number}</div>
+                  <div className="text-blue-200 text-lg font-light">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
-
         </div>
       </main>
       <Footer />
