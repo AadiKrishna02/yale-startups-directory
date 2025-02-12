@@ -11,8 +11,9 @@ const navItems = [
   },
   { 
     name: 'Yale Startup Pitchbook', 
-    // href: '#',
-    isExternal: false 
+    href: '#',
+    isExternal: false,
+    disabled: true  // Mark this item as disabled
   },
   { 
     name: 'Submit Your Startup', 
@@ -37,7 +38,9 @@ export default function Header() {
             <Link href="/" className="flex items-center group">
               <div className="flex items-center">
                 <div className="flex items-baseline">
-                  <span className="text-blue-800 font-bold text-2xl tracking-tight mr-1">Yale Pitchbook</span>
+                  <span className="text-blue-800 font-bold text-2xl tracking-tight mr-1">
+                    Yale Pitchbook
+                  </span>
                   <span className="text-gray-500 text-sm font-normal ml-1">by</span>
                 </div>
                 <img
@@ -48,9 +51,23 @@ export default function Header() {
               </div>
             </Link>
           </div>
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              item.isExternal ? (
+            {navItems.map((item) => {
+              // Render as a non-clickable span if disabled
+              if (item.disabled) {
+                return (
+                  <span
+                    key={item.name}
+                    className="text-gray-400 px-3 py-1.5 text-sm font-medium cursor-not-allowed"
+                  >
+                    {item.name}
+                  </span>
+                );
+              }
+
+              // Otherwise, render as an external or internal link
+              return item.isExternal ? (
                 <a
                   key={item.name}
                   href={item.href}
@@ -68,9 +85,10 @@ export default function Header() {
                 >
                   {item.name}
                 </Link>
-              )
-            ))}
+              );
+            })}
           </div>
+          {/* Mobile Menu Toggle Button */}
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -84,11 +102,25 @@ export default function Header() {
             </button>
           </div>
         </div>
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                item.isExternal ? (
+              {navItems.map((item) => {
+                // Render as a non-clickable span if disabled
+                if (item.disabled) {
+                  return (
+                    <span
+                      key={item.name}
+                      className="block px-3 py-2 text-sm font-medium text-gray-400 cursor-not-allowed"
+                    >
+                      {item.name}
+                    </span>
+                  );
+                }
+
+                // Otherwise, render as an external or internal link
+                return item.isExternal ? (
                   <a
                     key={item.name}
                     href={item.href}
@@ -106,8 +138,8 @@ export default function Header() {
                   >
                     {item.name}
                   </Link>
-                )
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
