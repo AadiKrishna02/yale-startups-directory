@@ -55,7 +55,7 @@ export default function HomePage() {
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
               Yale Pitchbook
             </h1>
-            <p className="text-1.5xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+            <p className="text-2xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
               Connecting Yale startups with resources, talent, and investment opportunities.
             </p>
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-12">
