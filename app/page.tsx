@@ -78,7 +78,7 @@ export default function HomePage() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center">
           <ChevronDown className="w-8 h-8 text-white/50" />
         </div>
       </div>
@@ -100,9 +100,9 @@ export default function HomePage() {
           </svg>
         </div> */}
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
           {/* Initiatives Section */}
-          <div className="pt-16 mb-16" id="learn-more">
+          <div className="pt-4 mb-4" id="learn-more">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <h2 className="text-4xl font-bold text-blue-950 mb-6">Our Initiatives</h2>
               <p className="text-xl text-gray-700 leading-relaxed">
