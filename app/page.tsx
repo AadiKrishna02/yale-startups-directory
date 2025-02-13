@@ -84,8 +84,8 @@ export default function HomePage() {
       </div>
 
       <main className="bg-white relative">
-{/*         {/* Curved Separator */}
-        <div className="absolute top-0 inset-x-0 h-32 bg-blue-800">
+        {/* Curved Separator */}
+{/*         <div className="absolute top-0 inset-x-0 h-32 bg-blue-800">
           <svg 
             className="absolute bottom-0 w-full h-32 transform translate-y-1/2"
             viewBox="0 0 1440 160" 
