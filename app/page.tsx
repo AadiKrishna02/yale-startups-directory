@@ -55,7 +55,7 @@ export default function HomePage() {
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
               Yale Pitchbook
             </h1>
-            <p className="text-1xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+            <p className="text-2xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
               Connecting Yale startups with resources, talent, and investment opportunities.
             </p>
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-12">
@@ -78,7 +78,7 @@ export default function HomePage() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center">
+        <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center animate-bounce">
           <ChevronDown className="w-8 h-8 text-white/50" />
         </div>
       </div>
@@ -100,7 +100,7 @@ export default function HomePage() {
           </svg>
         </div> */}
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
           {/* Initiatives Section */}
           <div className="pt-4 mb-4" id="learn-more">
             <div className="text-center max-w-3xl mx-auto mb-20">
