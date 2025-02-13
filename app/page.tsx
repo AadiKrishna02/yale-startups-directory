@@ -150,7 +150,7 @@ export default function HomePage() {
 
 
           {/* Benefits Section with Enhanced Cards */}
-          <div className="pb-32">
+          <div className="pt-24 pb-24">
             <h2 className="text-4xl font-bold text-center text-blue-950 mb-16">Why Join the Directory?</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {benefits.map((benefit, index) => (
