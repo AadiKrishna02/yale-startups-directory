@@ -61,7 +61,7 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-12">
               <Link
                 href="/directory"
-                className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-lg hover:bg-blue-50 transition-all duration-300 text-base font-medium overflow-hidden"
+                className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 text-base font-medium overflow-hidden"
               >
                 <span className="relative z-10">View Directory</span>
                 <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -85,7 +85,7 @@ export default function HomePage() {
 
       <main className="bg-white relative">
         {/* Curved Separator */}
-        <div className="absolute top-0 inset-x-0 h-40 bg-blue-800">
+        <div className="absolute top-0 inset-x-0 h-20 bg-blue-800">
           <svg className="absolute bottom-0 w-full h-20 transform translate-y-1/2" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 48h1440V0C1440 0 1320 48 720 48S0 0 0 0v48z" fill="white"/>
           </svg>
