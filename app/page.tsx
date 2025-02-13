@@ -115,7 +115,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/directory"
-                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
                 >
                   View Directory
                   <ArrowUpRight className="w-5 h-5" />
