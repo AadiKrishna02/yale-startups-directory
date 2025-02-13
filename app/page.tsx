@@ -52,23 +52,23 @@ export default function HomePage() {
         {/* Hero Content with Enhanced Layout */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center max-w-4xl mx-auto space-y-8">
-            <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
               Yale Pitchbook
             </h1>
-            <p className="text-2xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+            <p className="text-1xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
               Connecting Yale startups with resources, talent, and investment opportunities.
             </p>
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-12">
               <Link
                 href="/directory"
-                className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-lg hover:bg-blue-50 transition-all duration-300 text-lg font-medium overflow-hidden"
+                className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-lg hover:bg-blue-50 transition-all duration-300 text-base font-medium overflow-hidden"
               >
                 <span className="relative z-10">View Directory</span>
                 <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </Link>
               <a
                 href="#learn-more"
-                className="group inline-flex items-center gap-2 text-white hover:text-blue-200 transition-colors text-lg"
+                className="group inline-flex items-center gap-2 text-white hover:text-blue-200 transition-colors text-base"
               >
                 Learn More
                 <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
