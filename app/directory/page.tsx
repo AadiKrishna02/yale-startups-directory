@@ -388,24 +388,24 @@ export default function DirectoryPage() {
           )}
 
           {/* Other Startups Section */}
-          <div className="mt-24 mb-16 bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-12">
+          <div className="mt-24 mb-16 bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-18">
             <h2 className="text-3xl font-bold text-blue-900 mb-12 text-center">Other Startups</h2>
             <div className="flex justify-center gap-16">
               <Link 
-                href="https://tsai.yale.edu/startups" 
+                href="https://city.yale.edu/projects" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center px-12 py-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 hover:-translate-y-1"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 hover:-translate-y-1"
               >
-                <span>Tsai CITY Startups</span>
+                <span>Tsai CITY</span>
               </Link>
               <Link 
-                href="https://yei.yale.edu/explore/ventures" 
+                href="https://ventures.yale.edu/yale-technologies/spinouts?page=0" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center px-12 py-6 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-gray-900 hover:to-black transition-all duration-200 hover:-translate-y-1"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-gray-900 hover:to-black transition-all duration-200 hover:-translate-y-1"
               >
-                <span>YEI Ventures</span>
+                <span>Yale Ventures</span>
               </Link>
             </div>
           </div>
