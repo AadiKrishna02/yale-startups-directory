@@ -45,12 +45,25 @@ export default function DirectoryPage() {
   const [selectedStartup, setSelectedStartup] = useState<Startup | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const Modal = ({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) => {
+  const Modal = ({ isOpen, onClose, children }: { 
+    isOpen: boolean; 
+    onClose: () => void; 
+    children: React.ReactNode 
+  }) => {
     if (!isOpen) return null;
-
+  
+    const handleBackdropClick = (e: React.MouseEvent) => {
+      if (e.target === e.currentTarget) {
+        onClose();
+      }
+    };
+  
     return (
-      <div className="fixed inset-0 bg-gray-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-        <div className="bg-white/95 backdrop-blur-md rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-2xl border border-gray-100 relative">
+      <div 
+        className="fixed inset-0 bg-gray-950/60 backdrop-blur-md flex items-center justify-center p-4 z-50"
+        onClick={handleBackdropClick}
+      >
+        <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-2xl border border-gray-100 relative">
           <div className="absolute right-4 top-4">
             <button
               onClick={onClose}
