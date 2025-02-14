@@ -395,7 +395,7 @@ export default function DirectoryPage() {
                 href="https://city.yale.edu/projects" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 hover:-translate-y-1"
+                className="inline-flex items-center px-12 py-10 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 hover:-translate-y-1"
               >
                 <span>Tsai CITY</span>
               </Link>
@@ -403,7 +403,7 @@ export default function DirectoryPage() {
                 href="https://ventures.yale.edu/yale-technologies/spinouts?page=0" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-gray-900 hover:to-black transition-all duration-200 hover:-translate-y-1"
+                className="inline-flex items-center px-12 py-10 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-gray-900 hover:to-black transition-all duration-200 hover:-translate-y-1"
               >
                 <span>Yale Ventures</span>
               </Link>
