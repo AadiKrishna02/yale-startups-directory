@@ -72,7 +72,7 @@ export default function DirectoryPage() {
     
     return (
       <div 
-        className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-blue-200 h-full relative overflow-hidden"
+        className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-blue-200 h-48 relative overflow-hidden"
         onClick={() => {
           setSelectedStartup(startup);
           setIsModalOpen(true);
@@ -80,31 +80,30 @@ export default function DirectoryPage() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-blue-50/0 to-blue-100/0 group-hover:from-blue-50/50 group-hover:via-blue-50/30 group-hover:to-blue-100/50 transition-all duration-300"></div>
         
-        <div className="relative p-6 space-y-4">
-          <div>
+        <div className="relative p-4 flex flex-col h-full">
+          <div className="mb-2">
             <h3 className="text-lg font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">{startup.name}</h3>
-            <p className="text-sm text-gray-600 mt-2 line-clamp-2 group-hover:text-gray-700 transition-colors">
+            <p className="text-sm text-gray-600 mt-1 line-clamp-2 group-hover:text-gray-700 transition-colors">
               {startup.description}
             </p>
           </div>
   
-          <div className="space-y-3">
-            <div className="flex flex-wrap gap-2">
+          <div className="mt-auto">
+            <div className="flex flex-wrap items-center gap-1">
               {industries.map((industry, index) => (
                 <span 
                   key={index} 
-                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100"
+                  className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100"
                 >
                   {industry}
                 </span>
               ))}
+              {startup.stage && (
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
+                  {startup.stage}
+                </span>
+              )}
             </div>
-            
-            {startup.stage && (
-              <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
-                {startup.stage}
-              </span>
-            )}
           </div>
         </div>
       </div>
@@ -112,44 +111,68 @@ export default function DirectoryPage() {
   };
 
   const StartupDetails = ({ startup }: { startup: Startup }) => {
-    const industries = startup.industry?.split(',').map(i => i.trim()) || [];
-    
-    return (
-      <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-blue-900">{startup.name}</h2>
-          
-          <div className="flex flex-wrap gap-2">
-            {industries.map((industry, index) => (
-              <span 
-                key={index}
-                className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-50 text-blue-700 border border-blue-100"
-              >
-                {industry}
-              </span>
-            ))}
-          </div>
-          
-          {startup.stage && (
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-50 text-gray-600 border border-gray-100">
-              {startup.stage}
-            </span>
-          )}
-        </div>
-  
-        {/* Content Sections */}
+      const industries = startup.industry?.split(',').map(i => i.trim()) || [];
+      
+      return (
         <div className="space-y-6">
-          <section className="bg-gradient-to-br from-blue-50 to-blue-50/50 p-6 rounded-xl border border-blue-100">
-            <h3 className="font-semibold text-lg mb-3 text-blue-900">About</h3>
-            <p className="text-gray-700 leading-relaxed">{startup.description || 'No description provided'}</p>
-          </section>
-  
+          {/* Header */}
+          <div className="border-b border-gray-200 pb-6">
+            <h2 className="text-2xl font-bold text-blue-900 mb-4">{startup.name}</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">{startup.description}</p>
+            
+            <div className="flex flex-wrap gap-2">
+              {industries.map((industry, index) => (
+                <span 
+                  key={index}
+                  className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100"
+                >
+                  {industry}
+                </span>
+              ))}
+              {startup.stage && (
+                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
+                  {startup.stage}
+                </span>
+              )}
+            </div>
+          </div>
+    
+          {/* Content Grid */}
+          <div className="grid grid-cols-2 gap-6">
+            {startup.problem && (
+              <div className="space-y-2">
+                <h3 className="font-semibold text-gray-900">Problem</h3>
+                <p className="text-gray-700">{startup.problem}</p>
+              </div>
+            )}
+            
+            {startup.solution && (
+              <div className="space-y-2">
+                <h3 className="font-semibold text-gray-900">Solution</h3>
+                <p className="text-gray-700">{startup.solution}</p>
+              </div>
+            )}
+            
+            {startup.team && (
+              <div className="space-y-2">
+                <h3 className="font-semibold text-gray-900">Yale Affiliation</h3>
+                <p className="text-gray-700">{startup.team}</p>
+              </div>
+            )}
+            
+            {startup.timeline && (
+              <div className="space-y-2">
+                <h3 className="font-semibold text-gray-900">Timeline</h3>
+                <p className="text-gray-700">{startup.timeline}</p>
+              </div>
+            )}
+          </div>
+    
+          {/* Website Link */}
           {startup.website && (
-            <section className="bg-gradient-to-br from-gray-50 to-gray-50/50 p-6 rounded-xl border border-gray-100">
-              <h3 className="font-semibold text-lg mb-3 text-gray-900">Website</h3>
+            <div className="pt-6 border-t border-gray-200">
               <a 
-                href={startup.website}
+                href={startup.website.startsWith('http') ? startup.website : `https://${startup.website}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors"
@@ -157,18 +180,10 @@ export default function DirectoryPage() {
                 Visit Website
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
-            </section>
-          )}
-  
-          {startup.team && (
-            <section className="bg-gradient-to-br from-purple-50 to-purple-50/50 p-6 rounded-xl border border-purple-100">
-              <h3 className="font-semibold text-lg mb-3 text-purple-900">Yale Affiliation</h3>
-              <p className="text-gray-700 leading-relaxed">{startup.team}</p>
-            </section>
+            </div>
           )}
         </div>
-      </div>
-    );
+      );
   };
 
   const PaginationControl = ({ totalItems }: { totalItems: number }) => {
