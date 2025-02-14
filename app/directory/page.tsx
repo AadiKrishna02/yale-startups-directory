@@ -60,7 +60,7 @@ export default function DirectoryPage() {
   
     return (
       <div 
-        className="fixed inset-0 bg-gray-950/60 backdrop-blur-md flex items-center justify-center p-4 z-50"
+        className="fixed inset-0 bg-gray-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-[9999]"
         onClick={handleBackdropClick}
       >
         <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-2xl border border-gray-100 relative">
