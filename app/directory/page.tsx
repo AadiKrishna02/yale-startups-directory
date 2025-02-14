@@ -103,11 +103,6 @@ export default function DirectoryPage() {
   
           <div className="mt-auto">
             <div className="flex flex-wrap items-center gap-1">
-              {startup.stage && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
-                  {startup.stage}
-                </span>
-              )}
               {industries.map((industry, index) => (
                 <span 
                   key={index} 
@@ -116,6 +111,11 @@ export default function DirectoryPage() {
                   {industry}
                 </span>
               ))}
+              {startup.stage && (
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
+                  {startup.stage}
+                </span>
+              )}
             </div>
           </div>
         </div>
