@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { ExternalLink } from 'lucide-react';
 import { Search, Filter, X } from 'lucide-react';
 import ExcelJS from 'exceljs';
 import Link from 'next/link';
@@ -66,54 +67,109 @@ export default function DirectoryPage() {
     );
   };
 
-  const StartupCard = ({ startup }: { startup: Startup }) => (
-    <div 
-      className="group bg-white/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100/50 hover:border-blue-200 h-56 relative overflow-hidden"
-      onClick={() => {
-        setSelectedStartup(startup);
-        setIsModalOpen(true);
-      }}
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-blue-50/0 to-blue-100/0 group-hover:from-blue-50/50 group-hover:via-blue-50/30 group-hover:to-blue-100/50 transition-all duration-300"></div>
-      
-      <div className="relative p-6">
-        <h3 className="text-lg font-semibold mb-2 text-blue-950 group-hover:text-blue-800 transition-colors">{startup.name}</h3>
-        <div className="space-y-1.5 mb-4">
-          <div className="flex items-center space-x-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-blue-500"></span>
-            <p className="text-sm text-blue-700 font-medium">{startup.industry}</p>
+  const StartupCard = ({ startup }: { startup: Startup }) => {
+    const industries = startup.industry?.split(',').map(i => i.trim()) || [];
+    
+    return (
+      <div 
+        className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-blue-200 h-full relative overflow-hidden"
+        onClick={() => {
+          setSelectedStartup(startup);
+          setIsModalOpen(true);
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-blue-50/0 to-blue-100/0 group-hover:from-blue-50/50 group-hover:via-blue-50/30 group-hover:to-blue-100/50 transition-all duration-300"></div>
+        
+        <div className="relative p-6 space-y-4">
+          <div>
+            <h3 className="text-lg font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">{startup.name}</h3>
+            <p className="text-sm text-gray-600 mt-2 line-clamp-2 group-hover:text-gray-700 transition-colors">
+              {startup.description}
+            </p>
           </div>
-          <div className="flex items-center space-x-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-gray-300"></span>
-            <p className="text-xs text-gray-600 font-medium">{startup.stage || 'Stage not specified'}</p>
+  
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              {industries.map((industry, index) => (
+                <span 
+                  key={index} 
+                  className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100"
+                >
+                  {industry}
+                </span>
+              ))}
+            </div>
+            
+            {startup.stage && (
+              <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
+                {startup.stage}
+              </span>
+            )}
           </div>
         </div>
-        <p className="text-sm text-gray-600 line-clamp-2 group-hover:text-gray-700 transition-colors">{startup.description}</p>
       </div>
-    </div>
-  );
+    );
+  };
 
-  const StartupDetails = ({ startup }: { startup: Startup }) => (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-xl font-bold mb-2 text-blue-900">{startup.name}</h2>
-        <div className="space-y-1">
-          <p className="text-sm text-blue-600 font-medium">{startup.industry}</p>
-          <p className="text-sm text-gray-500 font-medium">{startup.stage || 'Stage not specified'}</p>
+  const StartupDetails = ({ startup }: { startup: Startup }) => {
+    const industries = startup.industry?.split(',').map(i => i.trim()) || [];
+    
+    return (
+      <div className="space-y-8">
+        {/* Header */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-blue-900">{startup.name}</h2>
+          
+          <div className="flex flex-wrap gap-2">
+            {industries.map((industry, index) => (
+              <span 
+                key={index}
+                className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-50 text-blue-700 border border-blue-100"
+              >
+                {industry}
+              </span>
+            ))}
+          </div>
+          
+          {startup.stage && (
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-50 text-gray-600 border border-gray-100">
+              {startup.stage}
+            </span>
+          )}
+        </div>
+  
+        {/* Content Sections */}
+        <div className="space-y-6">
+          <section className="bg-gradient-to-br from-blue-50 to-blue-50/50 p-6 rounded-xl border border-blue-100">
+            <h3 className="font-semibold text-lg mb-3 text-blue-900">About</h3>
+            <p className="text-gray-700 leading-relaxed">{startup.description || 'No description provided'}</p>
+          </section>
+  
+          {startup.website && (
+            <section className="bg-gradient-to-br from-gray-50 to-gray-50/50 p-6 rounded-xl border border-gray-100">
+              <h3 className="font-semibold text-lg mb-3 text-gray-900">Website</h3>
+              <a 
+                href={startup.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors"
+              >
+                Visit Website
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </section>
+          )}
+  
+          {startup.team && (
+            <section className="bg-gradient-to-br from-purple-50 to-purple-50/50 p-6 rounded-xl border border-purple-100">
+              <h3 className="font-semibold text-lg mb-3 text-purple-900">Yale Affiliation</h3>
+              <p className="text-gray-700 leading-relaxed">{startup.team}</p>
+            </section>
+          )}
         </div>
       </div>
-      {[
-        { title: 'Description', content: startup.description },
-        { title: 'Website', content: startup.website },
-        { title: 'Yale Affiliation', content: startup.team }
-      ].map(section => (
-        <section key={section.title} className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-          <h3 className="font-semibold text-base mb-2 text-blue-800">{section.title}</h3>
-          <p className="text-sm text-gray-800 leading-relaxed">{section.content || 'Not provided'}</p>
-        </section>
-      ))}
-    </div>
-  );
+    );
+  };
 
   const PaginationControl = ({ totalItems }: { totalItems: number }) => {
     const totalPages = Math.ceil(totalItems / startupsPerPage);
