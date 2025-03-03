@@ -85,17 +85,17 @@ export default function Footer() {
               <img 
                 src="/partners/venture.jpeg"  
                 alt="Yale Ventures" 
-                className="h-10 md:h-12 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300" 
+                className="h-10 md:h-12 object-contain opacity-80 hover:opacity-100 transition-all duration-300" 
               />
               <img 
                 src="/partners/som.png" 
                 alt="School of Management" 
-                className="h-10 md:h-12 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300" 
+                className="h-10 md:h-12 object-contain opacity-80 hover:opacity-100 transition-all duration-300" 
               />
               <img 
                 src="/partners/tsai-city.png" 
                 alt="Tsai CITY" 
-                className="h-10 md:h-12 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300" 
+                className="h-10 md:h-12 object-contain opacity-80 hover:opacity-100 transition-all duration-300" 
               />
             </div>
           </div>
