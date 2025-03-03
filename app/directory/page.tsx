@@ -422,25 +422,34 @@ export default function DirectoryPage() {
             </div>
           </div> */}
 
-          {/* Partner Logos Section - Redesigned to match your current site */}
-          <div className="w-full bg-white rounded-2xl shadow-md border border-gray-100 p-8 mb-8">
-            <h3 className="text-base text-center text-blue-800 font-medium mb-8">With support from</h3>
-            <div className="flex flex-wrap justify-center items-center gap-20 py-2">
-              <img 
-                src="/partners/venture.jpeg" 
-                alt="Yale Ventures" 
-                className="h-10 object-contain" 
-              />
-              <img 
-                src="/partners/som.png" 
-                alt="Yale School of Management" 
-                className="h-10 object-contain" 
-              />
-              <img 
-                src="/partners/tsai-city.png" 
-                alt="Tsai CITY" 
-                className="h-10 object-contain" 
-              />
+          {/* Partner Logos Section - Styled to match "Featuring Startups From" section */}
+          <div className="w-full bg-white rounded-2xl shadow-sm border border-gray-100 py-12 px-4 mb-12">
+            <h2 className="text-3xl font-bold text-center text-blue-800 mb-16">With support from</h2>
+            <div className="flex flex-wrap justify-center items-center gap-16 md:gap-24">
+              <div className="flex flex-col items-center">
+                <img 
+                  src="/partners/venture.jpeg"  
+                  alt="Yale Ventures" 
+                  className="h-20 md:h-24 object-contain mb-4" 
+                />
+                <span className="text-center text-gray-700">Yale Ventures</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <img 
+                  src="/partners/som.png" 
+                  alt="School of Management" 
+                  className="h-20 md:h-24 object-contain mb-4" 
+                />
+                <span className="text-center text-gray-700">School of Management</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <img 
+                  src="/partners/tsai-city.png" 
+                  alt="Tsai CITY" 
+                  className="h-20 md:h-24 object-contain mb-4" 
+                />
+                <span className="text-center text-gray-700">Tsai CITY</span>
+              </div>
             </div>
           </div>
           
