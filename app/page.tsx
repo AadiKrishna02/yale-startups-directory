@@ -49,16 +49,16 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Hero Content with Enhanced Layout */}
-        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-0">
+        {/* Hero Content - removed mt-* */}
+        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center max-w-4xl mx-auto space-y-2">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
               Yale Pitchbook
             </h1>
-            <p className="text-2xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+            <p className="text-2xl text-blue-100 max-w-3xl mx-auto mb-8 leading-relaxed font-light">
               Connecting Yale startups with resources, talent, and investment opportunities.
             </p>
-            <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-12">
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-6">
               <Link
                 href="/directory"
                 className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 text-base font-medium overflow-hidden"
