@@ -36,7 +36,7 @@ export default function HomePage() {
       <Header />
       
       {/* Hero Section with Enhanced Visual Elements */}
-      <div className="relative min-h-[70vh] flex items-center bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800">
+      <div className="relative min-h-[70vh] flex items-start bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute w-full h-full">
