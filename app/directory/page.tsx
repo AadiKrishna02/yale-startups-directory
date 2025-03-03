@@ -517,7 +517,7 @@ export default function DirectoryPage() {
           </div> */}
 
           {/* Other Startups Section - Refined Version */}
-          <div className="mt-22 mb-12">
+          <div className="mt-24 mb-12">
             <h2 className="text-2xl font-semibold text-blue-900 mb-6 text-center">Additional Yale Startup Resources</h2>
             
             <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -538,7 +538,7 @@ export default function DirectoryPage() {
                     <h3 className="text-lg font-medium text-gray-800">Tsai CITY</h3>
                   </div>
                   <p className="text-sm text-gray-600 mb-4 flex-grow">
-                    Explore student-led ventures and innovative projects supported by Yale's Center for Innovative Thinking.
+                    Explore other student-led ventures and innovative projects supported by Yale's Innovation Centers.
                   </p>
                   <div className="inline-flex items-center text-sm text-blue-600 font-medium group-hover:text-blue-700">
                     View Projects <ExternalLink className="h-3.5 w-3.5 ml-1" />
