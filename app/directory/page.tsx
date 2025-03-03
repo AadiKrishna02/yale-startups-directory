@@ -422,32 +422,25 @@ export default function DirectoryPage() {
             </div>
           </div> */}
 
-          {/* Enhanced Partner Logos Section */}
-          <div className="bg-gradient-to-r from-blue-50/80 via-white/90 to-blue-50/80 backdrop-blur-lg rounded-xl shadow-lg border border-blue-100 p-8 mb-12">
-            <h3 className="text-lg font-medium text-blue-900 mb-6 text-center">With support from</h3>
-            <div className="flex flex-wrap justify-center items-center gap-16 py-3">
-              {/* Partner logos in a horizontal arrangement with enhanced styling */}
-              <div className="group transition-all duration-300 hover:-translate-y-1">
-                <img 
-                  src="/partners/venture.jpeg" 
-                  alt="Partner 1" 
-                  className="h-12 md:h-14 object-contain transition-all duration-300" 
-                />
-              </div>
-              <div className="group transition-all duration-300 hover:-translate-y-1">
-                <img 
-                  src="/partners/som.png" 
-                  alt="Partner 2" 
-                  className="h-12 md:h-14 object-contain transition-all duration-300" 
-                />
-              </div>
-              <div className="group transition-all duration-300 hover:-translate-y-1">
-                <img 
-                  src="/partners/tsai-city.png" 
-                  alt="Partner 3" 
-                  className="h-12 md:h-14 object-contain transition-all duration-300" 
-                />
-              </div>
+          {/* Partner Logos Section - Redesigned to match your current site */}
+          <div className="w-full bg-white rounded-2xl shadow-md border border-gray-100 p-8 mb-8">
+            <h3 className="text-base text-center text-blue-800 font-medium mb-8">With support from</h3>
+            <div className="flex flex-wrap justify-center items-center gap-20 py-2">
+              <img 
+                src="/partners/venture.jpeg" 
+                alt="Yale Ventures" 
+                className="h-10 object-contain" 
+              />
+              <img 
+                src="/partners/som.png" 
+                alt="Yale School of Management" 
+                className="h-10 object-contain" 
+              />
+              <img 
+                src="/partners/tsai-city.png" 
+                alt="Tsai CITY" 
+                className="h-10 object-contain" 
+              />
             </div>
           </div>
           
