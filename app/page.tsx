@@ -61,7 +61,24 @@ export default function HomePage() {
           </div>
           
           {/* Buttons moved to the bottom of the container */}
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-24">
+{/*           <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-24">
+            <Link
+              href="/directory"
+              className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 text-base font-medium overflow-hidden"
+            >
+              <span className="relative z-10">View Directory</span>
+              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+            <a
+              href="#learn-more"
+              className="group inline-flex items-center gap-2 text-white hover:text-blue-200 transition-colors text-base"
+            >
+              Learn More
+              <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+            </a>
+          </div> */}
+            {/* Buttons moved to the bottom of the container */}
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-24 mt-16 md:mt-0">
             <Link
               href="/directory"
               className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 text-base font-medium overflow-hidden"
