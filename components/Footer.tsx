@@ -78,28 +78,27 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Partner Section */}
-          <div className="mt-12 pt-8 border-t border-gray-100">
-            <p className="text-sm text-gray-500 text-center mb-6">With support from</p>
+          {/* Partner Section - Fixed styling for dark background */}
+          <div className="py-8 mt-8">
+            <p className="text-sm text-blue-200/80 text-center mb-8">With support from</p>
             <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
               <img 
                 src="/partners/venture.jpeg"  
                 alt="Yale Ventures" 
-                className="h-10 md:h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300" 
+                className="h-10 md:h-12 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300" 
               />
               <img 
                 src="/partners/som.png" 
                 alt="School of Management" 
-                className="h-10 md:h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300" 
+                className="h-10 md:h-12 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300" 
               />
               <img 
                 src="/partners/tsai-city.png" 
                 alt="Tsai CITY" 
-                className="h-10 md:h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300" 
+                className="h-10 md:h-12 object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300" 
               />
             </div>
           </div>
-        </div>
 
           {/* Copyright Section */}
           <div className="pt-6 text-center">
