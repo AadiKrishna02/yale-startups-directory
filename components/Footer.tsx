@@ -79,7 +79,7 @@ export default function Footer() {
           </div>
 
           {/* Partner Section - Fixed styling for dark background */}
-          <div className="py-8 mt-8">
+          <div className="py-8 mt-4">
             <p className="text-sm text-blue-200/80 text-center mb-8">With support from</p>
             <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
               <img 
