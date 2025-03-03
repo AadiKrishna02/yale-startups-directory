@@ -400,11 +400,11 @@ export default function DirectoryPage() {
           </div>
 
           {/* Partner Logos Section - Add after hero section and before search/filter section */}
-          <div className="bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-6 mb-12">
+{/*           <div className="bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-6 mb-12">
             <h3 className="text-lg font-medium text-blue-900 mb-4 text-center">With support from</h3>
-            <div className="flex flex-wrap justify-center items-center gap-12 py-3">
+            <div className="flex flex-wrap justify-center items-center gap-12 py-3"> */}
               {/* Partner logos in a horizontal arrangement */}
-              <img 
+{/*               <img 
                 src="/partners/ventures.png" 
                 alt="Partner 1" 
                 className="h-10 md:h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100" 
@@ -415,10 +415,39 @@ export default function DirectoryPage() {
                 className="h-10 md:h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100" 
               />
               <img 
-                src="/partners/tsai-cty.png" 
+                src="/partners/tsai-city.png" 
                 alt="Partner 3" 
                 className="h-10 md:h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100" 
               />
+            </div>
+          </div> */}
+
+          {/* Enhanced Partner Logos Section */}
+          <div className="bg-gradient-to-r from-blue-50/80 via-white/90 to-blue-50/80 backdrop-blur-lg rounded-xl shadow-lg border border-blue-100 p-8 mb-12">
+            <h3 className="text-lg font-medium text-blue-900 mb-6 text-center">With support from</h3>
+            <div className="flex flex-wrap justify-center items-center gap-16 py-3">
+              {/* Partner logos in a horizontal arrangement with enhanced styling */}
+              <div className="group transition-all duration-300 hover:-translate-y-1">
+                <img 
+                  rc="/partners/ventures.png" 
+                  alt="Partner 1" 
+                  className="h-12 md:h-14 object-contain transition-all duration-300" 
+                />
+              </div>
+              <div className="group transition-all duration-300 hover:-translate-y-1">
+                <img 
+                  src="/partners/som.png" 
+                  alt="Partner 2" 
+                  className="h-12 md:h-14 object-contain transition-all duration-300" 
+                />
+              </div>
+              <div className="group transition-all duration-300 hover:-translate-y-1">
+                <img 
+                  src="/partners/tsai-city.png" 
+                  alt="Partner 3" 
+                  className="h-12 md:h-14 object-contain transition-all duration-300" 
+                />
+              </div>
             </div>
           </div>
           
