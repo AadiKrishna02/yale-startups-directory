@@ -517,7 +517,7 @@ export default function DirectoryPage() {
           </div> */}
 
           {/* Other Startups Section - Refined Version */}
-          <div className="mt-16 mb-12">
+          <div className="mt-22 mb-12">
             <h2 className="text-2xl font-semibold text-blue-900 mb-6 text-center">Additional Yale Startup Resources</h2>
             
             <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
