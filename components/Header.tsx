@@ -29,7 +29,7 @@ const navItems = [
 
 const partnerLogos = [
   {
-    src: "/partners/y-v.png",
+    src: "/partners/y-ventures-removebg.png",
     alt: "Yale Ventures"
   },
   {
