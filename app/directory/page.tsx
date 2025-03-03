@@ -399,31 +399,8 @@ export default function DirectoryPage() {
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">Discover and connect with innovative startups from the Yale ecosystem</p>
           </div>
 
-          {/* Partner Logos Section - Add after hero section and before search/filter section */}
-{/*           <div className="bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-6 mb-12">
-            <h3 className="text-lg font-medium text-blue-900 mb-4 text-center">With support from</h3>
-            <div className="flex flex-wrap justify-center items-center gap-12 py-3"> */}
-              {/* Partner logos in a horizontal arrangement */}
-{/*               <img 
-                src="/partners/ventures.png" 
-                alt="Partner 1" 
-                className="h-10 md:h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100" 
-              />
-              <img 
-                src="/partners/som.png" 
-                alt="Partner 2" 
-                className="h-10 md:h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100" 
-              />
-              <img 
-                src="/partners/tsai-city.png" 
-                alt="Partner 3" 
-                className="h-10 md:h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100" 
-              />
-            </div>
-          </div> */}
-
-          {/* Partner Logos Section - Streamlined version with page background */}
-          <div className="w-full py-8 px-4 mb-10">
+{/*           Partner Logos Section - Streamlined version with page background */}
+{/*           <div className="w-full py-8 px-4 mb-10">
             <h2 className="text-3xl font-bold text-center text-blue-800 mb-10">With support from</h2>
             <div className="flex flex-wrap justify-center items-center gap-16 md:gap-24">
               <img 
@@ -442,7 +419,7 @@ export default function DirectoryPage() {
                 className="h-16 md:h-20 object-contain" 
               />
             </div>
-          </div>
+          </div> */}
           
           {/* Search and Filter Section */}
           <div className="bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-6 mb-12">
