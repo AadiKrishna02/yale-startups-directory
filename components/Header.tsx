@@ -157,18 +157,20 @@ export default function Header() {
                 );
               })}
             </div>
-            {/* Partner Logos for Mobile */}
-            <div className="px-3 pt-2 pb-4 border-t border-gray-100 mt-2 bg-gray-50">
-              <p className="text-xs text-gray-500 mb-3">With support from</p>
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                {partnerLogos.map((logo) => (
-                  <img
-                    key={logo.alt}
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="h-8 w-auto object-contain"
-                  />
-                ))}
+            {/* Improved Partner Logos for Mobile */}
+            <div className="px-3 pt-4 pb-5 border-t border-gray-100 mt-2">
+              <div className="flex flex-col items-start">
+                <p className="text-xs text-gray-500 mb-3">With support from</p>
+                <div className="flex items-center space-x-4 overflow-x-auto w-full pb-1">
+                  {partnerLogos.map((logo) => (
+                    <img
+                      key={logo.alt}
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="h-7 w-auto object-contain"
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
