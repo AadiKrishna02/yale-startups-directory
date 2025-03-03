@@ -27,6 +27,21 @@ const navItems = [
   }
 ];
 
+const partnerLogos = [
+  {
+    src: "/partners/ventures-bg.png",
+    alt: "Yale Ventures"
+  },
+  {
+    src: "/partners/som-bg.png",
+    alt: "School of Management"
+  },
+  {
+    src: "/partners/tsai-city-bg.png",
+    alt: "Tsai CITY"
+  }
+];
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -141,9 +156,42 @@ export default function Header() {
                 );
               })}
             </div>
+            {/* Partner Logos for Mobile */}
+            <div className="px-3 pt-1 pb-3">
+              <p className="text-xs text-gray-500 mb-2">With support from</p>
+              <div className="flex flex-wrap items-center gap-4">
+                {partnerLogos.map((logo) => (
+                  <img
+                    key={logo.alt}
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="h-6 w-auto object-contain"
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </nav>
+      
+      {/* Partner Logos Strip - Desktop Only */}
+      <div className="hidden md:block border-t border-gray-100 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
+          <div className="flex items-center justify-end">
+            <span className="text-xs text-gray-500 mr-4">With support from</span>
+            <div className="flex items-center gap-6">
+              {partnerLogos.map((logo) => (
+                <img
+                  key={logo.alt}
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-7 w-auto object-contain"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }
