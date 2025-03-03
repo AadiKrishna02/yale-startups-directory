@@ -50,7 +50,7 @@ export default function HomePage() {
         </div>
 
         {/* Hero Content with Enhanced Layout */}
-        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="text-center max-w-4xl mx-auto space-y-5">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
               Yale Pitchbook
