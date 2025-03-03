@@ -46,8 +46,27 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-200">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
+      {/* Partner Logos Strip - Desktop Only */}
+      <div className="hidden md:block bg-gray-100/80 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <div className="flex items-center justify-end">
+            <span className="text-xs text-gray-500 mr-4">With support from</span>
+            <div className="flex items-center gap-8">
+              {partnerLogos.map((logo) => (
+                <img
+                  key={logo.alt}
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-8 w-auto object-contain"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-gray-100">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link href="/" className="flex items-center group">
@@ -157,15 +176,15 @@ export default function Header() {
               })}
             </div>
             {/* Partner Logos for Mobile */}
-            <div className="px-3 pt-1 pb-3">
-              <p className="text-xs text-gray-500 mb-2">With support from</p>
-              <div className="flex flex-wrap items-center gap-4">
+            <div className="px-3 pt-2 pb-4 border-t border-gray-100 mt-2 bg-gray-50">
+              <p className="text-xs text-gray-500 mb-3">With support from</p>
+              <div className="flex flex-wrap items-center justify-center gap-6">
                 {partnerLogos.map((logo) => (
                   <img
                     key={logo.alt}
                     src={logo.src}
                     alt={logo.alt}
-                    className="h-6 w-auto object-contain"
+                    className="h-8 w-auto object-contain"
                   />
                 ))}
               </div>
@@ -173,25 +192,6 @@ export default function Header() {
           </div>
         )}
       </nav>
-      
-      {/* Partner Logos Strip - Desktop Only */}
-      <div className="hidden md:block border-t border-gray-100 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
-          <div className="flex items-center justify-end">
-            <span className="text-xs text-gray-500 mr-4">With support from</span>
-            <div className="flex items-center gap-6">
-              {partnerLogos.map((logo) => (
-                <img
-                  key={logo.alt}
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="h-7 w-auto object-contain"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
     </header>
   );
 }
