@@ -36,7 +36,7 @@ export default function HomePage() {
       <Header />
       
       {/* Hero Section with Enhanced Visual Elements */}
-      <div className="relative min-h-[80vh] flex items-center bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800">
+      <div className="relative min-h-[75vh] flex items-center bg-gradient-to-b from-blue-950 via-blue-900 to-blue-800">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute w-full h-full">
@@ -50,9 +50,9 @@ export default function HomePage() {
         </div>
 
         {/* Hero Content with Enhanced Layout */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center max-w-4xl mx-auto space-y-8">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center max-w-4xl mx-auto space-y-6">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
               Yale Pitchbook
             </h1>
             <p className="text-2xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
