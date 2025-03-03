@@ -429,7 +429,7 @@ export default function DirectoryPage() {
               {/* Partner logos in a horizontal arrangement with enhanced styling */}
               <div className="group transition-all duration-300 hover:-translate-y-1">
                 <img 
-                  rc="/partners/ventures.png" 
+                  src="/partners/ventures.png" 
                   alt="Partner 1" 
                   className="h-12 md:h-14 object-contain transition-all duration-300" 
                 />
