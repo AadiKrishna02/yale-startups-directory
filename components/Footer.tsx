@@ -83,17 +83,17 @@ export default function Footer() {
             <p className="text-sm text-blue-200/80 text-center mb-8">With support from</p>
             <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
               <img 
-                src="/partners/venture-bg.jpeg"  
+                src="/partners/venture.jpeg"  
                 alt="Yale Ventures" 
                 className="h-14 md:h-16 w-auto max-w-[180px] object-contain opacity-80 hover:opacity-100 transition-all duration-300"
               />
               <img 
-                src="/partners/som-bg.png" 
+                src="/partners/som.png" 
                 alt="School of Management" 
                 className="h-14 md:h-16 w-auto max-w-[180px] object-contain opacity-80 hover:opacity-100 transition-all duration-300"
               />
               <img 
-                src="/partners/tsai-city-bg.png" 
+                src="/partners/tsai-city.png"
                 alt="Tsai CITY" 
                 className="h-14 md:h-16 w-auto max-w-[180px] object-contain opacity-80 hover:opacity-100 transition-all duration-300"
               />
