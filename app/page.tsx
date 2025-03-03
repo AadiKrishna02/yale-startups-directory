@@ -78,7 +78,7 @@ export default function HomePage() {
             </a>
           </div> */}
             {/* Buttons moved to the bottom of the container */}
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-24 mt-16 md:mt-0">
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-24 mt-12 md:mt-0">
             <Link
               href="/directory"
               className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 text-base font-medium overflow-hidden"
