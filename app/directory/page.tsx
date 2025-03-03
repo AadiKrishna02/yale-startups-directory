@@ -494,7 +494,7 @@ export default function DirectoryPage() {
           )}
 
           {/* Other Startups Section */}
-{/*           <div className="mt-24 mb-16 bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-12">
+          <div className="mt-24 mb-16 bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-12">
             <h2 className="text-3xl font-bold text-blue-900 mb-12 text-center">Other Startups</h2>
             <div className="flex justify-center gap-16">
               <Link 
@@ -514,15 +514,15 @@ export default function DirectoryPage() {
                 <span>Yale Ventures</span>
               </Link>
             </div>
-          </div> */}
+          </div>
 
           {/* Other Startups Section - Refined Version */}
-          <div className="mt-16 mb-12">
+{/*           <div className="mt-16 mb-12">
             <h2 className="text-2xl font-semibold text-blue-900 mb-6 text-center">Additional Yale Startup Resources</h2>
             
             <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Tsai CITY Card */}
-              <Link 
+{/*               <Link 
                 href="https://city.yale.edu/projects" 
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -547,31 +547,31 @@ export default function DirectoryPage() {
               </Link>
               
               {/* Yale Ventures Card */}
-              <Link ...
-                href="https://ventures.yale.edu/yale-technologies/spinouts?page=0" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group" 
-              >
-                <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 p-5 h-full flex flex-col">
-                  <div className="flex items-center mb-4">
-                    <img 
-                      src="/partners/venture.jpeg" 
-                      alt="Yale Ventures" 
-                      className="h-8 mr-3"
-                    />
-                    <h3 className="text-lg font-medium text-gray-800">Yale Ventures</h3>
-                  </div>
-                  <p className="text-sm text-gray-600 mb-4 flex-grow">
-                    Discover technology spinouts and research-driven ventures emerging from Yale's labs and research centers.
-                  </p>
-                  <div className="inline-flex items-center text-sm text-blue-600 font-medium group-hover:text-blue-700">
-                    View Spinouts <ExternalLink className="h-3.5 w-3.5 ml-1" />
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </div>
+          //     <Link ...
+          //       href="https://ventures.yale.edu/yale-technologies/spinouts?page=0" 
+          //       target="_blank" 
+          //       rel="noopener noreferrer"
+          //       className="group" 
+          //     >
+          //       <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 p-5 h-full flex flex-col">
+          //         <div className="flex items-center mb-4">
+          //           <img 
+          //             src="/partners/venture.jpeg" 
+          //             alt="Yale Ventures" 
+          //             className="h-8 mr-3"
+          //           />
+          //           <h3 className="text-lg font-medium text-gray-800">Yale Ventures</h3>
+          //         </div>
+          //         <p className="text-sm text-gray-600 mb-4 flex-grow">
+          //           Discover technology spinouts and research-driven ventures emerging from Yale's labs and research centers.
+          //         </p>
+          //         <div className="inline-flex items-center text-sm text-blue-600 font-medium group-hover:text-blue-700">
+          //           View Spinouts <ExternalLink className="h-3.5 w-3.5 ml-1" />
+          //         </div>
+          //       </div>
+          //     </Link>
+          //   </div>
+          // </div> */} */}
 
           {/* Yale Institutions Section */}
           <YaleInstitutions />
