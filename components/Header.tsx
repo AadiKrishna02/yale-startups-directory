@@ -180,7 +180,7 @@ export default function Header() {
       {/* Partner Logos Strip - Desktop Only */}
       <div className="hidden md:block bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5">
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-start">
             <span className="text-xs text-gray-500 mr-4">With support from</span>
             <div className="flex items-center gap-4">
               {partnerLogos.map((logo) => (
