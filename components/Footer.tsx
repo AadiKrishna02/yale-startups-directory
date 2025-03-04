@@ -11,8 +11,11 @@ export default function Footer() {
           <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-blue-400 blur-3xl"></div>
           <div className="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-blue-300 blur-3xl"></div>
         </div>
-        
-         {/* Logo and Description Section */}
+
+        {/* Content container with wider max-width and adjusted padding */}
+        <div className="max-w-[90%] mx-auto px-6 py-10 relative">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-10 border-b border-blue-700/30">
+            {/* Logo and Description Section */}
             <div className="md:col-span-6 flex flex-col items-center md:items-start">
               <img
                 src="/Logo.png"
