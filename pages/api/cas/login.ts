@@ -1,12 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Use your environment variable for the base URL
+export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   if (!baseUrl) {
-    return res.status(500).send("Base URL is not defined");
+    return NextResponse.json({ error: "Base URL is not defined" }, { status: 500 });
   }
   const serviceUrl = encodeURIComponent(`${baseUrl}/api/cas/callback`);
   const casLoginUrl = `https://secure.its.yale.edu/cas/login?service=${serviceUrl}`;
-  res.redirect(casLoginUrl);
+  return NextResponse.redirect(casLoginUrl);
 }
