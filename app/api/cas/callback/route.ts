@@ -23,7 +23,7 @@ export async function GET(request: Request) {
   
   try {
     // Construct and log the validation URL.
-    const validationUrl = `https://secure6.its.yale.edu/cas/serviceValidate?ticket=${ticket}&service=${serviceUrl}`;
+    const validationUrl = `https://secure.its.yale.edu/cas/serviceValidate?ticket=${ticket}&service=${serviceUrl}`;
     console.log("Validation URL:", validationUrl);
     
     // Call the CAS service validation endpoint.
