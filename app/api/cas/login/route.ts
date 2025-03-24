@@ -8,5 +8,5 @@ export async function GET() {
   const serviceUrl = encodeURIComponent(`${baseUrl}/api/cas/callback`);
   const casLoginUrl = `https://secure.its.yale.edu/cas/login?service=${serviceUrl}&renew=true`;
   // return NextResponse.redirect(casLoginUrl);
-  return NextResponse.redirect(`${baseUrl}/account`, { headers });
+  return NextResponse.redirect(`${baseUrl}/account`);
 }
