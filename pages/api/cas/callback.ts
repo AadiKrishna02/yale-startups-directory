@@ -1,3 +1,4 @@
+/// <reference path="../../../../global.d.ts" />
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import xml2js from 'xml2js';
