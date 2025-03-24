@@ -70,7 +70,7 @@ export async function GET(request: Request) {
     headers.append("Set-Cookie", `user=${encodeURIComponent(user)}; Path=/; SameSite=Lax`);
     
     // Redirect to the account page.
-    return NextResponse.redirect(`${baseUrl}/account`, { headers });
+    return NextResponse.redirect(`${baseUrl}`, { headers });
   } catch (error) {
     console.error("Error validating ticket", error);
     return NextResponse.json({ error: "Error validating ticket" }, { status: 500 });
