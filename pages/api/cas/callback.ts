@@ -1,39 +1,28 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import { XMLParser } from 'fast-xml-parser';
+import xml2js from 'xml2js';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { ticket } = req.query;
   if (!ticket || typeof ticket !== 'string') {
     return res.status(400).send("No ticket provided");
   }
-  // Use the same service URL as in the login route.
-  const serviceUrl = encodeURIComponent("http://localhost:3000/api/cas/callback");
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  if (!baseUrl) {
+    return res.status(500).send("Base URL is not defined");
+  }
+  const serviceUrl = encodeURIComponent(`${baseUrl}/api/cas/callback`);
   try {
     const validationUrl = `https://secure.its.yale.edu/cas/serviceValidate?ticket=${ticket}&service=${serviceUrl}`;
     const response = await axios.get(validationUrl);
+    const result = await xml2js.parseStringPromise(response.data);
 
-    // Use fast-xml-parser to convert XML to JS object.
-    const parser = new XMLParser({ ignoreAttributes: false });
-    const result = parser.parse(response.data);
-
-    // Adjust property access based on fast-xml-parser's output.
-    // For example, if the XML response structure is the same as with xml2js:
-    const authSuccess = result['cas:serviceResponse']?.['cas:authenticationSuccess'];
+    const authSuccess = result['cas:serviceResponse']['cas:authenticationSuccess'];
     if (!authSuccess) {
       return res.status(401).send("CAS authentication failed");
     }
-    // Extract the username (CAS protocol returns it under 'cas:user')
-    // Depending on the structure, authSuccess might be an object or array.
-    // Adjust accordingly:
-    const user = Array.isArray(authSuccess)
-      ? authSuccess[0]['cas:user']
-      : authSuccess['cas:user'];
-
-    // Set a cookie containing the username.
+    const user = authSuccess[0]['cas:user'][0];
     res.setHeader('Set-Cookie', `user=${encodeURIComponent(user)}; Path=/; SameSite=Lax`);
-    
-    // Redirect to the account page after successful login.
     res.redirect("/account");
   } catch (error) {
     console.error("Error validating ticket", error);
