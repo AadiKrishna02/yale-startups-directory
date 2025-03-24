@@ -6,6 +6,6 @@ export async function GET() {
     return NextResponse.json({ error: "Base URL is not defined" }, { status: 500 });
   }
   const serviceUrl = encodeURIComponent(`${baseUrl}/api/cas/callback`);
-  const casLoginUrl = `https://secure.its.yale.edu/cas/login?service=${serviceUrl}&renew=true`;`;
+  const casLoginUrl = `https://secure.its.yale.edu/cas/login?service=${serviceUrl}&renew=true`;
   return NextResponse.redirect(casLoginUrl);
 }
