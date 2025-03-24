@@ -1,7 +1,8 @@
-'use client';
+"use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 
 const navItems = [
   { 
@@ -44,9 +45,9 @@ const partnerLogos = [
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, login, logout } = useAuth();
 
   return (
-    // <header className="sticky top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
     <header className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
@@ -81,7 +82,6 @@ export default function Header() {
                   </span>
                 );
               }
-
               // Otherwise, render as an external or internal link
               return item.isExternal ? (
                 <a
@@ -103,6 +103,25 @@ export default function Header() {
                 </Link>
               );
             })}
+            {/* Conditionally render login/logout button for desktop */}
+            {user ? (
+              <div className="flex items-center space-x-2">
+                <span className="text-gray-600 text-sm">Hello, {user.name}</span>
+                <button
+                  onClick={logout}
+                  className="px-3 py-1 text-sm text-red-600 hover:text-red-800"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={login}
+                className="px-3 py-1 text-sm text-blue-600 hover:text-blue-800"
+              >
+                Login
+              </button>
+            )}
           </div>
           {/* Mobile Menu Toggle Button */}
           <div className="flex items-center md:hidden">
@@ -123,7 +142,6 @@ export default function Header() {
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
               {navItems.map((item) => {
-                // Render as a non-clickable span if disabled
                 if (item.disabled) {
                   return (
                     <span
@@ -134,8 +152,6 @@ export default function Header() {
                     </span>
                   );
                 }
-
-                // Otherwise, render as an external or internal link
                 return item.isExternal ? (
                   <a
                     key={item.name}
@@ -156,6 +172,27 @@ export default function Header() {
                   </Link>
                 );
               })}
+            </div>
+            {/* Mobile Login/Logout */}
+            <div className="border-t border-gray-100 pt-2">
+              {user ? (
+                <div className="px-3 py-2">
+                  <span className="text-gray-600 text-sm block mb-1">Hello, {user.name}</span>
+                  <button
+                    onClick={logout}
+                    className="block w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-gray-50"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={login}
+                  className="block w-full text-left px-3 py-2 text-sm text-blue-600 hover:bg-gray-50"
+                >
+                  Login
+                </button>
+              )}
             </div>
             {/* Improved Partner Logos for Mobile */}
             <div className="px-3 pt-4 pb-5 border-t border-gray-100 mt-2">
