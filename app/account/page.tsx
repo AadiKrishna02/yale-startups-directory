@@ -82,11 +82,10 @@ export default function AccountPage() {
         <div className="max-w-3xl mx-auto">
           <div className="flex justify-between items-center mb-6">
             <div>
-              {user && (
-                <p className="text-xl font-medium">Hi, {user.name}!</p>
-              )}
+              {user && <p className="text-xl font-medium">Hi, {user.name}!</p>}
               <h1 className="text-3xl font-bold">Your Account</h1>
             </div>
+            {/* Logout button is now on the account page */}
             <button
               onClick={logout}
               className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
@@ -130,7 +129,6 @@ export default function AccountPage() {
                           className="w-full p-2 border rounded bg-gray-100"
                         />
                       </div>
-                      {/* Additional fields can be added here */}
                     </div>
                   ))}
                 </div>

@@ -31,7 +31,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const userCookie = getCookie('user');
       if (userCookie) {
         try {
-          const parsed = JSON.parse(userCookie);
+          // Decode the cookie value before parsing as JSON
+          const parsed = JSON.parse(decodeURIComponent(userCookie));
           setUser(parsed);
         } catch (error) {
           console.error("Error parsing user cookie:", error);
