@@ -29,12 +29,10 @@ export async function GET(request: Request) {
   const netid = netidMatch[1];
   console.log(`Extracted netid: ${netid}`);
 
-  // Default to netid if no name is found
   let fullName = netid;
 
-  // Use the Yalies API to search for a person by netid
+  // Use the Yalies API to search for the person by netid
   try {
-    // Get your Yalies API token from environment variables
     const yaliesToken = process.env.YALIES_API_TOKEN;
     if (!yaliesToken) {
       console.error("YALIES_API_TOKEN not set in environment");
@@ -56,12 +54,12 @@ export async function GET(request: Request) {
 
       if (peopleRes.ok) {
         const peopleData = await peopleRes.json();
-        // Assume the API returns a JSON array of person objects.
+        // Expect the API to return an array of person objects
         if (Array.isArray(peopleData) && peopleData.length > 0) {
           const person = peopleData[0];
-          // Construct full name using last_name and first_name if available.
-          if (person.last_name && person.first_name) {
-            fullName = `${person.last_name}, ${person.first_name}`;
+          if (person.first_name && person.last_name) {
+            // Swap order: First Name Last Name
+            fullName = `${person.first_name} ${person.last_name}`;
           } else if (person.name) {
             fullName = person.name;
           }
@@ -77,17 +75,15 @@ export async function GET(request: Request) {
     console.error("Error calling Yalies API:", error);
   }
 
-  // Create the user object with the mapped full name (or fallback netid)
   const user = { netid, name: fullName };
 
-  // Set a cookie with the user data (as JSON) and redirect to /account.
   const response = NextResponse.redirect(`${origin}/account`);
   response.cookies.set('user', JSON.stringify(user), {
     path: '/',
     maxAge: 60 * 60 * 24 * 7, // 7 days
     secure: true,
     sameSite: 'strict',
-    httpOnly: false, // Set to true to restrict client-side access if desired.
+    httpOnly: false,
   });
 
   return response;
