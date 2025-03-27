@@ -14,7 +14,7 @@ const navItems = [
     name: 'Yale Startup Pitchbook', 
     href: '#',
     isExternal: false,
-    disabled: true  // Mark this item as disabled
+    disabled: true
   },
   { 
     name: 'Submit Your Startup', 
@@ -45,7 +45,7 @@ const partnerLogos = [
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, login } = useAuth(); // Removed logout from header
+  const { user, login } = useAuth(); // No logout button in header
 
   return (
     <header className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
@@ -101,7 +101,6 @@ export default function Header() {
                 </Link>
               );
             })}
-            {/* Logged-in user section: Show a clickable "My Account" link */}
             {user ? (
               <Link
                 href="/account"
@@ -132,7 +131,6 @@ export default function Header() {
             </button>
           </div>
         </div>
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
@@ -168,7 +166,6 @@ export default function Header() {
                 );
               })}
             </div>
-            {/* Mobile Login Section */}
             <div className="border-t border-gray-100 pt-2">
               {user ? (
                 <div className="px-3 py-2">
@@ -188,7 +185,6 @@ export default function Header() {
                 </button>
               )}
             </div>
-            {/* Mobile Partner Logos */}
             <div className="px-3 pt-4 pb-5 border-t border-gray-100 mt-2">
               <div className="flex flex-col items-start">
                 <p className="text-xs text-gray-500 mb-3">With support from</p>
@@ -207,8 +203,6 @@ export default function Header() {
           </div>
         )}
       </nav>
-      
-      {/* Desktop Partner Logos Strip */}
       <div className="hidden md:block bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5">
           <div className="flex items-center justify-start">

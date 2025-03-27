@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -22,7 +21,7 @@ interface Startup {
 }
 
 export default function AccountPage() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [userStartups, setUserStartups] = useState<Startup[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,7 +43,7 @@ export default function AccountPage() {
 
         const data: Startup[] = [];
         worksheet.eachRow((row, rowNumber) => {
-          if (rowNumber === 1) return; // skip header row
+          if (rowNumber === 1) return; // Skip header row
           const rowData: Startup = {};
           const values = row.values as (string | ExcelJS.CellValue | undefined)[];
           values.slice(1).forEach((value, index) => {
@@ -63,7 +62,6 @@ export default function AccountPage() {
         // Filter startups where the "founders" column includes the logged-in user's netid.
         const filtered = data.filter((startup) => {
           if (!startup.founders) return false;
-          // Normalize founders list and compare with user.netid (lowercased)
           const foundersList = startup.founders.split(',').map(f => f.trim().toLowerCase());
           return foundersList.includes(user.netid.toLowerCase());
         });
@@ -82,12 +80,20 @@ export default function AccountPage() {
       <Header />
       <main className="flex-grow bg-gray-50 p-8">
         <div className="max-w-3xl mx-auto">
-          {user && (
-            <div className="mb-6">
-              <p className="text-xl font-medium">Hi, {user.name}!</p>
+          <div className="flex justify-between items-center mb-6">
+            <div>
+              {user && (
+                <p className="text-xl font-medium">Hi, {user.name}!</p>
+              )}
+              <h1 className="text-3xl font-bold">Your Account</h1>
             </div>
-          )}
-          <h1 className="text-3xl font-bold mb-6">Your Account</h1>
+            <button
+              onClick={logout}
+              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+            >
+              Logout
+            </button>
+          </div>
           {loading ? (
             <p>Loading your startups...</p>
           ) : (
