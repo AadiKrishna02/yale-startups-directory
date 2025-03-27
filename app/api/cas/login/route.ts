@@ -1,12 +1,19 @@
+// Force dynamic and Node.js runtime
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!baseUrl) {
-    return NextResponse.json({ error: "Base URL is not defined" }, { status: 500 });
-  }
-  const serviceUrl = encodeURIComponent(`${baseUrl}/api/cas/callback`);
-  const casLoginUrl = `https://secure.its.yale.edu/cas/login?service=${serviceUrl}&renew=true`;
-  // return NextResponse.redirect(casLoginUrl);
-  return NextResponse.redirect(`${baseUrl}/account`);
+  // Hardcode your production domain
+  const baseUrl = 'https://www.yalepitchbook.com';
+
+  // CAS callback URL must match what you registered with CAS
+  const serviceUrl = `${baseUrl}/api/cas/callback`;
+
+  // Redirect to Yale’s secure CAS login
+  const casLoginUrl = new URL('https://secure.its.yale.edu/cas/login');
+  casLoginUrl.searchParams.set('service', serviceUrl);
+
+  return NextResponse.redirect(casLoginUrl.toString());
 }
