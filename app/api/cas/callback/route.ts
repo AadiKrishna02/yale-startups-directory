@@ -15,7 +15,7 @@ export async function GET(request: Request) {
   }
 
   // Validate the ticket with Yale CAS's serviceValidate endpoint
-  const casValidateUrl = new URL('https://login.yale.edu/cas/serviceValidate');
+  const casValidateUrl = new URL('https://secure.its.yale.edu/cas/serviceValidate');
   casValidateUrl.searchParams.set('ticket', ticket);
   casValidateUrl.searchParams.set('service', serviceUrl);
 

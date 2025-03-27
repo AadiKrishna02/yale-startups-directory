@@ -6,8 +6,8 @@ export async function GET(request: Request) {
   // The CAS callback URL (should match what you register with CAS)
   const serviceUrl = `${baseUrl}/api/cas/callback`;
 
-  // Construct Yale CAS login URL (adjust if your CAS endpoint differs)
-  const casLoginUrl = new URL('https://login.yale.edu/cas/login');
+  // Use Yale’s secure CAS login URL
+  const casLoginUrl = new URL('https://secure.its.yale.edu/cas/login');
   casLoginUrl.searchParams.set('service', serviceUrl);
 
   return NextResponse.redirect(casLoginUrl.toString());
