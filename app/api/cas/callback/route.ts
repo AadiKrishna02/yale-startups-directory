@@ -4,7 +4,7 @@ export const runtime = 'nodejs';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
-  // Dynamically derive the base URL from the request
+  // Derive the base URL from the incoming request
   const { origin } = new URL(request.url);
   
   // Extract the CAS ticket from the query parameters
@@ -14,10 +14,10 @@ export async function GET(request: Request) {
     return NextResponse.redirect(`${origin}/`);
   }
 
-  // The service URL must match what was provided to CAS during login.
+  // The service URL (callback) must match what was provided to CAS during login.
   const serviceUrl = `${origin}/api/cas/callback`;
 
-  // Validate the ticket with Yale’s secure CAS serviceValidate endpoint.
+  // Validate the ticket using Yale's secure CAS serviceValidate endpoint.
   const casValidateUrl = new URL('https://secure.its.yale.edu/cas/serviceValidate');
   casValidateUrl.searchParams.set('ticket', ticket);
   casValidateUrl.searchParams.set('service', serviceUrl);
@@ -25,32 +25,28 @@ export async function GET(request: Request) {
   const res = await fetch(casValidateUrl.toString());
   const text = await res.text();
 
-  // Extract the netid from the CAS XML response.
+  // Extract the netid (from <cas:user>)
   const netidMatch = text.match(/<cas:user>([^<]+)<\/cas:user>/);
   if (!netidMatch) {
-    // Ticket validation failed—redirect to home.
     return NextResponse.redirect(`${origin}/`);
   }
   const netid = netidMatch[1];
 
-  // Attempt to extract the full name if provided (e.g. in a <cas:displayName> tag)
+  // Optionally extract the full name from <cas:displayName>, if available.
   const displayNameMatch = text.match(/<cas:displayName>([^<]+)<\/cas:displayName>/);
   const fullName = displayNameMatch ? displayNameMatch[1] : netid;
 
-  // Create the user object.
-  const user = {
-    netid,
-    name: fullName,
-  };
+  // Create a user object.
+  const user = { netid, name: fullName };
 
-  // Set a cookie with the user data (as a JSON string) and redirect to the account page.
+  // Set a cookie with the user data (stored as JSON) and redirect to the account page.
   const response = NextResponse.redirect(`${origin}/account`);
   response.cookies.set('user', encodeURIComponent(JSON.stringify(user)), {
     path: '/',
-    maxAge: 60 * 60 * 24 * 7, // valid for 7 days
+    maxAge: 60 * 60 * 24 * 7, // 7 days
     secure: true,
     sameSite: 'strict',
-    httpOnly: false, // Set to true if you want to restrict client-side access
+    httpOnly: false, // Adjust if you wish to restrict access from client JS
   });
 
   return response;

@@ -101,7 +101,7 @@ export default function Header() {
                 </Link>
               );
             })}
-            {/* Logged-in user section: Instead of greeting, show a "My Account" link */}
+            {/* Logged-in user section: Always show a clickable "My Account" link */}
             {user ? (
               <div className="flex items-center space-x-2">
                 <Link
@@ -180,7 +180,6 @@ export default function Header() {
             <div className="border-t border-gray-100 pt-2">
               {user ? (
                 <div className="px-3 py-2">
-                  {/* Instead of greeting, show a "My Account" link */}
                   <Link
                     href="/account"
                     className="text-gray-600 text-sm block mb-1 hover:text-blue-700"
@@ -203,7 +202,7 @@ export default function Header() {
                 </button>
               )}
             </div>
-            {/* Improved Partner Logos for Mobile */}
+            {/* Partner Logos for Mobile */}
             <div className="px-3 pt-4 pb-5 border-t border-gray-100 mt-2">
               <div className="flex flex-col items-start">
                 <p className="text-xs text-gray-500 mb-3">With support from</p>
@@ -223,7 +222,7 @@ export default function Header() {
         )}
       </nav>
       
-      {/* Partner Logos Strip - Desktop Only */}
+      {/* Desktop Partner Logos Strip */}
       <div className="hidden md:block bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5">
           <div className="flex items-center justify-start">
