@@ -1,19 +1,12 @@
-export const dynamic = 'force-dynamic';
-
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
+export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   if (!baseUrl) {
-    throw new Error('NEXT_PUBLIC_BASE_URL is not set in the environment.');
+    return NextResponse.json({ error: "Base URL is not defined" }, { status: 500 });
   }
-  
-  // The CAS callback URL (should match what you register with CAS)
-  const serviceUrl = `${baseUrl}/api/cas/callback`;
-
-  // Use Yale’s secure CAS login URL
-  const casLoginUrl = new URL('https://secure.its.yale.edu/cas/login');
-  casLoginUrl.searchParams.set('service', serviceUrl);
-
-  return NextResponse.redirect(casLoginUrl.toString());
+  const serviceUrl = encodeURIComponent(`${baseUrl}/api/cas/callback`);
+  const casLoginUrl = `https://secure.its.yale.edu/cas/login?service=${serviceUrl}&renew=true`;
+  // return NextResponse.redirect(casLoginUrl);
+  return NextResponse.redirect(`${baseUrl}/account`);
 }
