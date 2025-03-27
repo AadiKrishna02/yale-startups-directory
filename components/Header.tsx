@@ -71,7 +71,6 @@ export default function Header() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => {
-              // Render as a non-clickable span if disabled
               if (item.disabled) {
                 return (
                   <span
@@ -82,7 +81,6 @@ export default function Header() {
                   </span>
                 );
               }
-              // Otherwise, render as an external or internal link
               return item.isExternal ? (
                 <a
                   key={item.name}
@@ -103,10 +101,15 @@ export default function Header() {
                 </Link>
               );
             })}
-            {/* Conditionally render login/logout button for desktop */}
+            {/* Logged-in user section: Instead of greeting, show a "My Account" link */}
             {user ? (
               <div className="flex items-center space-x-2">
-                <span className="text-gray-600 text-sm">Hello, {user.name}</span>
+                <Link
+                  href="/account"
+                  className="px-3 py-1 text-sm text-blue-600 hover:text-blue-800"
+                >
+                  My Account
+                </Link>
                 <button
                   onClick={logout}
                   className="px-3 py-1 text-sm text-red-600 hover:text-red-800"
@@ -173,11 +176,17 @@ export default function Header() {
                 );
               })}
             </div>
-            {/* Mobile Login/Logout */}
+            {/* Mobile Login/Logout Section */}
             <div className="border-t border-gray-100 pt-2">
               {user ? (
                 <div className="px-3 py-2">
-                  <span className="text-gray-600 text-sm block mb-1">Hello, {user.name}</span>
+                  {/* Instead of greeting, show a "My Account" link */}
+                  <Link
+                    href="/account"
+                    className="text-gray-600 text-sm block mb-1 hover:text-blue-700"
+                  >
+                    My Account
+                  </Link>
                   <button
                     onClick={logout}
                     className="block w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-gray-50"
