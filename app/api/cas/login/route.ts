@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   // Hardcoded production domain
-  const baseUrl = 'https://yalepitchbook-q8dbehe2j-aadikrishna02s-projects.vercel.app/';
+  const baseUrl = 'https://www.yalepitchbook.com';
   // CAS callback URL must match what you register with CAS
   const serviceUrl = `${baseUrl}/api/cas/callback`;
 

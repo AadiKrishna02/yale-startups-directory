@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
   // Hardcoded production domain
-  const baseUrl = 'https://yalepitchbook-q8dbehe2j-aadikrishna02s-projects.vercel.app/';
+  const baseUrl = 'https://www.yalepitchbook.com';
 
   // Extract the CAS ticket from the query parameters
   const { searchParams } = new URL(request.url);
