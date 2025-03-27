@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
-  // Determine the base URL from env (or default to localhost)
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  if (!baseUrl) {
+    throw new Error('NEXT_PUBLIC_BASE_URL is not set in the environment.');
+  }
+  
   // The CAS callback URL (should match what you register with CAS)
   const serviceUrl = `${baseUrl}/api/cas/callback`;
 
