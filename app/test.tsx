@@ -6,7 +6,7 @@
 // import Link from 'next/link';
 // import Header from '@/components/Header';
 // import Footer from '@/components/Footer';
-// import YaleInstitutions from '@/components/YaleInstitutions';
+// import YaleInstitutions from '@/components/YaleInstitutions'; kjbjbk
 
 // interface Startup {
 //   name?: string;
