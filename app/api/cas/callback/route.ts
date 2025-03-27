@@ -5,56 +5,77 @@ import { NextResponse } from 'next/server';
 import cheerio from 'cheerio';
 
 export async function GET(request: Request) {
-  // Dynamically derive the base URL from the request
+  // Dynamically derive the origin from the incoming request
   const { origin } = new URL(request.url);
   
-  // Extract the CAS ticket from the query parameters
+  // Extract the CAS ticket from query parameters
   const ticket = new URL(request.url).searchParams.get('ticket');
   if (!ticket) {
-    console.error("No ticket provided in URL");
+    console.error("No ticket provided");
     return NextResponse.redirect(`${origin}/`);
   }
 
-  // The service (callback) URL must match what was provided during login.
+  // Validate the ticket with Yale CAS
   const serviceUrl = `${origin}/api/cas/callback`;
   const casValidateUrl = new URL('https://secure.its.yale.edu/cas/serviceValidate');
   casValidateUrl.searchParams.set('ticket', ticket);
   casValidateUrl.searchParams.set('service', serviceUrl);
 
-  // Validate the CAS ticket
   const res = await fetch(casValidateUrl.toString());
   const text = await res.text();
 
-  // Extract the netid from the CAS XML response (<cas:user>)
+  // Extract the netid from the CAS XML response
   const netidMatch = text.match(/<cas:user>([^<]+)<\/cas:user>/);
   if (!netidMatch) {
     console.error("No netid found in CAS response");
     return NextResponse.redirect(`${origin}/`);
   }
   const netid = netidMatch[1];
+  console.log(`Extracted netid: ${netid}`);
 
-  // Default to netid as fullName
-  let fullName = netid; 
+  // Default fullName to netid
+  let fullName = netid;
 
-  // Attempt to fetch and scrape the correct full name from yalies.io
   try {
+    // Fetch the yalies.io page for this netid
     const mappingRes = await fetch(`https://yalies.io/${netid}`);
     if (mappingRes.ok) {
       const html = await mappingRes.text();
-      // Log a snippet of the HTML for debugging (first 200 characters)
-      console.log("Fetched yalies.io HTML snippet:", html.slice(0, 200));
+      console.log("Fetched HTML snippet:", html.slice(0, 500));
       const $ = cheerio.load(html);
-
-      // Look for each .person block
       let foundName: string | null = null;
-      $('.person').each((index, element) => {
-        // Look for the netid within a pill element (adjust selector if needed)
-        const pillText = $(element).find('.pill.NetID').text().trim();
-        if (pillText.toLowerCase() === netid.toLowerCase()) {
-          // If it matches, extract the text from the .Name element
-          const nameText = $(element).find('.Name').text().trim();
-          if (nameText) {
-            foundName = nameText;
+
+      // Iterate over each person container
+      $('.person').each((i, elem) => {
+        // Within each person, find a pill element inside a container with class "pills"
+        const pillElement = $(elem)
+          .find('.pills .pill')
+          .filter((i, el) => {
+            const pillText = $(el).text().trim();
+            // Check if the pill text contains "NetID"
+            return /NetID/i.test(pillText);
+          })
+          .first();
+        if (pillElement.length > 0) {
+          const pillText = pillElement.text().trim();
+          // Extract the netid from the pill text using a regex, e.g. "NetID aec238"
+          const netidFromPillMatch = pillText.match(/NetID\s*(\S+)/i);
+          if (netidFromPillMatch) {
+            const foundNetid = netidFromPillMatch[1].trim();
+            console.log(`Found netid in pill: ${foundNetid}`);
+            // If the found netid matches our netid...
+            if (foundNetid.toLowerCase() === netid.toLowerCase()) {
+              // Then look for the full name in the nested elements:
+              // person -> header_wrap -> name_wrap -> name
+              const nameText = $(elem)
+                .find('.header_wrap .name_wrap .name')
+                .text()
+                .trim();
+              console.log(`Found name text: "${nameText}"`);
+              if (nameText) {
+                foundName = nameText;
+              }
+            }
           }
         }
       });
@@ -63,26 +84,26 @@ export async function GET(request: Request) {
         fullName = foundName;
         console.log(`Mapped netid ${netid} to full name: ${fullName}`);
       } else {
-        console.warn(`Could not find a matching name for netid ${netid} in the HTML.`);
+        console.warn(`No matching person block found for netid ${netid}`);
       }
     } else {
       console.error(`Failed to fetch yalies.io page for netid ${netid}: ${mappingRes.statusText}`);
     }
   } catch (error) {
-    console.error("Error scraping yalies.io HTML:", error);
+    console.error("Error scraping yalies.io:", error);
   }
 
-  // Create the user object
+  // Create the user object using the mapped full name (or netid if mapping failed)
   const user = { netid, name: fullName };
 
-  // Set a cookie with the user data (as JSON) and redirect to the account page.
+  // Set a cookie with the user data (as JSON) and redirect to the account page
   const response = NextResponse.redirect(`${origin}/account`);
   response.cookies.set('user', JSON.stringify(user), {
     path: '/',
     maxAge: 60 * 60 * 24 * 7, // 7 days
     secure: true,
     sameSite: 'strict',
-    httpOnly: false, // Adjust if you wish to restrict client-side access
+    httpOnly: false,
   });
 
   return response;
