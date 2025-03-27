@@ -1,15 +1,20 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
+interface User {
+  netid: string;
+  name: string;
+}
+
 interface AuthContextType {
-  user: { name: string } | null;
+  user: User | null;
   login: () => void;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Helper function to extract a specific cookie by name
+// Helper function to get a cookie by name
 function getCookie(name: string): string | null {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
@@ -20,13 +25,20 @@ function getCookie(name: string): string | null {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<{ name: string } | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     if (typeof document !== 'undefined') {
       const userCookie = getCookie('user');
       if (userCookie) {
-        setUser({ name: decodeURIComponent(userCookie) });
+        try {
+          // Try to parse the cookie as JSON
+          const parsed = JSON.parse(decodeURIComponent(userCookie));
+          setUser(parsed);
+        } catch (error) {
+          // If parsing fails, assume it's a simple string and set as netid and name
+          setUser({ netid: decodeURIComponent(userCookie), name: decodeURIComponent(userCookie) });
+        }
       }
     }
   }, []);
