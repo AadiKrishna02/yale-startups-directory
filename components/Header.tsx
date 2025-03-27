@@ -45,7 +45,7 @@ const partnerLogos = [
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, login, logout } = useAuth();
+  const { user, login } = useAuth(); // Removed logout from header
 
   return (
     <header className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
@@ -101,22 +101,14 @@ export default function Header() {
                 </Link>
               );
             })}
-            {/* Logged-in user section: Always show a clickable "My Account" link */}
+            {/* Logged-in user section: Show a clickable "My Account" link */}
             {user ? (
-              <div className="flex items-center space-x-2">
-                <Link
-                  href="/account"
-                  className="px-3 py-1 text-sm text-blue-600 hover:text-blue-800"
-                >
-                  My Account
-                </Link>
-                <button
-                  onClick={logout}
-                  className="px-3 py-1 text-sm text-red-600 hover:text-red-800"
-                >
-                  Logout
-                </button>
-              </div>
+              <Link
+                href="/account"
+                className="px-3 py-1 text-sm text-blue-600 hover:text-blue-800"
+              >
+                My Account
+              </Link>
             ) : (
               <button
                 onClick={login}
@@ -176,7 +168,7 @@ export default function Header() {
                 );
               })}
             </div>
-            {/* Mobile Login/Logout Section */}
+            {/* Mobile Login Section */}
             <div className="border-t border-gray-100 pt-2">
               {user ? (
                 <div className="px-3 py-2">
@@ -186,12 +178,6 @@ export default function Header() {
                   >
                     My Account
                   </Link>
-                  <button
-                    onClick={logout}
-                    className="block w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-gray-50"
-                  >
-                    Logout
-                  </button>
                 </div>
               ) : (
                 <button
@@ -202,7 +188,7 @@ export default function Header() {
                 </button>
               )}
             </div>
-            {/* Partner Logos for Mobile */}
+            {/* Mobile Partner Logos */}
             <div className="px-3 pt-4 pb-5 border-t border-gray-100 mt-2">
               <div className="flex flex-col items-start">
                 <p className="text-xs text-gray-500 mb-3">With support from</p>

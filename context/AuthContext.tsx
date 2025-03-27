@@ -14,7 +14,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Helper: get a cookie by name
+// Helper function to get a cookie by name
 function getCookie(name: string): string | null {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
@@ -32,11 +32,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const userCookie = getCookie('user');
       if (userCookie) {
         try {
-          const parsed = JSON.parse(decodeURIComponent(userCookie));
+          // Directly parse the JSON stored in the cookie
+          const parsed = JSON.parse(userCookie);
           setUser(parsed);
         } catch (error) {
-          // Fallback: use cookie as simple string if JSON parse fails
-          setUser({ netid: decodeURIComponent(userCookie), name: decodeURIComponent(userCookie) });
+          console.error("Error parsing user cookie:", error);
+          // If parsing fails, fall back to treating it as a plain string
+          setUser({ netid: userCookie, name: userCookie });
         }
       }
     }
