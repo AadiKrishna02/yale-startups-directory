@@ -59,38 +59,7 @@ export default function TeamPage() {
         // },
       ]
     },
-    // {
-    //   title: "Advisory Board",
-    //   description: "Distinguished alumni and industry experts who provide strategic guidance and support to our mission.",
-    //   members: [
-    //     {
-    //       name: "Dr. Robert Wilson",
-    //       role: "Faculty Advisor",
-    //       bio: "Professor of Entrepreneurship at Yale School of Management, with 20+ years of experience in venture capital and business development.",
-    //       imageUrl: "/team/robert-wilson.jpg",
-    //       linkedinUrl: "#",
-    //       emailUrl: "#"
-    //     },
-    //     {
-    //       name: "Sarah Patel",
-    //       role: "Investor Advisor",
-    //       bio: "Yale '07, Managing Partner at Horizon Ventures with expertise in early-stage funding for tech and healthcare startups.",
-    //       imageUrl: "/team/sarah-patel.jpg",
-    //       linkedinUrl: "#",
-    //       twitterUrl: "#",
-    //       emailUrl: "#"
-    //     },
-    //     {
-    //       name: "David Huang",
-    //       role: "Alumni Advisor",
-    //       bio: "Yale '02, Founder and CEO of TechForward, previously led product development at Amazon and Microsoft.",
-    //       imageUrl: "/team/david-huang.jpg",
-    //       linkedinUrl: "#",
-    //       twitterUrl: "#",
-    //       emailUrl: "#"
-    //     },
-    //   ]
-    // },
+    
     {
       title: "Pitchbook Team",
       description: "YUCP team members who drive sourcing, dilligence and tech.",
@@ -148,6 +117,39 @@ export default function TeamPage() {
           // githubUrl: "#", 
           // emailUrl: "#"
         },
+
+    // {
+    //   title: "Advisory Board",
+    //   description: "Distinguished alumni and industry experts who provide strategic guidance and support to our mission.",
+    //   members: [
+    //     {
+    //       name: "Dr. Robert Wilson",
+    //       role: "Faculty Advisor",
+    //       bio: "Professor of Entrepreneurship at Yale School of Management, with 20+ years of experience in venture capital and business development.",
+    //       imageUrl: "/team/robert-wilson.jpg",
+    //       linkedinUrl: "#",
+    //       emailUrl: "#"
+    //     },
+    //     {
+    //       name: "Sarah Patel",
+    //       role: "Investor Advisor",
+    //       bio: "Yale '07, Managing Partner at Horizon Ventures with expertise in early-stage funding for tech and healthcare startups.",
+    //       imageUrl: "/team/sarah-patel.jpg",
+    //       linkedinUrl: "#",
+    //       twitterUrl: "#",
+    //       emailUrl: "#"
+    //     },
+    //     {
+    //       name: "David Huang",
+    //       role: "Alumni Advisor",
+    //       bio: "Yale '02, Founder and CEO of TechForward, previously led product development at Amazon and Microsoft.",
+    //       imageUrl: "/team/david-huang.jpg",
+    //       linkedinUrl: "#",
+    //       twitterUrl: "#",
+    //       emailUrl: "#"
+    //     },
+    //   ]
+    // },
       ]
     }
   ];
@@ -281,8 +283,8 @@ export default function TeamPage() {
           </div> */}
 
           {/* Yale Institutions Section */}
-{/*           <YaleInstitutions />
-        </div> */}
+{/*           <YaleInstitutions /> */}
+        </div>
       </main>
       
       <Footer />
