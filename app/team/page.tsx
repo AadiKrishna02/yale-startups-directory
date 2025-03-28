@@ -210,27 +210,43 @@ export default function TeamPage() {
             </div>
           </div>
 
-          {/* Founder Section with enhanced visuals */}
-          <div className="mb-20">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-blue-800 mb-2">Founder</h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
-            </div>
-            <div className="max-w-md mx-auto transform hover:-translate-y-1 transition-transform duration-300">
-              <TeamMemberCard member={founderMember} />
-            </div>
-          </div>
-
-          {/* Team Section with enhanced visuals */}
+          {/* Combined Team Section with visual differentiation */}
           <div className="mb-24">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-blue-800 mb-2">Team Members</h2>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-blue-800 mb-2">Our Team</h2>
               <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
               <p className="text-gray-600 max-w-3xl mx-auto mt-3">
-                YUCP team members who drive sourcing, diligence and tech.
+                Meet the individuals behind Yale PitchBook driving innovation, sourcing, diligence, and tech.
               </p>
             </div>
             
+            {/* Founder row with special styling */}
+            <div className="relative mb-16">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-transparent rounded-xl -z-10"></div>
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 py-6">
+                {/* Founder info column */}
+                <div className="flex flex-col justify-center md:pl-6">
+                  <h3 className="text-xl font-semibold text-blue-800 flex items-center mb-3">
+                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium mr-3">Founder</span>
+                    Leadership
+                  </h3>
+                  <p className="text-gray-600 italic">
+                    "Connecting Yale's brightest entrepreneurs with the resources they need to succeed."
+                  </p>
+                </div>
+                
+                {/* Founder card column */}
+                <div className="md:col-span-2">
+                  <div className="transform hover:-translate-y-1 transition-transform duration-300 max-w-md mx-auto md:mx-0">
+                    <TeamMemberCard member={founderMember} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Team members grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {teamMembers.map((member, memberIndex) => (
                 <div key={memberIndex} className="transform hover:-translate-y-2 transition-transform duration-300">
