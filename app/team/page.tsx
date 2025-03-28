@@ -16,19 +16,20 @@ interface TeamMember {
   twitterUrl?: string;
   emailUrl?: string;
   githubUrl?: string;
+  isFounder?: boolean;
 }
 
 export default function TeamPage() {
-  const founderMember = {
-    name: "Aadi Krishna",
-    role: "Founder",
-    bio: "Yale College '26, studying Computer Science and Ethics, Politics, and Economics. Aadi oversees PitchBook operations and strategy.",
-    imageUrl: "/team/aadi-krishna.jpg",
-    linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
-    emailUrl: "mailto:aadi.krishna@yale.edu"
-  };
-
-  const teamMembers = [
+  const teamMembers: TeamMember[] = [
+    {
+      name: "Aadi Krishna",
+      role: "Founder",
+      bio: "Yale College '26, studying Computer Science and Ethics, Politics, and Economics. Aadi oversees PitchBook operations and strategy.",
+      imageUrl: "/team/aadi-krishna.jpg",
+      linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
+      emailUrl: "mailto:aadi.krishna@yale.edu",
+      isFounder: true
+    },
     {
       name: "Rebecca Lynn",
       role: "Analyst",
@@ -73,10 +74,10 @@ export default function TeamPage() {
     },
   ];
 
-  const TeamMemberCard = ({ member, isLarge = false }: { member: TeamMember, isLarge?: boolean }) => {
+  const TeamMemberCard = ({ member }: { member: TeamMember }) => {
     return (
-      <div className={`group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 overflow-hidden ${isLarge ? 'max-w-2xl mx-auto' : ''}`}>
-        <div className={`w-full ${isLarge ? 'h-80' : 'h-64'} bg-gray-200 overflow-hidden`}>
+      <div className={`group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 overflow-hidden ${member.isFounder ? 'founder-card' : ''}`}>
+        <div className="w-full h-64 bg-gray-200 overflow-hidden">
           {member.imageUrl ? (
             <img 
               src={member.imageUrl} 
@@ -91,9 +92,9 @@ export default function TeamPage() {
         </div>
         
         <div className="p-6">
-          <h3 className={`${isLarge ? 'text-2xl' : 'text-xl'} font-semibold text-blue-900 group-hover:text-blue-700 transition-colors`}>{member.name}</h3>
-          <div className={`${isLarge ? 'text-base' : 'text-sm'} font-medium text-blue-600 mb-3`}>{member.role}</div>
-          <p className={`text-gray-600 ${isLarge ? 'text-base' : 'text-sm'} mb-4`}>{member.bio}</p>
+          <h3 className="text-xl font-semibold text-blue-900 group-hover:text-blue-700 transition-colors">{member.name}</h3>
+          <div className="text-sm font-medium text-blue-600 mb-3">{member.role}</div>
+          <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
           
           <div className="flex space-x-3">
             {member.linkedinUrl && (
@@ -157,7 +158,7 @@ export default function TeamPage() {
           <div className="absolute -left-1/4 bottom-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-8 relative">
+        <div className="max-w-6xl mx-auto relative">
           {/* Hero Section */}
           <div className="text-center max-w-3xl mx-auto mb-16 relative">
             <div className="absolute inset-0 -z-10">
@@ -169,28 +170,30 @@ export default function TeamPage() {
             </p>
           </div>
 
-          {/* Founder Section */}
+          {/* Team Grid Layout with Special Founder Position */}
           <div className="mb-20">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-blue-800 mb-2">Founder</h2>
-              <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
-            </div>
-            <TeamMemberCard member={founderMember} isLarge={true} />
-          </div>
-
-          {/* Team Section */}
-          <div className="mb-24">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-blue-800 mb-2">Team Members</h2>
-              <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
-              <p className="text-gray-600 max-w-3xl mx-auto mt-3">
-                YUCP team members who drive sourcing, diligence and tech.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {teamMembers.map((member, memberIndex) => (
-                <TeamMemberCard key={memberIndex} member={member} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Empty grid cell on the left for medium+ screens */}
+              <div className="hidden md:block"></div>
+              
+              {/* Centered founder card in the top row */}
+              <div className="col-span-1">
+                <TeamMemberCard member={teamMembers[0]} />
+              </div>
+              
+              {/* Empty grid cell on the right for medium+ screens */}
+              <div className="hidden md:block"></div>
+              
+              {/* Decorative element connecting founder to team */}
+              <div className="col-span-1 md:col-span-3 flex justify-center my-6">
+                <div className="w-1 h-12 bg-blue-200"></div>
+              </div>
+              
+              {/* Team members in the remaining rows */}
+              {teamMembers.slice(1).map((member, index) => (
+                <div key={index} className="col-span-1">
+                  <TeamMemberCard member={member} />
+                </div>
               ))}
             </div>
           </div>
