@@ -16,20 +16,19 @@ interface TeamMember {
   twitterUrl?: string;
   emailUrl?: string;
   githubUrl?: string;
-  isFounder?: boolean;
 }
 
 export default function TeamPage() {
-  const teamMembers: TeamMember[] = [
-    {
-      name: "Aadi Krishna",
-      role: "Founder",
-      bio: "Yale College '26, studying Computer Science and Ethics, Politics, and Economics. Aadi oversees PitchBook operations and strategy.",
-      imageUrl: "/team/aadi-krishna.jpg",
-      linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
-      emailUrl: "mailto:aadi.krishna@yale.edu",
-      isFounder: true
-    },
+  const founderMember = {
+    name: "Aadi Krishna",
+    role: "Founder",
+    bio: "Yale College '26, studying Computer Science and Ethics, Politics, and Economics. Aadi oversees PitchBook operations and strategy.",
+    imageUrl: "/team/aadi-krishna.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
+    emailUrl: "mailto:aadi.krishna@yale.edu"
+  };
+
+  const teamMembers = [
     {
       name: "Rebecca Lynn",
       role: "Analyst",
@@ -76,7 +75,7 @@ export default function TeamPage() {
 
   const TeamMemberCard = ({ member }: { member: TeamMember }) => {
     return (
-      <div className={`group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 overflow-hidden ${member.isFounder ? 'founder-card' : ''}`}>
+      <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 overflow-hidden">
         <div className="w-full h-64 bg-gray-200 overflow-hidden">
           {member.imageUrl ? (
             <img 
@@ -156,41 +155,79 @@ export default function TeamPage() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -right-1/4 top-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute -left-1/4 bottom-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
+          {/* Additional background elements */}
+          <div className="absolute left-1/4 top-1/3 w-24 h-24 bg-blue-200/20 rounded-full"></div>
+          <div className="absolute right-1/4 bottom-1/3 w-32 h-32 bg-blue-200/20 rounded-full"></div>
+          <div className="absolute left-1/2 top-1/2 w-16 h-16 bg-blue-300/20 rounded-full"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto relative">
-          {/* Hero Section */}
-          <div className="text-center max-w-3xl mx-auto mb-16 relative">
-            <div className="absolute inset-0 -z-10">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-white/50 to-blue-50/50 rounded-3xl blur-xl"></div>
+        <div className="max-w-6xl mx-auto space-y-8 relative">
+          {/* Hero Section - More Interesting */}
+          <div className="relative mb-16">
+            <div className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl border border-blue-100 overflow-hidden">
+              <div className="grid md:grid-cols-2 items-center">
+                <div className="p-8 md:p-12">
+                  <div className="inline-block px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
+                    Yale PitchBook
+                  </div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-blue-900 tracking-tight mb-4">Meet Our Team</h1>
+                  <p className="text-lg text-gray-600 mb-6">
+                    The talented individuals behind Yale PitchBook working to connect Yale's brightest entrepreneurs with the resources they need to succeed.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="inline-block px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-medium">Entrepreneurship</span>
+                    <span className="inline-block px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-medium">Innovation</span>
+                    <span className="inline-block px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-medium">Startups</span>
+                    <span className="inline-block px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-medium">Yale</span>
+                  </div>
+                </div>
+                <div className="hidden md:block h-full">
+                  <div className="relative h-full min-h-[320px] bg-gradient-to-r from-blue-100 to-blue-50 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="grid grid-cols-3 gap-4 p-6 transform rotate-12">
+                        {[...Array(9)].map((_, index) => (
+                          <div 
+                            key={index} 
+                            className="w-20 h-20 bg-white/60 backdrop-blur-sm rounded-lg shadow-sm flex items-center justify-center"
+                            style={{ transform: `translateY(${Math.sin(index) * 10}px)` }}
+                          >
+                            <div className="w-12 h-12 rounded-full bg-blue-100/80"></div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h1 className="text-5xl font-bold text-blue-900 tracking-tight mb-4">Meet Our Team</h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              The talented individuals behind Yale PitchBook working to connect Yale's brightest entrepreneurs with the resources they need to succeed.
-            </p>
           </div>
 
-          {/* Team Grid Layout with Special Founder Position */}
-          <div className="mb-20">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Empty grid cell on the left for medium+ screens */}
-              <div className="hidden md:block"></div>
-              
-              {/* Centered founder card in the top row */}
-              <div className="col-span-1">
-                <TeamMemberCard member={teamMembers[0]} />
+          {/* Team Layout */}
+          <div className="mb-16">
+            {/* Founder with smaller card alongside regular team members */}
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-blue-800 mb-2">Our Team</h2>
+              <div className="w-20 h-1 bg-blue-500 mx-auto mb-4"></div>
+              <p className="text-gray-600 max-w-3xl mx-auto">
+                Meet the individuals who drive Yale PitchBook forward
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {/* Founder card with subtle highlight */}
+              <div className="relative col-span-1 md:col-start-2">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-200 rounded-2xl blur opacity-30"></div>
+                <TeamMemberCard member={founderMember} />
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-medium">
+                  Founder
+                </div>
               </div>
               
-              {/* Empty grid cell on the right for medium+ screens */}
-              <div className="hidden md:block"></div>
+              {/* Decorative connector */}
+              <div className="md:hidden h-12 w-1 bg-blue-100 mx-auto"></div>
               
-              {/* Decorative element connecting founder to team */}
-              <div className="col-span-1 md:col-span-3 flex justify-center my-6">
-                <div className="w-1 h-12 bg-blue-200"></div>
-              </div>
-              
-              {/* Team members in the remaining rows */}
-              {teamMembers.slice(1).map((member, index) => (
+              {/* Team members in a grid */}
+              {teamMembers.map((member, index) => (
                 <div key={index} className="col-span-1">
                   <TeamMemberCard member={member} />
                 </div>
