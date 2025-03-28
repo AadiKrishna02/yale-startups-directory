@@ -31,32 +31,32 @@ export default function TeamPage() {
       description: "Our dedicated leadership team brings together expertise in entrepreneurship, finance, and business development to guide Yale's next generation of founders.",
       members: [
         {
-          name: "Emily Zhang",
-          role: "Executive Director",
-          bio: "MBA '23, with previous experience at Goldman Sachs and several successful startup exits. Emily oversees all PitchBook operations and strategy.",
-          imageUrl: "/team/emily-zhang.jpg",
-          linkedinUrl: "#",
-          twitterUrl: "#",
-          emailUrl: "#"
+          name: "Aadi Krishna",
+          role: "Founder",
+          bio: "Yale College '26, studying Computer Science and Ethics, Politics, and Economics. Aadi oversees all PitchBook operations and strategy.",
+          imageUrl: "/team/aadi-krishna.jpg",
+          linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
+          // twitterUrl: "#",
+          emailUrl: "mailto:aadi.krishna@yale.edu"
         },
-        {
-          name: "Michael Chen",
-          role: "Managing Director",
-          bio: "Yale School of Management '24, previously founded two tech startups and worked at McKinsey. Michael leads our investor relations and pitch events.",
-          imageUrl: "/team/michael-chen.jpg",
-          linkedinUrl: "#",
-          twitterUrl: "#",
-          emailUrl: "#"
-        },
-        {
-          name: "Aisha Johnson",
-          role: "Program Director",
-          bio: "Yale College '23, Computer Science major with experience in startup acceleration at Y Combinator. Aisha manages our coaching and mentorship programs.",
-          imageUrl: "/team/aisha-johnson.jpg", 
-          linkedinUrl: "#",
-          twitterUrl: "#",
-          emailUrl: "#"
-        },
+        // {
+        //   name: "Michael Chen",
+        //   role: "Managing Director",
+        //   bio: "Yale School of Management '24, previously founded two tech startups and worked at McKinsey. Michael leads our investor relations and pitch events.",
+        //   imageUrl: "/team/michael-chen.jpg",
+        //   linkedinUrl: "#",
+        //   twitterUrl: "#",
+        //   emailUrl: "#"
+        // },
+        // {
+        //   name: "Aisha Johnson",
+        //   role: "Program Director",
+        //   bio: "Yale College '23, Computer Science major with experience in startup acceleration at Y Combinator. Aisha manages our coaching and mentorship programs.",
+        //   imageUrl: "/team/aisha-johnson.jpg", 
+        //   linkedinUrl: "#",
+        //   twitterUrl: "#",
+        //   emailUrl: "#"
+        // },
       ]
     },
     {
