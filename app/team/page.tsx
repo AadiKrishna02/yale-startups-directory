@@ -165,14 +165,49 @@ export default function TeamPage() {
 
         <div className="max-w-6xl mx-auto space-y-8 relative">
           {/* Enhanced Hero Section */}
-          <div className="text-center max-w-3xl mx-auto mb-16 relative">
-            <div className="absolute inset-0 -z-10">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-50/60 via-white/60 to-blue-50/60 rounded-3xl blur-xl"></div>
+          <div className="relative mb-20 overflow-hidden rounded-3xl shadow-xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-700/90 z-0"></div>
+            
+            {/* Decorative elements */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-full opacity-10">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute w-full h-full">
+                  <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="white" strokeWidth="0.5"></path>
+                  <path d="M0,50 L100,50" stroke="white" strokeWidth="0.5"></path>
+                  <path d="M50,0 L50,100" stroke="white" strokeWidth="0.5"></path>
+                  <circle cx="50" cy="50" r="30" fill="none" stroke="white" strokeWidth="0.5"></circle>
+                  <circle cx="50" cy="50" r="20" fill="none" stroke="white" strokeWidth="0.5"></circle>
+                </svg>
+              </div>
+              <div className="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-blue-500/20 blur-3xl"></div>
+              <div className="absolute -left-12 -bottom-12 w-64 h-64 rounded-full bg-blue-400/20 blur-3xl"></div>
             </div>
-            <h1 className="text-5xl font-bold text-blue-900 tracking-tight mb-4 text-shadow">Meet Our Team</h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              The talented individuals behind Yale PitchBook working to connect Yale's brightest entrepreneurs with the resources they need to succeed.
-            </p>
+            
+            <div className="relative z-10 px-8 py-16 md:py-20 flex flex-col md:flex-row items-center">
+              {/* Left content */}
+              <div className="md:w-1/2 text-left md:pr-12 mb-8 md:mb-0">
+                <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4 leading-tight">Meet The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Team</span> Behind Yale PitchBook</h1>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-300 to-white rounded-full my-6"></div>
+                <p className="text-lg text-blue-100 max-w-xl">
+                  A group of dedicated Yale students working to connect the university's brightest entrepreneurs with the resources they need to succeed.
+                </p>
+              </div>
+              
+              {/* Right content - Graphic element */}
+              <div className="md:w-1/2 flex justify-center">
+                <div className="relative w-64 h-64">
+                  {/* Abstract team graphic */}
+                  <div className="absolute top-0 left-0 w-40 h-40 bg-blue-400/20 rounded-2xl backdrop-blur-sm border border-white/20 transform rotate-12"></div>
+                  <div className="absolute bottom-0 right-0 w-40 h-40 bg-blue-300/20 rounded-2xl backdrop-blur-sm border border-white/20 transform -rotate-12"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/10 rounded-full backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                    <div className="text-white text-center">
+                      <div className="font-semibold text-5xl">7</div>
+                      <div className="uppercase tracking-wider text-sm mt-1">Team Members</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Founder Section with enhanced visuals */}
