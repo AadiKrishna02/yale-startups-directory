@@ -97,7 +97,7 @@ export default function TeamPage() {
       members: [
         {
           name: "Rebecca Lynn",
-          // role: "Pitchbook Team",
+          role: "Analyst",
           bio: "Yale College '26, Economics and Political Science major.",
           imageUrl: "/team/rebecca.jpg",
           linkedinUrl: "https://www.linkedin.com/in/rebecca-lynn-640715257/",
@@ -106,7 +106,7 @@ export default function TeamPage() {
         },
         {
           name: "Eric Arabadzhiev",
-          // role: "Pitchbook Team",
+          role: "Analyst",
           bio: "Yale College '28, Economics and Global Affairs major.",
           imageUrl: "/team/eric.jpg",
           linkedinUrl: "https://www.linkedin.com/in/eric-arabadzhiev/",
@@ -114,7 +114,7 @@ export default function TeamPage() {
         },
         {
           name: "Oliver Hime",
-          // role: "Pitchbook Team",
+          role: "Analyst",
           bio: "Yale College '28, Computer Science and Economics major.",
           imageUrl: "/team/oliver.jpg",
           linkedinUrl: "https://www.linkedin.com/in/oliverhime/",
@@ -123,7 +123,7 @@ export default function TeamPage() {
         },
         {
           name: "Sofiia Domochka",
-          // role: "Pitchbook Team",
+          role: "Analyst",
           bio: "Yale College '27, Biotech and Economics major.",
           imageUrl: "/team/sofiia.jpg",
           linkedinUrl: "#",
@@ -132,7 +132,7 @@ export default function TeamPage() {
         },
         {
           name: "Yuto Kida",
-          role: "Sourcing & Dilligence",
+          role: "Analyst",
           bio: "Yale College '26, Economics and Statistics & Data Science.",
           imageUrl: "/team/yuto.jpg",
           linkedinUrl: "https://www.linkedin.com/in/yuto-kida/",
