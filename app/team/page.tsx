@@ -18,146 +18,65 @@ interface TeamMember {
   githubUrl?: string;
 }
 
-interface TeamSection {
-  title: string;
-  description: string;
-  members: TeamMember[];
-}
-
 export default function TeamPage() {
-  const teamSections: TeamSection[] = [
-    {
-      title: "Leadership Team",
-      description: "Our dedicated leadership team brings together expertise in entrepreneurship, finance, and business development to guide Yale's next generation of founders.",
-      members: [
-        {
-          name: "Aadi Krishna",
-          role: "Founder",
-          bio: "Yale College '26, studying Computer Science and Ethics, Politics, and Economics. Aadi oversees PitchBook operations and strategy.",
-          imageUrl: "/team/aadi-krishna.jpg",
-          linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
-          // twitterUrl: "#",
-          emailUrl: "mailto:aadi.krishna@yale.edu"
-        },
-        // {
-        //   name: "Michael Chen",
-        //   role: "Managing Director",
-        //   bio: "Yale School of Management '24, previously founded two tech startups and worked at McKinsey. Michael leads our investor relations and pitch events.",
-        //   imageUrl: "/team/michael-chen.jpg",
-        //   linkedinUrl: "#",
-        //   twitterUrl: "#",
-        //   emailUrl: "#"
-        // },
-        // {
-        //   name: "Aisha Johnson",
-        //   role: "Program Director",
-        //   bio: "Yale College '23, Computer Science major with experience in startup acceleration at Y Combinator. Aisha manages our coaching and mentorship programs.",
-        //   imageUrl: "/team/aisha-johnson.jpg", 
-        //   linkedinUrl: "#",
-        //   twitterUrl: "#",
-        //   emailUrl: "#"
-        // },
-      ]
-    },
-    
-    {
-      title: "Pitchbook Team",
-      description: "YUCP team members who drive sourcing, dilligence and tech.",
-      members: [
-        {
-          name: "Rebecca Lynn",
-          role: "Analyst",
-          bio: "Yale College '26, Economics and Political Science major.",
-          imageUrl: "/team/rebecca.jpg",
-          linkedinUrl: "https://www.linkedin.com/in/rebecca-lynn-640715257/",
-          // twitterUrl: "#",
-          // emailUrl: "#"
-        },
-        {
-          name: "Eric Arabadzhiev",
-          role: "Analyst",
-          bio: "Yale College '28, Economics and Global Affairs major.",
-          imageUrl: "/team/eric.jpg",
-          linkedinUrl: "https://www.linkedin.com/in/eric-arabadzhiev/",
-          // emailUrl: "#"
-        },
-        {
-          name: "Oliver Hime",
-          role: "Analyst",
-          bio: "Yale College '28, Computer Science and Economics major.",
-          imageUrl: "/team/oliver.jpg",
-          linkedinUrl: "https://www.linkedin.com/in/oliverhime/",
-          // githubUrl: "#", 
-          // emailUrl: "#"
-        },
-        {
-          name: "Sofiia Domochka",
-          role: "Analyst",
-          bio: "Yale College '27, Biotech and Economics major.",
-          imageUrl: "/team/sofiia.jpg",
-          linkedinUrl: "#",
-          // githubUrl: "#", 
-          // emailUrl: "#"
-        },
-        {
-          name: "Yuto Kida",
-          role: "Analyst",
-          bio: "Yale College '26, Economics and Statistics & Data Science.",
-          imageUrl: "/team/yuto.jpg",
-          linkedinUrl: "https://www.linkedin.com/in/yuto-kida/",
-          // githubUrl: "#", 
-          // emailUrl: "#"
-        },
-        {
-          name: "Jack Yin",
-          role: "Tech Lead",
-          bio: "Yale College '28, Computer Science major. Jack manages the database of startups and technical resources.",
-          imageUrl: "/team/jack.jpg",
-          linkedinUrl: "https://www.linkedin.com/in/jackjyin/",
-          // githubUrl: "#", 
-          // emailUrl: "#"
-        },
+  const founderMember = {
+    name: "Aadi Krishna",
+    role: "Founder",
+    bio: "Yale College '26, studying Computer Science and Ethics, Politics, and Economics. Aadi oversees PitchBook operations and strategy.",
+    imageUrl: "/team/aadi-krishna.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
+    emailUrl: "mailto:aadi.krishna@yale.edu"
+  };
 
-    // {
-    //   title: "Advisory Board",
-    //   description: "Distinguished alumni and industry experts who provide strategic guidance and support to our mission.",
-    //   members: [
-    //     {
-    //       name: "Dr. Robert Wilson",
-    //       role: "Faculty Advisor",
-    //       bio: "Professor of Entrepreneurship at Yale School of Management, with 20+ years of experience in venture capital and business development.",
-    //       imageUrl: "/team/robert-wilson.jpg",
-    //       linkedinUrl: "#",
-    //       emailUrl: "#"
-    //     },
-    //     {
-    //       name: "Sarah Patel",
-    //       role: "Investor Advisor",
-    //       bio: "Yale '07, Managing Partner at Horizon Ventures with expertise in early-stage funding for tech and healthcare startups.",
-    //       imageUrl: "/team/sarah-patel.jpg",
-    //       linkedinUrl: "#",
-    //       twitterUrl: "#",
-    //       emailUrl: "#"
-    //     },
-    //     {
-    //       name: "David Huang",
-    //       role: "Alumni Advisor",
-    //       bio: "Yale '02, Founder and CEO of TechForward, previously led product development at Amazon and Microsoft.",
-    //       imageUrl: "/team/david-huang.jpg",
-    //       linkedinUrl: "#",
-    //       twitterUrl: "#",
-    //       emailUrl: "#"
-    //     },
-    //   ]
-    // },
-      ]
-    }
+  const teamMembers = [
+    {
+      name: "Rebecca Lynn",
+      role: "Analyst",
+      bio: "Yale College '26, Economics and Political Science major.",
+      imageUrl: "/team/rebecca.jpg",
+      linkedinUrl: "https://www.linkedin.com/in/rebecca-lynn-640715257/",
+    },
+    {
+      name: "Eric Arabadzhiev",
+      role: "Analyst",
+      bio: "Yale College '28, Economics and Global Affairs major.",
+      imageUrl: "/team/eric.jpg",
+      linkedinUrl: "https://www.linkedin.com/in/eric-arabadzhiev/",
+    },
+    {
+      name: "Oliver Hime",
+      role: "Analyst",
+      bio: "Yale College '28, Computer Science and Economics major.",
+      imageUrl: "/team/oliver.jpg",
+      linkedinUrl: "https://www.linkedin.com/in/oliverhime/",
+    },
+    {
+      name: "Sofiia Domochka",
+      role: "Analyst",
+      bio: "Yale College '27, Biotech and Economics major.",
+      imageUrl: "/team/sofiia.jpg",
+      linkedinUrl: "#",
+    },
+    {
+      name: "Yuto Kida",
+      role: "Analyst",
+      bio: "Yale College '26, Economics and Statistics & Data Science.",
+      imageUrl: "/team/yuto.jpg",
+      linkedinUrl: "https://www.linkedin.com/in/yuto-kida/",
+    },
+    {
+      name: "Jack Yin",
+      role: "Tech Lead",
+      bio: "Yale College '28, Computer Science major. Jack manages the database of startups and technical resources.",
+      imageUrl: "/team/jack.jpg",
+      linkedinUrl: "https://www.linkedin.com/in/jackjyin/",
+    },
   ];
 
-  const TeamMemberCard = ({ member }: { member: TeamMember }) => {
+  const TeamMemberCard = ({ member, isLarge = false }: { member: TeamMember, isLarge?: boolean }) => {
     return (
-      <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 overflow-hidden">
-        <div className="w-full h-64 bg-gray-200 overflow-hidden">
+      <div className={`group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 overflow-hidden ${isLarge ? 'max-w-2xl mx-auto' : ''}`}>
+        <div className={`w-full ${isLarge ? 'h-80' : 'h-64'} bg-gray-200 overflow-hidden`}>
           {member.imageUrl ? (
             <img 
               src={member.imageUrl} 
@@ -172,9 +91,9 @@ export default function TeamPage() {
         </div>
         
         <div className="p-6">
-          <h3 className="text-xl font-semibold text-blue-900 group-hover:text-blue-700 transition-colors">{member.name}</h3>
-          <div className="text-sm font-medium text-blue-600 mb-3">{member.role}</div>
-          <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
+          <h3 className={`${isLarge ? 'text-2xl' : 'text-xl'} font-semibold text-blue-900 group-hover:text-blue-700 transition-colors`}>{member.name}</h3>
+          <div className={`${isLarge ? 'text-base' : 'text-sm'} font-medium text-blue-600 mb-3`}>{member.role}</div>
+          <p className={`text-gray-600 ${isLarge ? 'text-base' : 'text-sm'} mb-4`}>{member.bio}</p>
           
           <div className="flex space-x-3">
             {member.linkedinUrl && (
@@ -250,40 +169,31 @@ export default function TeamPage() {
             </p>
           </div>
 
-          {/* Team Sections */}
-          {teamSections.map((section, sectionIndex) => (
-            <div key={sectionIndex} className="mb-24">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-blue-800 mb-3">{section.title}</h2>
-                <p className="text-gray-600 max-w-3xl mx-auto">{section.description}</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {section.members.map((member, memberIndex) => (
-                  <TeamMemberCard key={memberIndex} member={member} />
-                ))}
-              </div>
+          {/* Founder Section */}
+          <div className="mb-20">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-blue-800 mb-2">Founder</h2>
+              <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
             </div>
-          ))}
+            <TeamMemberCard member={founderMember} isLarge={true} />
+          </div>
 
-          {/* Join Our Team Section */}
-{/*           <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-10 mt-16 mb-20">
-            <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-blue-800 mb-6">Join Our Team</h2>
-              <p className="text-gray-600 mb-8">
-                Are you passionate about entrepreneurship and the Yale startup ecosystem? We're always looking for talented students to join our team and help us support Yale's founders.
+          {/* Team Section */}
+          <div className="mb-24">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-blue-800 mb-2">Team Members</h2>
+              <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
+              <p className="text-gray-600 max-w-3xl mx-auto mt-3">
+                YUCP team members who drive sourcing, diligence and tech.
               </p>
-              <Link 
-                href="/contact"
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition-colors"
-              >
-                Get Involved
-              </Link>
             </div>
-          </div> */}
-
-          {/* Yale Institutions Section */}
-{/*           <YaleInstitutions /> */}
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member, memberIndex) => (
+                <TeamMemberCard key={memberIndex} member={member} />
+              ))}
+            </div>
+          </div>
         </div>
       </main>
       
