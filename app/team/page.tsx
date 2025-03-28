@@ -265,7 +265,7 @@ export default function TeamPage() {
           ))}
 
           {/* Join Our Team Section */}
-          <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-10 mt-16 mb-20">
+{/*           <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-10 mt-16 mb-20">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold text-blue-800 mb-6">Join Our Team</h2>
               <p className="text-gray-600 mb-8">
@@ -278,11 +278,11 @@ export default function TeamPage() {
                 Get Involved
               </Link>
             </div>
-          </div>
+          </div> */}
 
           {/* Yale Institutions Section */}
-          <YaleInstitutions />
-        </div>
+{/*           <YaleInstitutions />
+        </div> */}
       </main>
       
       <Footer />
