@@ -76,13 +76,16 @@ export default function TeamPage() {
   const TeamMemberCard = ({ member }: { member: TeamMember }) => {
     return (
       <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 overflow-hidden">
-        <div className="w-full h-64 bg-gray-200 overflow-hidden">
+        <div className="w-full h-64 bg-gray-200 overflow-hidden relative">
           {member.imageUrl ? (
-            <img 
-              src={member.imageUrl} 
-              alt={member.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
+            <>
+              <img 
+                src={member.imageUrl} 
+                alt={member.name}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </>
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
               <span className="text-blue-800 text-xl font-medium">{member.name.charAt(0)}</span>
@@ -151,40 +154,43 @@ export default function TeamPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-24 px-4 sm:px-12 lg:px-24 pb-8 relative">
-        {/* Background decorative elements */}
+        {/* Enhanced Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -right-1/4 top-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute -left-1/4 bottom-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-100/30 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute -right-1/4 top-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-100/40 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute -left-1/4 bottom-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-100/40 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-32 left-10 w-16 h-16 bg-blue-300/20 rounded-full blur-xl"></div>
+          <div className="absolute bottom-40 right-20 w-24 h-24 bg-blue-400/20 rounded-full blur-xl"></div>
+          <div className="absolute top-1/3 right-1/4 w-20 h-20 bg-blue-200/20 rounded-full blur-xl"></div>
         </div>
 
         <div className="max-w-6xl mx-auto space-y-8 relative">
-          {/* Hero Section */}
+          {/* Enhanced Hero Section */}
           <div className="text-center max-w-3xl mx-auto mb-16 relative">
             <div className="absolute inset-0 -z-10">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-white/50 to-blue-50/50 rounded-3xl blur-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-50/60 via-white/60 to-blue-50/60 rounded-3xl blur-xl"></div>
             </div>
-            <h1 className="text-5xl font-bold text-blue-900 tracking-tight mb-4">Meet Our Team</h1>
+            <h1 className="text-5xl font-bold text-blue-900 tracking-tight mb-4 text-shadow">Meet Our Team</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               The talented individuals behind Yale PitchBook working to connect Yale's brightest entrepreneurs with the resources they need to succeed.
             </p>
           </div>
 
-          {/* Founder Section */}
+          {/* Founder Section with enhanced visuals */}
           <div className="mb-20">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-blue-800 mb-2">Founder</h2>
-              <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
+              <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
             </div>
-            <div className="max-w-md mx-auto">
+            <div className="max-w-md mx-auto transform hover:-translate-y-1 transition-transform duration-300">
               <TeamMemberCard member={founderMember} />
             </div>
           </div>
 
-          {/* Team Section */}
+          {/* Team Section with enhanced visuals */}
           <div className="mb-24">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-blue-800 mb-2">Team Members</h2>
-              <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
+              <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
               <p className="text-gray-600 max-w-3xl mx-auto mt-3">
                 YUCP team members who drive sourcing, diligence and tech.
               </p>
@@ -192,7 +198,9 @@ export default function TeamPage() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {teamMembers.map((member, memberIndex) => (
-                <TeamMemberCard key={memberIndex} member={member} />
+                <div key={memberIndex} className="transform hover:-translate-y-2 transition-transform duration-300">
+                  <TeamMemberCard member={member} />
+                </div>
               ))}
             </div>
           </div>
