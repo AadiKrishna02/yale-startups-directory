@@ -33,7 +33,7 @@ export default function TeamPage() {
         {
           name: "Aadi Krishna",
           role: "Founder",
-          bio: "Yale College '26, studying Computer Science and Ethics, Politics, and Economics. Aadi oversees all PitchBook operations and strategy.",
+          bio: "Yale College '26, studying Computer Science and Ethics, Politics, and Economics. Aadi oversees PitchBook operations and strategy.",
           imageUrl: "/team/aadi-krishna.jpg",
           linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
           // twitterUrl: "#",
@@ -59,67 +59,94 @@ export default function TeamPage() {
         // },
       ]
     },
+    // {
+    //   title: "Advisory Board",
+    //   description: "Distinguished alumni and industry experts who provide strategic guidance and support to our mission.",
+    //   members: [
+    //     {
+    //       name: "Dr. Robert Wilson",
+    //       role: "Faculty Advisor",
+    //       bio: "Professor of Entrepreneurship at Yale School of Management, with 20+ years of experience in venture capital and business development.",
+    //       imageUrl: "/team/robert-wilson.jpg",
+    //       linkedinUrl: "#",
+    //       emailUrl: "#"
+    //     },
+    //     {
+    //       name: "Sarah Patel",
+    //       role: "Investor Advisor",
+    //       bio: "Yale '07, Managing Partner at Horizon Ventures with expertise in early-stage funding for tech and healthcare startups.",
+    //       imageUrl: "/team/sarah-patel.jpg",
+    //       linkedinUrl: "#",
+    //       twitterUrl: "#",
+    //       emailUrl: "#"
+    //     },
+    //     {
+    //       name: "David Huang",
+    //       role: "Alumni Advisor",
+    //       bio: "Yale '02, Founder and CEO of TechForward, previously led product development at Amazon and Microsoft.",
+    //       imageUrl: "/team/david-huang.jpg",
+    //       linkedinUrl: "#",
+    //       twitterUrl: "#",
+    //       emailUrl: "#"
+    //     },
+    //   ]
+    // },
     {
-      title: "Advisory Board",
-      description: "Distinguished alumni and industry experts who provide strategic guidance and support to our mission.",
+      title: "Pitchbook Team",
+      description: "YUCP team members who drive sourcing, dilligence and tech.",
       members: [
         {
-          name: "Dr. Robert Wilson",
-          role: "Faculty Advisor",
-          bio: "Professor of Entrepreneurship at Yale School of Management, with 20+ years of experience in venture capital and business development.",
-          imageUrl: "/team/robert-wilson.jpg",
-          linkedinUrl: "#",
-          emailUrl: "#"
+          name: "Rebecca Lynn",
+          // role: "Pitchbook Team",
+          bio: "Yale College '26, Economics and Political Science major.",
+          imageUrl: "/team/rebecca.jpg",
+          linkedinUrl: "https://www.linkedin.com/in/rebecca-lynn-640715257/",
+          // twitterUrl: "#",
+          // emailUrl: "#"
         },
         {
-          name: "Sarah Patel",
-          role: "Investor Advisor",
-          bio: "Yale '07, Managing Partner at Horizon Ventures with expertise in early-stage funding for tech and healthcare startups.",
-          imageUrl: "/team/sarah-patel.jpg",
-          linkedinUrl: "#",
-          twitterUrl: "#",
-          emailUrl: "#"
+          name: "Eric Arabadzhiev",
+          // role: "Pitchbook Team",
+          bio: "Yale College '28, Economics and Global Affairs major.",
+          imageUrl: "/team/eric.jpg",
+          linkedinUrl: "https://www.linkedin.com/in/eric-arabadzhiev/",
+          // emailUrl: "#"
         },
         {
-          name: "David Huang",
-          role: "Alumni Advisor",
-          bio: "Yale '02, Founder and CEO of TechForward, previously led product development at Amazon and Microsoft.",
-          imageUrl: "/team/david-huang.jpg",
-          linkedinUrl: "#",
-          twitterUrl: "#",
-          emailUrl: "#"
-        },
-      ]
-    },
-    {
-      title: "Student Team",
-      description: "Passionate Yale students who drive our day-to-day operations, event planning, and startup support initiatives.",
-      members: [
-        {
-          name: "Jason Kim",
-          role: "Marketing Lead",
-          bio: "Yale College '25, Economics major. Jason manages our social media presence, email campaigns, and event promotions.",
-          imageUrl: "/team/jason-kim.jpg",
-          linkedinUrl: "#",
-          twitterUrl: "#",
-          emailUrl: "#"
+          name: "Oliver Hime",
+          // role: "Pitchbook Team",
+          bio: "Yale College '28, Computer Science and Economics major.",
+          imageUrl: "/team/oliver.jpg",
+          linkedinUrl: "https://www.linkedin.com/in/oliverhime/",
+          // githubUrl: "#", 
+          // emailUrl: "#"
         },
         {
-          name: "Maya Rodriguez",
-          role: "Operations Coordinator",
-          bio: "Yale School of Management '25. Maya oversees our pitch events, workshops, and coordinates with campus partners.",
-          imageUrl: "/team/maya-rodriguez.jpg",
+          name: "Sofiia Domochka",
+          // role: "Pitchbook Team",
+          bio: "Yale College '27, Biotech and Economics major.",
+          imageUrl: "/team/sofiia.jpg",
           linkedinUrl: "#",
-          emailUrl: "#"
+          // githubUrl: "#", 
+          // emailUrl: "#"
         },
         {
-          name: "Alex Thompson",
+          name: "Yuto Kida",
+          role: "Sourcing & Dilligence",
+          bio: "Yale College '26, Economics and Statistics & Data Science.",
+          imageUrl: "/team/yuto.jpg",
+          linkedinUrl: "https://www.linkedin.com/in/yuto-kida/",
+          // githubUrl: "#", 
+          // emailUrl: "#"
+        },
+        {
+          name: "Jack Yin",
           role: "Tech Lead",
-          bio: "Yale College '24, Computer Science major. Alex manages our digital platform, database of startups, and technical resources.",
-          imageUrl: "/team/alex-thompson.jpg",
-          linkedinUrl: "#",
-          githubUrl: "#", 
-          emailUrl: "#"
+          bio: "Yale College '28, Computer Science major. Jack manages the database of startups and technical resources.",
+          imageUrl: "/team/jack.jpg",
+          linkedinUrl: "https://www.linkedin.com/in/jackjyin/",
+          // githubUrl: "#", 
+          // emailUrl: "#"
         },
       ]
     }
