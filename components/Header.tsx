@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
@@ -45,7 +46,13 @@ const partnerLogos = [
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, login } = useAuth(); // No logout button in header
+  const { user, login } = useAuth();
+  const pathname = usePathname();
+
+  const isActive = (href) => {
+    if (href === '#') return false;
+    return pathname === href;
+  };
 
   return (
     <header className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
@@ -83,11 +90,16 @@ export default function Header() {
                   </span>
                 );
               }
+              
+              const activeClass = isActive(item.href) 
+                ? "text-blue-700 font-semibold border-b-2 border-blue-700" 
+                : "text-gray-600 hover:text-blue-700";
+              
               return item.isExternal ? (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors"
+                  className={`${activeClass} px-3 py-1.5 text-sm font-medium transition-colors`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -97,7 +109,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 hover:text-blue-700 px-3 py-1.5 text-sm font-medium transition-colors"
+                  className={`${activeClass} px-3 py-1.5 text-sm font-medium transition-colors`}
                 >
                   {item.name}
                 </Link>
@@ -106,14 +118,14 @@ export default function Header() {
             {user ? (
               <Link
                 href="/account"
-                className="px-3 py-1 text-sm text-blue-600 hover:text-blue-800"
+                className="px-4 py-1.5 text-sm text-blue-600 hover:text-blue-800 border border-blue-600 hover:border-blue-800 rounded-md transition-colors"
               >
                 My Account
               </Link>
             ) : (
               <button
                 onClick={login}
-                className="px-3 py-1 text-sm text-blue-600 hover:text-blue-800"
+                className="px-4 py-1.5 text-sm text-blue-600 hover:text-blue-800 border border-blue-600 hover:border-blue-800 rounded-md transition-colors"
               >
                 Login
               </button>
@@ -147,11 +159,16 @@ export default function Header() {
                     </span>
                   );
                 }
+                
+                const activeClass = isActive(item.href) 
+                  ? "text-blue-700 bg-blue-50 font-semibold" 
+                  : "text-gray-600 hover:text-blue-700 hover:bg-gray-50";
+                
                 return item.isExternal ? (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-gray-50 rounded-md"
+                    className={`block px-3 py-2 text-sm font-medium ${activeClass} rounded-md`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -161,7 +178,7 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="block px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 hover:bg-gray-50 rounded-md"
+                    className={`block px-3 py-2 text-sm font-medium ${activeClass} rounded-md`}
                   >
                     {item.name}
                   </Link>
@@ -173,18 +190,20 @@ export default function Header() {
                 <div className="px-3 py-2">
                   <Link
                     href="/account"
-                    className="text-gray-600 text-sm block mb-1 hover:text-blue-700"
+                    className="text-blue-600 text-sm block mb-1 hover:text-blue-800 border border-blue-600 hover:border-blue-800 rounded-md px-3 py-1.5 text-center"
                   >
                     My Account
                   </Link>
                 </div>
               ) : (
-                <button
-                  onClick={login}
-                  className="block w-full text-left px-3 py-2 text-sm text-blue-600 hover:bg-gray-50"
-                >
-                  Login
-                </button>
+                <div className="px-3 py-2">
+                  <button
+                    onClick={login}
+                    className="w-full text-blue-600 hover:text-blue-800 border border-blue-600 hover:border-blue-800 rounded-md text-sm px-3 py-1.5"
+                  >
+                    Login
+                  </button>
+                </div>
               )}
             </div>
             <div className="px-3 pt-4 pb-5 border-t border-gray-100 mt-2">
