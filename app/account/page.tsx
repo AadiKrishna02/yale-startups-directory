@@ -592,7 +592,7 @@ function EditableStartupCard({
             readOnly={!editMode}
             rows={4}
             className={`w-full p-2 border rounded ${editMode ? 'bg-white border-blue-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-400' : 'bg-gray-50 border-gray-200'}`}
-            placeholder={editMode ? "Example: Looking for a technical co-founder with experience in React and machine learning. Offering 10-15 hours/week, with potential equity." : "No active announcements"}
+            placeholder={editMode ? "Example: Looking for a technical co-founder with experience in React and machine learning. Offering 10-15 hours/week, with potential equity." : "Looking for talent? Post an announcement here. Your announcement will be visible on the Opportunities page and may be seen by students/talent looking to join startups."}
           />
         )}
         
