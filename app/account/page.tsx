@@ -6,7 +6,7 @@ import { useAuth } from '@/context/AuthContext';
 import ExcelJS from 'exceljs';
 
 interface Startup {
-  id: number; // assume an id field exists in your Supabase table
+  id?: number; // assume an id field exists in your Supabase table
   name?: string;
   description?: string;
   industry?: string;
