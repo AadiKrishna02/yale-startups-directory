@@ -35,7 +35,7 @@ function EditableStartupCard({
   const handleSave = async () => {
     setSaving(true);
     try {
-      // Update and return the updated row
+      // Update the startup and return the updated record
       const { data, error } = await supabase
         .from('startups')
         .update({
@@ -48,14 +48,21 @@ function EditableStartupCard({
           website: formData.website,
         })
         .eq('id', startup.id)
-        .select(); // returns the updated record
-
+        .select(); // this returns the updated record
+      
       if (error) {
+        console.error('Supabase update error:', error);
         throw error;
       }
-      // data is an array, so take the first element as the updated record
-      const updatedRow = data[0];
-      onUpdate(updatedRow);
+
+      console.log('Update response data:', data);
+      
+      if (data && data.length > 0) {
+        const updatedRow = data[0];
+        onUpdate(updatedRow);
+      } else {
+        console.warn('No updated row returned');
+      }
       setEditMode(false);
     } catch (error) {
       console.error('Error updating startup:', error);
@@ -147,15 +154,15 @@ export default function AccountPage() {
         return;
       }
       try {
-        // Load startups directly from Supabase
         const { data, error } = await supabase.from('startups').select('*');
         if (error) {
           throw error;
         }
+        console.log('Fetched startups:', data);
         // Normalize the user's full name by removing spaces and lowercasing
         const normalizedUserName = user.name.replace(/\s+/g, '').toLowerCase();
 
-        // Filter startups where the "founders" column (normalized) includes the user's full name.
+        // Filter startups based on the founders field containing the normalized user name.
         const filtered = data.filter((startup: Startup) => {
           if (!startup.founders) return false;
           const foundersList = startup.founders.split(',').map((f) =>
@@ -173,7 +180,6 @@ export default function AccountPage() {
     loadUserStartups();
   }, [user]);
 
-  // Update the startup in state when it is edited
   const handleUpdateStartup = (updatedStartup: Startup) => {
     setUserStartups((prev) =>
       prev.map((s) => (s.id === updatedStartup.id ? updatedStartup : s))
@@ -190,7 +196,6 @@ export default function AccountPage() {
               {user && <p className="text-xl font-medium">Hi, {user.name}!</p>}
               <h1 className="text-3xl font-bold">Your Account</h1>
             </div>
-            {/* Logout button on the account page */}
             <button
               onClick={logout}
               className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
