@@ -6,12 +6,12 @@ import { useAuth } from '@/context/AuthContext';
 
 const navItems = [
   { 
-    name: 'Yale Startup Directory', 
+    name: 'Startup Directory', 
     href: '/directory',
     isExternal: false 
   },
   { 
-    name: 'Yale Startup Pitchbook', 
+    name: 'Startup Pitchbook', 
     href: '#',
     isExternal: false,
     disabled: true
