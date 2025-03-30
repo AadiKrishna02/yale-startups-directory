@@ -169,6 +169,7 @@ function EditableStartupCard({
               <option value="Idea">Idea</option>
               <option value="Pre-seed">Proof of Concept</option>
               <option value="Seed">Building</option>
+              <option value="Seed">Testing</option>
               <option value="Series A">Launched: Pre-revenue</option>
               <option value="Series B+">Launched: Revenue</option>
               <option value="Growth">Launched: Growth</option>
