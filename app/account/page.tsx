@@ -515,12 +515,12 @@ function EditableStartupCard({
             >
               <option value="">Select Stage</option>
               <option value="Idea">Idea</option>
-              <option value="Pre-seed">Proof of Concept</option>
-              <option value="Seed">Building</option>
-              <option value="Seed">Testing</option>
-              <option value="Series A">Launched: Pre-revenue</option>
-              <option value="Series B+">Launched: Revenue</option>
-              <option value="Growth">Launched: Growth</option>
+              <option value="Proof of Concept">Proof of Concept</option>
+              <option value="Building">Building</option>
+              <option value="Testing">Testing</option>
+              <option value="Launched: Pre-revenue">Launched: Pre-revenue</option>
+              <option value="Launched: Revenue">Launched: Revenue</option>
+              <option value="Launched: Growth">Launched: Growth</option>
             </select>
           ) : (
             <input
@@ -542,16 +542,16 @@ function EditableStartupCard({
               className="w-full p-2 border rounded bg-white border-blue-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-400"
             >
               <option value="">Select Affiliation</option>
-              <option value="Undergraduate">Yale College</option>
-              <option value="Graduate">Yale SOM</option>
-              <option value="Professional School">Yale School of Arts & Sciences</option>
-              <option value="Professional School">Yale School of Engineering</option>
-              <option value="Faculty">Yale School of Public Health</option>
-              <option value="Faculty">Yale Law School</option>
-              <option value="Faculty">Yale School of Environment</option>
-              <option value="Faculty">Yale School of Medicine</option>
-              <option value="Alumni">Yale Alumni</option>
-              <option value="Mixed">Yale Faculty</option>
+              <option value="Yale College">Yale College</option>
+              <option value="Yale SOM">Yale SOM</option>
+              <option value="Yale School of Arts & Sciences">Yale School of Arts & Sciences</option>
+              <option value="Yale School of Engineering">Yale School of Engineering</option>
+              <option value="Yale School of Public Health">Yale School of Public Health</option>
+              <option value="Yale Law School">Yale Law School</option>
+              <option value="Yale School of Environment">Yale School of Environment</option>
+              <option value="Yale School of Medicine">Yale School of Medicine</option>
+              <option value="Yale Alumni">Yale Alumni</option>
+              <option value="Yale Faculty">Yale Faculty</option>
             </select>
           ) : (
             <input
@@ -565,19 +565,37 @@ function EditableStartupCard({
       </div>
       
       <div className="mb-4">
-        <label className="block font-medium text-gray-700 mb-1">
-          Announcement
-          {editMode && <span className="text-sm font-normal text-gray-500 ml-2">(Looking for talent? Post an announcement here)</span>}
-        </label>
-        <textarea
-          name="problem"
-          value={formData.problem || ''}
-          onChange={handleChange}
-          readOnly={!editMode}
-          rows={4}
-          className={`w-full p-2 border rounded ${editMode ? 'bg-white border-blue-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-400' : 'bg-gray-50 border-gray-200'}`}
-          placeholder={editMode ? "Example: Looking for a technical co-founder with experience in React and machine learning. Offering 10-15 hours/week, with potential equity." : ""}
-        />
+        <div className="flex justify-between items-center mb-1">
+          <label className="block font-medium text-gray-700">
+            Announcement
+            {editMode && <span className="text-sm font-normal text-gray-500 ml-2">(Looking for talent? Post an announcement here)</span>}
+          </label>
+          
+          {!editMode && formData.problem && (
+            <span className="text-xs px-2 py-1 bg-blue-50 text-blue-700 rounded-full">
+              Active Opportunity
+            </span>
+          )}
+        </div>
+        
+        {!editMode && formData.problem ? (
+          <div className="p-4 border border-gray-200 rounded bg-gray-50">
+            <div className="prose prose-sm text-gray-700 whitespace-pre-line">
+              {formData.problem}
+            </div>
+          </div>
+        ) : (
+          <textarea
+            name="problem"
+            value={formData.problem || ''}
+            onChange={handleChange}
+            readOnly={!editMode}
+            rows={4}
+            className={`w-full p-2 border rounded ${editMode ? 'bg-white border-blue-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-400' : 'bg-gray-50 border-gray-200'}`}
+            placeholder={editMode ? "Example: Looking for a technical co-founder with experience in React and machine learning. Offering 10-15 hours/week, with potential equity." : "No active announcements"}
+          />
+        )}
+        
         {editMode && (
           <p className="text-xs text-gray-500 mt-1">
             Your announcement will be visible on the Opportunities page and may be seen by students/talent looking to join startups.
