@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+// import { Menu, X } from 'lucide-react';
+import { Menu, X, ExternalLink as ExternalLinkIcon } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
 const navItems = [
@@ -61,7 +62,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="text-sm font-medium">
-              Join us to celebrate Yale Pitchbook's launch - Network with investors & founders!
+              Join us to celebrate Yale Pitchbook's launch - Network with investors & founders
             </div>
             <a 
               href="https://lu.ma/5d47dx6x" 
@@ -69,7 +70,12 @@ export default function Header() {
               rel="noopener noreferrer"
               className="text-sm font-medium text-white hover:text-blue-100 underline flex items-center"
             >
-              RSVP <ExternalLink className="h-3.5 w-3.5 ml-1" />
+              RSVP 
+              {/* Use ExternalLinkIcon if you imported with an alias */}
+              <ExternalLinkIcon className="h-3.5 w-3.5 ml-1" />
+              
+              {/* Or if ExternalLink isn't available, you can use this instead: */}
+              {/* <ArrowUpRight className="h-3.5 w-3.5 ml-1" /> */}
             </a>
           </div>
         </div>
