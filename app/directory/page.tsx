@@ -1,26 +1,22 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ExternalLink } from 'lucide-react';
-import { Search, Filter, X } from 'lucide-react';
-import ExcelJS from 'exceljs';
+import { ExternalLink, Search, Filter, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import YaleInstitutions from '@/components/YaleInstitutions';
+import { supabase } from '@/lib/supabaseClient';
 
 interface Startup {
-  name?: string;
+  id: number;
+  name: string;
   description?: string;
   industry?: string;
   stage?: string;
-  problem?: string;
-  solution?: string;
   team?: string;
-  funding?: string;
-  timeline?: string;
   website?: string;
-  [key: string]: string | undefined;
+  // add additional fields as needed
 }
 
 interface FilterOptions {
@@ -45,6 +41,7 @@ export default function DirectoryPage() {
   const [selectedStartup, setSelectedStartup] = useState<Startup | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Modal Component for Startup Details
   const Modal = ({ isOpen, onClose, children }: { 
     isOpen: boolean; 
     onClose: () => void; 
@@ -80,6 +77,7 @@ export default function DirectoryPage() {
     );
   };
 
+  // StartupCard component remains mostly unchanged
   const StartupCard = ({ startup }: { startup: Startup }) => {
     const industries = startup.industry?.split(',').map(i => i.trim()) || [];
     
@@ -123,6 +121,7 @@ export default function DirectoryPage() {
     );
   };
 
+  // StartupDetails component remains mostly unchanged
   const StartupDetails = ({ startup }: { startup: Startup }) => {
       const industries = startup.industry?.split(',').map(i => i.trim()) || [];
       
@@ -288,83 +287,41 @@ export default function DirectoryPage() {
     setSelectedFilter('All');
   };
 
+  // Load startups from Supabase instead of XLSX
   useEffect(() => {
-    const loadStartups = async () => {
+    async function loadStartups() {
       try {
-        const response = await fetch('/startups.xlsx');
-        const arrayBuffer = await response.arrayBuffer();
-        
-        const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.load(arrayBuffer);
-        
-        const worksheet = workbook.worksheets[0];
-        const data: Startup[] = [];
-        
-        const row1 = worksheet.getRow(1);
-        const headers = row1.values ? (row1.values as (string | undefined)[]).slice(1) : [];
-        
-        if (headers.length === 0) {
-          throw new Error('No headers found in Excel file');
+        const { data, error } = await supabase
+          .from('startups')
+          .select('*');
+        if (error) {
+          throw error;
         }
-        
-        worksheet.eachRow((row, rowNumber) => {
-          if (rowNumber === 1) return;
-          
-          const rowData: Startup = {};
-          const values = row.values as (string | ExcelJS.CellValue | undefined)[];
-          
-          values.slice(1).forEach((value, index) => {
-            const header = headers[index];
-            if (header) {
-              if (value && typeof value === 'object' && 'text' in value) {
-                rowData[header] = value.text;
-              } else {
-                rowData[header] = value?.toString();
-              }
-            }
-          });
-          data.push(rowData);
-        });
-
-        const allIndustries = data
-          .map(startup => startup.industry?.split(',').map(i => i.trim()))
-          .filter((value): value is string[] => value !== undefined)
-          .flat();
-        
-        const uniqueIndustries = ['All', ...new Set(allIndustries)].sort();
-        const uniqueStages = ['All', ...new Set(data.map(startup => startup.stage).filter((value): value is string => value !== undefined))];
-        const uniqueTeam = ['All', ...new Set(data.map(startup => startup.team).filter((value): value is string => value !== undefined))];
-        
-        setFilterOptions({
-          industry: uniqueIndustries,
-          stage: uniqueStages,
-          team: uniqueTeam
-        });
-        
-        const sortedData = data.sort((a, b) => {
+        // Assume data is an array of startups
+        const sortedData = data.sort((a: Startup, b: Startup) => {
           const nameA = (a.name || '').toLowerCase();
           const nameB = (b.name || '').toLowerCase();
           return nameA.localeCompare(nameB);
         });
-        
         setStartups(sortedData);
         setFilteredStartups(sortedData);
       } catch (error) {
-        console.error('Error loading startup data:', error);
+        console.error('Error loading startup data from Supabase:', error);
       }
-    };
-
+    }
     loadStartups();
   }, []);
 
+  // Apply filtering based on search term and filter options
   useEffect(() => {
     setCurrentPage(1);
     const filtered = startups.filter(startup => {
-      const matchesSearch = (startup.name?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
-                          (startup.description?.toLowerCase() || '').includes(searchTerm.toLowerCase());
-      const matchesFilter = 
-        selectedFilter === 'All' || 
-        (filterType === 'industry' 
+      const matchesSearch =
+        (startup.name?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+        (startup.description?.toLowerCase() || '').includes(searchTerm.toLowerCase());
+      const matchesFilter =
+        selectedFilter === 'All' ||
+        (filterType === 'industry'
           ? startup.industry?.split(',').map(i => i.trim()).includes(selectedFilter)
           : startup[filterType] === selectedFilter);
       return matchesSearch && matchesFilter;
@@ -399,28 +356,6 @@ export default function DirectoryPage() {
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">Discover and connect with innovative startups from the Yale ecosystem</p>
           </div>
 
-{/*           Partner Logos Section - Streamlined version with page background */}
-{/*           <div className="w-full py-8 px-4 mb-10">
-            <h2 className="text-3xl font-bold text-center text-blue-800 mb-10">With support from</h2>
-            <div className="flex flex-wrap justify-center items-center gap-16 md:gap-24">
-              <img 
-                src="/partners/venture.jpeg"  
-                alt="Yale Ventures" 
-                className="h-16 md:h-20 object-contain" 
-              />
-              <img 
-                src="/partners/som.png" 
-                alt="School of Management" 
-                className="h-16 md:h-20 object-contain" 
-              />
-              <img 
-                src="/partners/tsai-city.png" 
-                alt="Tsai CITY" 
-                className="h-16 md:h-20 object-contain" 
-              />
-            </div>
-          </div> */}
-          
           {/* Search and Filter Section */}
           <div className="bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-6 mb-12">
             <div className="flex flex-col sm:flex-row gap-4">
@@ -493,30 +428,7 @@ export default function DirectoryPage() {
             <PaginationControl totalItems={filteredStartups.length} />
           )}
 
-          {/* Other Startups Section */}
-{/*           <div className="mt-24 mb-16 bg-white/80 backdrop-blur-lg rounded-xl shadow-lg border border-gray-100 p-12">
-            <h2 className="text-3xl font-bold text-blue-900 mb-12 text-center">Other Startups</h2>
-            <div className="flex justify-center gap-16">
-              <Link 
-                href="https://city.yale.edu/projects" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="inline-flex items-center px-10 py-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 hover:-translate-y-1"
-              >
-                <span>Tsai CITY</span>
-              </Link>
-              <Link 
-                href="https://ventures.yale.edu/yale-technologies/spinouts?page=0" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="inline-flex items-center px-10 py-6 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:from-gray-900 hover:to-black transition-all duration-200 hover:-translate-y-1"
-              >
-                <span>Yale Ventures</span>
-              </Link>
-            </div>
-          </div> */}
-
-          {/* Other Startups Section - Refined Version */}
+          {/* Additional Resources Section */}
           <div className="mt-24 mb-12">
             <h2 className="text-2xl font-semibold text-blue-900 mb-6 text-center">Additional Yale Startup Resources</h2>
             
@@ -573,12 +485,10 @@ export default function DirectoryPage() {
             </div>
           </div>
 
-          
-
           {/* Yale Institutions Section */}
           <YaleInstitutions />
 
-          {/* Modal */}
+          {/* Modal for Startup Details */}
           <Modal 
             isOpen={isModalOpen} 
             onClose={() => {
