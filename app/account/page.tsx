@@ -35,7 +35,8 @@ function EditableStartupCard({
   const handleSave = async () => {
     setSaving(true);
     try {
-      const { error } = await supabase
+      // Update and return the updated row
+      const { data, error } = await supabase
         .from('startups')
         .update({
           name: formData.name,
@@ -46,11 +47,15 @@ function EditableStartupCard({
           team: formData.team,
           website: formData.website,
         })
-        .eq('id', startup.id);
+        .eq('id', startup.id)
+        .select(); // returns the updated record
+
       if (error) {
         throw error;
       }
-      onUpdate(formData);
+      // data is an array, so take the first element as the updated record
+      const updatedRow = data[0];
+      onUpdate(updatedRow);
       setEditMode(false);
     } catch (error) {
       console.error('Error updating startup:', error);
