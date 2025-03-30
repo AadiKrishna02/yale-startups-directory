@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
@@ -49,7 +49,7 @@ export default function Header() {
   const { user, login } = useAuth();
   const pathname = usePathname();
 
-  const isActive = (href) => {
+  const isActive = (href: string): boolean => {
     if (href === '#') return false;
     return pathname === href;
   };
@@ -59,28 +59,25 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center group">
-              <div className="flex items-center">
-                <div className="flex items-baseline">
-                  <span className="text-blue-800 font-bold text-2xl tracking-tight mr-1">
-                    Yale Pitchbook
-                  </span>
-                  <span className="text-gray-500 text-sm font-normal ml-1 mr-2">by</span>
-                </div>
-                <a 
-                  href="https://yucp.org" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <img
-                    src="/Logo.png"
-                    alt="YUCP Logo"
-                    className="h-8 w-auto group-hover:opacity-80 transition-opacity"
-                  />
-                </a>
-              </div>
-            </Link>
+            <div className="flex items-center">
+              <Link href="/" className="flex items-baseline">
+                <span className="text-blue-800 font-bold text-2xl tracking-tight mr-1">
+                  Yale Pitchbook
+                </span>
+                <span className="text-gray-500 text-sm font-normal ml-1 mr-2">by</span>
+              </Link>
+              <a 
+                href="https://yucp.org" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/Logo.png"
+                  alt="YUCP Logo"
+                  className="h-8 w-auto hover:opacity-80 transition-opacity"
+                />
+              </a>
+            </div>
           </div>
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
