@@ -508,14 +508,6 @@ export default function TeamPage() {
       category: 'analyst'
     },
     {
-      name: "Eric Arabadzhiev",
-      role: "Analyst",
-      bio: "Yale College '28, Economics and Global Affairs.",
-      imageUrl: "/eric.jpeg",
-      linkedinUrl: "https://www.linkedin.com/in/eric-arabadzhiev/",
-      category: 'analyst'
-    },
-    {
       name: "Oliver Hime",
       role: "Analyst",
       bio: "Yale College '28, Computer Science and Economics.",
@@ -531,6 +523,14 @@ export default function TeamPage() {
       linkedinUrl: "https://www.linkedin.com/in/sofiia-domochka-372aab333/",
       category: 'analyst'
     },
+    {
+      name: "Eric Arabadzhiev",
+      role: "Analyst",
+      bio: "Yale College '28, Economics and Global Affairs.",
+      imageUrl: "/eric.jpeg",
+      linkedinUrl: "https://www.linkedin.com/in/eric-arabadzhiev/",
+      category: 'analyst'
+    },    
     {
       name: "Yuto Kida",
       role: "Analyst",
