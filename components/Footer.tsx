@@ -46,12 +46,12 @@ export default function Footer() {
               <ul className="space-y-2 text-center md:text-left">
                 <li>
                   <Link href="/directory" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                    Yale Startup Directory
+                    Startup Directory
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                    Yale Startup Pitchbook
+                    Startup Pitchbook
                   </Link>
                 </li>
                 <li>
