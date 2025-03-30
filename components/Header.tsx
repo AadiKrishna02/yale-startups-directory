@@ -58,11 +58,11 @@ export default function Header() {
   return (
     <header className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
       {/* Enhanced announcement banner */}
-      <div className="bg-blue-800 text-white py-2">
+      <div className="bg-red-800 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center">
             <div className="text-sm font-medium text-center">
-              Join us to celebrate Yale Pitchbook's launch - Network with investors & founders
+              Join us to celebrate Yale Pitchbook's launch - Network with investors & founders - 8:30 PM, April 3rd
               <a 
                 href="https://lu.ma/5d47dx6x" 
                 target="_blank" 
@@ -84,7 +84,7 @@ export default function Header() {
                 <span className="text-blue-800 font-bold text-2xl tracking-tight mr-1">
                   Yale Pitchbook
                 </span>
-                <span className="text-gray-500 text-sm font-normal ml-1 mr-2">by</span>
+                <span className="text-gray-500 text-xs font-light ml-1 mr-2">by</span>
               </Link>
               <a 
                 href="https://yucp.org" 
