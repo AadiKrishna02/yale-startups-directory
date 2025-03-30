@@ -17,6 +17,119 @@ interface Startup {
   [key: string]: string | number | undefined;
 }
 
+function EditableStartupCard({
+  startup,
+  onUpdate,
+}: {
+  startup: Startup;
+  onUpdate: (updatedStartup: Startup) => void;
+}) {
+  const [editMode, setEditMode] = useState(false);
+  const [formData, setFormData] = useState<Startup>({ ...startup });
+  const [saving, setSaving] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const { error } = await supabase
+        .from('startups')
+        .update({
+          name: formData.name,
+          description: formData.description,
+          founders: formData.founders,
+          industry: formData.industry,
+          stage: formData.stage,
+          team: formData.team,
+          website: formData.website,
+        })
+        .eq('id', startup.id);
+      if (error) {
+        throw error;
+      }
+      onUpdate(formData);
+      setEditMode(false);
+    } catch (error) {
+      console.error('Error updating startup:', error);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setFormData({ ...startup });
+    setEditMode(false);
+  };
+
+  return (
+    <div className="p-4 border rounded shadow-sm bg-white">
+      <div className="mb-2">
+        <label className="block font-medium">Startup Name</label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name || ''}
+          onChange={handleChange}
+          readOnly={!editMode}
+          className={`w-full p-2 border rounded ${editMode ? 'bg-white' : 'bg-gray-100'}`}
+        />
+      </div>
+      <div className="mb-2">
+        <label className="block font-medium">Description</label>
+        <textarea
+          name="description"
+          value={formData.description || ''}
+          onChange={handleChange}
+          readOnly={!editMode}
+          className={`w-full p-2 border rounded ${editMode ? 'bg-white' : 'bg-gray-100'}`}
+        />
+      </div>
+      <div className="mb-2">
+        <label className="block font-medium">Founders</label>
+        <input
+          type="text"
+          name="founders"
+          value={formData.founders || ''}
+          onChange={handleChange}
+          readOnly={!editMode}
+          className={`w-full p-2 border rounded ${editMode ? 'bg-white' : 'bg-gray-100'}`}
+        />
+      </div>
+      {/* Add additional fields as needed */}
+      <div className="flex space-x-2 mt-4">
+        {editMode ? (
+          <>
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+            >
+              {saving ? 'Saving...' : 'Save'}
+            </button>
+            <button
+              onClick={handleCancel}
+              disabled={saving}
+              className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition"
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={() => setEditMode(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          >
+            Edit
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function AccountPage() {
   const { user, logout } = useAuth();
   const [userStartups, setUserStartups] = useState<Startup[]>([]);
@@ -30,21 +143,19 @@ export default function AccountPage() {
       }
       try {
         // Load startups directly from Supabase
-        const { data, error } = await supabase
-          .from('startups')
-          .select('*');
+        const { data, error } = await supabase.from('startups').select('*');
         if (error) {
           throw error;
         }
-
         // Normalize the user's full name by removing spaces and lowercasing
         const normalizedUserName = user.name.replace(/\s+/g, '').toLowerCase();
 
         // Filter startups where the "founders" column (normalized) includes the user's full name.
         const filtered = data.filter((startup: Startup) => {
           if (!startup.founders) return false;
-          const foundersList = startup.founders.split(',')
-            .map(f => f.replace(/\s+/g, '').toLowerCase());
+          const foundersList = startup.founders.split(',').map((f) =>
+            f.replace(/\s+/g, '').toLowerCase()
+          );
           return foundersList.includes(normalizedUserName);
         });
         setUserStartups(filtered);
@@ -56,6 +167,13 @@ export default function AccountPage() {
     }
     loadUserStartups();
   }, [user]);
+
+  // Update the startup in state when it is edited
+  const handleUpdateStartup = (updatedStartup: Startup) => {
+    setUserStartups((prev) =>
+      prev.map((s) => (s.id === updatedStartup.id ? updatedStartup : s))
+    );
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -84,35 +202,11 @@ export default function AccountPage() {
               ) : (
                 <div className="space-y-6">
                   {userStartups.map((startup, index) => (
-                    <div key={index} className="p-4 border rounded shadow-sm bg-white">
-                      <div className="mb-2">
-                        <label className="block font-medium">Startup Name</label>
-                        <input
-                          type="text"
-                          value={startup.name || ''}
-                          readOnly
-                          className="w-full p-2 border rounded bg-gray-100"
-                        />
-                      </div>
-                      <div className="mb-2">
-                        <label className="block font-medium">Description</label>
-                        <textarea
-                          value={startup.description || ''}
-                          readOnly
-                          className="w-full p-2 border rounded bg-gray-100"
-                        />
-                      </div>
-                      <div className="mb-2">
-                        <label className="block font-medium">Founders</label>
-                        <input
-                          type="text"
-                          value={startup.founders || ''}
-                          readOnly
-                          className="w-full p-2 border rounded bg-gray-100"
-                        />
-                      </div>
-                      {/* Additional fields as needed */}
-                    </div>
+                    <EditableStartupCard
+                      key={startup.id || index}
+                      startup={startup}
+                      onUpdate={handleUpdateStartup}
+                    />
                   ))}
                 </div>
               )}
