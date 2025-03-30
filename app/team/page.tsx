@@ -33,7 +33,7 @@ export default function TeamPage() {
       name: "Rebecca Lynn",
       role: "Analyst",
       bio: "Yale College '26, Economics and Political Science.",
-      imageUrl: "//rebecca.jpeg",
+      imageUrl: "/rebecca.jpeg",
       linkedinUrl: "https://www.linkedin.com/in/rebecca-lynn-640715257/",
     },
     {
