@@ -82,7 +82,7 @@ export default function TeamPage() {
 
   const TeamMemberCard = ({ member }: { member: TeamMember }) => {
     return (
-      <div className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-200 overflow-hidden">
+      <div className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-200 overflow-hidden w-full">
         <div className="w-full h-48 bg-gray-200 overflow-hidden relative">
           {member.imageUrl ? (
             <>
@@ -181,9 +181,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mt-3 text-sm">{description}</p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center">
           {members.map((member, index) => (
-            <div key={index} className="transform hover:-translate-y-1 transition-transform duration-300">
+            <div key={index} className="transform hover:-translate-y-1 transition-transform duration-300 w-full max-w-xs mx-auto">
               <TeamMemberCard member={member} />
             </div>
           ))}
