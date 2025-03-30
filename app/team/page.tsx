@@ -494,7 +494,7 @@ export default function TeamPage() {
       name: "Aadi Krishna",
       role: "Founder & Principal",
       bio: "Yale College '26, Computer Science and Ethics, Politics, and Economics.",
-      imageUrl: "/aadi.JPG",
+      imageUrl: "/aadi3.jpg",
       linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
       emailUrl: "mailto:aadi.krishna@yale.edu",
       category: 'leadership'
@@ -503,7 +503,7 @@ export default function TeamPage() {
       name: "Rebecca Lynn",
       role: "Analyst",
       bio: "Yale College '26, Economics and Political Science.",
-      imageUrl: "/Aadi_copy.jpeg",
+      imageUrl: "/rebecca.jpeg",
       linkedinUrl: "https://www.linkedin.com/in/rebecca-lynn-640715257/",
       category: 'analyst'
     },
@@ -511,7 +511,7 @@ export default function TeamPage() {
       name: "Oliver Hime",
       role: "Analyst",
       bio: "Yale College '28, Computer Science and Economics.",
-      imageUrl: "/aadi2.JPG",
+      imageUrl: "/oliver.jpeg",
       linkedinUrl: "https://www.linkedin.com/in/oliverhime/",
       category: 'analyst'
     },
@@ -519,7 +519,7 @@ export default function TeamPage() {
       name: "Sofiia Domochka",
       role: "Analyst",
       bio: "Yale College '27, Biotech and Economics.",
-      imageUrl: "/aadi3.jpg",
+      imageUrl: "/sofiia.jpeg",
       linkedinUrl: "https://www.linkedin.com/in/sofiia-domochka-372aab333/",
       category: 'analyst'
     },
@@ -527,7 +527,7 @@ export default function TeamPage() {
       name: "Eric Arabadzhiev",
       role: "Analyst",
       bio: "Yale College '28, Economics and Global Affairs.",
-      imageUrl: "/ak.jpg",
+      imageUrl: "/eric.jpeg",
       linkedinUrl: "https://www.linkedin.com/in/eric-arabadzhiev/",
       category: 'analyst'
     },    
