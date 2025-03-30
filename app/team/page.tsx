@@ -55,7 +55,7 @@ export default function TeamPage() {
       role: "Analyst",
       bio: "Yale College '27, Biotech and Economics.",
       imageUrl: "/sofiia.jpeg",
-      linkedinUrl: "#",
+      linkedinUrl: "https://www.linkedin.com/in/sofiia-domochka-372aab333/",
     },
     {
       name: "Yuto Kida",
