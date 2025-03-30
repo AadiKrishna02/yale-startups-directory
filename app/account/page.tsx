@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useAuth } from '@/context/AuthContext';
-import { supabase } from '@/lib/supabaseClient';
+import ExcelJS from 'exceljs';
 
 interface Startup {
   id: number; // assume an id field exists in your Supabase table
@@ -29,16 +29,38 @@ export default function AccountPage() {
         return;
       }
       try {
-        const { data, error } = await supabase
-          .from('startups')
-          .select('*');
-        if (error) {
-          throw error;
-        }
+        const response = await fetch('/startups.xlsx');
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = new ExcelJS.Workbook();
+        await workbook.xlsx.load(arrayBuffer);
+        const worksheet = workbook.worksheets[0];
+
+        // Extract headers from the first row (ignoring the first element)
+        const headers = (worksheet.getRow(1).values as any[]).slice(1) as string[];
+
+        const data: Startup[] = [];
+        worksheet.eachRow((row, rowNumber) => {
+          if (rowNumber === 1) return; // skip header row
+          const rowData: Startup = {};
+          const values = row.values as (string | ExcelJS.CellValue | undefined)[];
+          values.slice(1).forEach((value, index) => {
+            const header = headers[index];
+            if (header) {
+              if (value && typeof value === 'object' && 'text' in value) {
+                rowData[header] = value.text;
+              } else {
+                rowData[header] = value?.toString();
+              }
+            }
+          });
+          data.push(rowData);
+        });
+
         // Normalize the user's full name by removing spaces and lowercasing
         const normalizedUserName = user.name.replace(/\s+/g, '').toLowerCase();
+
         // Filter startups where the "founders" column (normalized) includes the user's full name.
-        const filtered = (data as Startup[]).filter((startup) => {
+        const filtered = data.filter((startup) => {
           if (!startup.founders) return false;
           const foundersList = startup.founders.split(',')
             .map(f => f.replace(/\s+/g, '').toLowerCase());
@@ -64,6 +86,7 @@ export default function AccountPage() {
               {user && <p className="text-xl font-medium">Hi, {user.name}!</p>}
               <h1 className="text-3xl font-bold">Your Account</h1>
             </div>
+            {/* Logout button on the account page */}
             <button
               onClick={logout}
               className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
@@ -107,7 +130,7 @@ export default function AccountPage() {
                           className="w-full p-2 border rounded bg-gray-100"
                         />
                       </div>
-                      {/* Add additional fields as needed */}
+                      {/* Additional fields as needed */}
                     </div>
                   ))}
                 </div>
