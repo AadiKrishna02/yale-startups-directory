@@ -527,7 +527,7 @@ export default function TeamPage() {
       name: "Eric Arabadzhiev",
       role: "Analyst",
       bio: "Yale College '28, Economics and Global Affairs.",
-      imageUrl: "/eric.jpeg",
+      imageUrl: "/ak.jpg",
       linkedinUrl: "https://www.linkedin.com/in/eric-arabadzhiev/",
       category: 'analyst'
     },    
