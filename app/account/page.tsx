@@ -167,11 +167,11 @@ function EditableStartupCard({
             >
               <option value="">Select Stage</option>
               <option value="Idea">Idea</option>
-              <option value="Pre-seed">Pre-seed</option>
-              <option value="Seed">Seed</option>
-              <option value="Series A">Series A</option>
-              <option value="Series B+">Series B+</option>
-              <option value="Growth">Growth</option>
+              <option value="Pre-seed">Proof of Concept</option>
+              <option value="Seed">Building</option>
+              <option value="Series A">Launched: Pre-revenue</option>
+              <option value="Series B+">Launched: Revenue</option>
+              <option value="Growth">Launched: Growth</option>
             </select>
           ) : (
             <input
@@ -193,12 +193,16 @@ function EditableStartupCard({
               className="w-full p-2 border rounded bg-white border-blue-300 focus:ring-2 focus:ring-blue-200 focus:border-blue-400"
             >
               <option value="">Select Affiliation</option>
-              <option value="Undergraduate">Undergraduate</option>
-              <option value="Graduate">Graduate</option>
-              <option value="Professional School">Professional School</option>
-              <option value="Faculty">Faculty</option>
-              <option value="Alumni">Alumni</option>
-              <option value="Mixed">Mixed</option>
+              <option value="Undergraduate">Yale College</option>
+              <option value="Graduate">Yale SOM</option>
+              <option value="Professional School">Yale School of Arts & Sciences</option>
+              <option value="Professional School">Yale School of Engineering</option>
+              <option value="Faculty">Yale School of Public Health</option>
+              <option value="Faculty">Yale Law School</option>
+              <option value="Faculty">Yale School of Environment</option>
+              <option value="Faculty">Yale School of Medicine</option>
+              <option value="Alumni">Yale Alumni</option>
+              <option value="Mixed">Yale Faculty</option>
             </select>
           ) : (
             <input
