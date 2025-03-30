@@ -519,7 +519,7 @@ export default function TeamPage() {
       name: "Sofiia Domochka",
       role: "Analyst",
       bio: "Yale College '27, Biotech and Economics.",
-      imageUrl: "/aadi.heic",
+      imageUrl: "/aadi3.jpg",
       linkedinUrl: "https://www.linkedin.com/in/sofiia-domochka-372aab333/",
       category: 'analyst'
     },
