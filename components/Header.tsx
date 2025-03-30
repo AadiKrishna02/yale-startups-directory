@@ -58,19 +58,18 @@ export default function Header() {
   return (
     <header className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
       {/* Enhanced announcement banner */}
-      <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 text-white py-2.5 shadow-inner">
+      <div className="bg-blue-800 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center">
             <div className="text-sm font-medium text-center">
-              <span className="mr-2">🚀</span> 
               Join us to celebrate Yale Pitchbook's launch - Network with investors & founders
               <a 
                 href="https://lu.ma/5d47dx6x" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="ml-2 font-semibold text-blue-100 hover:text-white underline inline-flex items-center"
+                className="ml-2 font-semibold text-white bg-blue-700 hover:bg-blue-600 px-3 py-0.5 rounded-sm transition-colors"
               >
-                RSVP <span className="ml-0.5">→</span>
+                RSVP
               </a>
             </div>
           </div>
