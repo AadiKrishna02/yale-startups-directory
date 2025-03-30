@@ -175,9 +175,9 @@ export default function TeamPage() {
   }) => {
     return (
       <div className="mb-16">
-        <div className="mb-8">
+        <div className="mb-8 text-center">
           <h2 className="text-2xl font-bold text-blue-800 mb-2">{title}</h2>
-          <div className={`w-16 h-0.5 bg-${accentColor}-500 rounded-full`}></div>
+          <div className={`w-16 h-0.5 bg-${accentColor}-500 rounded-full mx-auto`}></div>
           <p className="text-gray-600 mt-3 text-sm">{description}</p>
         </div>
         
@@ -208,7 +208,7 @@ export default function TeamPage() {
         <div className="max-w-5xl mx-auto space-y-16">
           {/* Leadership Section */}
           <TeamSection 
-            title="Leadership" 
+            title="Founder" 
             description="Guiding the vision and implementation of Yale PitchBook." 
             members={leadershipMembers}
             accentColor="blue"
