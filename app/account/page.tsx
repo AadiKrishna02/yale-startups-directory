@@ -6,15 +6,14 @@ import { useAuth } from '@/context/AuthContext';
 import { supabase } from '@/lib/supabaseClient';
 
 interface Startup {
-  id?: number; // assume an id field exists in your Supabase table
-  name?: string;
+  name?: string; // primary key
   description?: string;
   industry?: string;
   founders?: string;
   stage?: string;
   team?: string;
   website?: string;
-  [key: string]: string | number | undefined;
+  [key: string]: string | undefined;
 }
 
 function EditableStartupCard({
@@ -24,6 +23,8 @@ function EditableStartupCard({
   startup: Startup;
   onUpdate: (updatedStartup: Startup) => void;
 }) {
+  // Save the original name so we can identify the record even if the name is changed
+  const [originalName, setOriginalName] = useState(startup.name);
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState<Startup>({ ...startup });
   const [saving, setSaving] = useState(false);
@@ -34,8 +35,9 @@ function EditableStartupCard({
 
   const handleSave = async () => {
     setSaving(true);
+    console.log('Attempting update for record with name:', originalName);
     try {
-      // Update the startup and return the updated record
+      // Use originalName to find the row
       const { data, error } = await supabase
         .from('startups')
         .update({
@@ -47,19 +49,19 @@ function EditableStartupCard({
           team: formData.team,
           website: formData.website,
         })
-        .eq('id', startup.id)
-        .select(); // this returns the updated record
-      
+        .eq('name', originalName)
+        .select();
+
       if (error) {
         console.error('Supabase update error:', error);
         throw error;
       }
-
       console.log('Update response data:', data);
-      
       if (data && data.length > 0) {
         const updatedRow = data[0];
         onUpdate(updatedRow);
+        // Update the originalName in case the name was changed
+        setOriginalName(updatedRow.name);
       } else {
         console.warn('No updated row returned');
       }
@@ -161,8 +163,7 @@ export default function AccountPage() {
         console.log('Fetched startups:', data);
         // Normalize the user's full name by removing spaces and lowercasing
         const normalizedUserName = user.name.replace(/\s+/g, '').toLowerCase();
-
-        // Filter startups based on the founders field containing the normalized user name.
+        // Filter startups where the "founders" column (normalized) includes the user's full name.
         const filtered = data.filter((startup: Startup) => {
           if (!startup.founders) return false;
           const foundersList = startup.founders.split(',').map((f) =>
@@ -182,7 +183,7 @@ export default function AccountPage() {
 
   const handleUpdateStartup = (updatedStartup: Startup) => {
     setUserStartups((prev) =>
-      prev.map((s) => (s.id === updatedStartup.id ? updatedStartup : s))
+      prev.map((s) => (s.name === updatedStartup.name ? updatedStartup : s))
     );
   };
 
@@ -213,7 +214,7 @@ export default function AccountPage() {
                 <div className="space-y-6">
                   {userStartups.map((startup, index) => (
                     <EditableStartupCard
-                      key={startup.id || index}
+                      key={startup.name || index}
                       startup={startup}
                       onUpdate={handleUpdateStartup}
                     />
