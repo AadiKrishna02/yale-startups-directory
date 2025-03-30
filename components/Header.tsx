@@ -56,6 +56,15 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
+      {/* Add ticker tape here */}
+      <div className="bg-blue-600 text-white py-1 overflow-hidden whitespace-nowrap">
+        <div className="ticker-content">
+          <div className="inline-block animate-marquee">
+            Join us to celebrate Yale Pitchbook's launch - Network with investors & founders - RSVP: https://lu.ma/5d47dx6x.
+          </div>
+        </div>
+      </div>
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
