@@ -56,12 +56,21 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
-      {/* Add ticker tape here */}
-      {/* Ticker Tape */}
-      <div className="bg-blue-600 text-white py-1.5 overflow-hidden">
-        <div className="relative w-full">
-          <div className="animate-ticker inline-block whitespace-nowrap">
-            Join us to celebrate Yale Pitchbook's launch - Network with investors & founders - RSVP: https://lu.ma/5d47dx6x.
+      {/* Static announcement banner */}
+      <div className="bg-blue-600 text-white py-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            <div className="text-sm font-medium">
+              Join us to celebrate Yale Pitchbook's launch - Network with investors & founders!
+            </div>
+            <a 
+              href="https://lu.ma/5d47dx6x" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-white hover:text-blue-100 underline flex items-center"
+            >
+              RSVP <ExternalLink className="h-3.5 w-3.5 ml-1" />
+            </a>
           </div>
         </div>
       </div>
