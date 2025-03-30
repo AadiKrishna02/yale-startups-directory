@@ -74,6 +74,11 @@ export default function Footer() {
                     YUCP
                   </a>
                 </li>
+                <li>
+                  <Link href="/team" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
+                    Meet the Team
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
