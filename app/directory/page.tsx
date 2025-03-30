@@ -9,14 +9,15 @@ import YaleInstitutions from '@/components/YaleInstitutions';
 import { supabase } from '@/lib/supabaseClient';
 
 interface Startup {
-  id: number;
-  name: string;
+  id: number; // assume an id field exists in your Supabase table
+  name?: string;
   description?: string;
   industry?: string;
+  founders?: string;
   stage?: string;
   team?: string;
   website?: string;
-  // add additional fields as needed
+  [key: string]: string | number | undefined;
 }
 
 interface FilterOptions {
@@ -41,7 +42,7 @@ export default function DirectoryPage() {
   const [selectedStartup, setSelectedStartup] = useState<Startup | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Modal Component for Startup Details
+  // Modal Component remains unchanged
   const Modal = ({ isOpen, onClose, children }: { 
     isOpen: boolean; 
     onClose: () => void; 
@@ -77,7 +78,7 @@ export default function DirectoryPage() {
     );
   };
 
-  // StartupCard component remains mostly unchanged
+  // StartupCard Component remains unchanged
   const StartupCard = ({ startup }: { startup: Startup }) => {
     const industries = startup.industry?.split(',').map(i => i.trim()) || [];
     
@@ -121,17 +122,15 @@ export default function DirectoryPage() {
     );
   };
 
-  // StartupDetails component remains mostly unchanged
+  // StartupDetails Component remains largely unchanged
   const StartupDetails = ({ startup }: { startup: Startup }) => {
       const industries = startup.industry?.split(',').map(i => i.trim()) || [];
       
       return (
         <div className="space-y-6">
-          {/* Header */}
           <div className="border-b border-gray-200 pb-6">
             <h2 className="text-2xl font-bold text-blue-900 mb-4">{startup.name}</h2>
             <p className="text-gray-700 leading-relaxed mb-4">{startup.description}</p>
-            
             <div className="flex flex-wrap gap-2">
               {industries.map((industry, index) => (
                 <span 
@@ -148,8 +147,6 @@ export default function DirectoryPage() {
               )}
             </div>
           </div>
-    
-          {/* Content Grid */}
           <div className="grid grid-cols-2 gap-6">
             {startup.problem && (
               <div className="space-y-2">
@@ -157,21 +154,18 @@ export default function DirectoryPage() {
                 <p className="text-gray-700">{startup.problem}</p>
               </div>
             )}
-            
             {startup.solution && (
               <div className="space-y-2">
                 <h3 className="font-semibold text-gray-900">Solution</h3>
                 <p className="text-gray-700">{startup.solution}</p>
               </div>
             )}
-            
             {startup.team && (
               <div className="space-y-2">
                 <h3 className="font-semibold text-gray-900">Yale Affiliation</h3>
                 <p className="text-gray-700">{startup.team}</p>
               </div>
             )}
-            
             {startup.timeline && (
               <div className="space-y-2">
                 <h3 className="font-semibold text-gray-900">Timeline</h3>
@@ -179,8 +173,6 @@ export default function DirectoryPage() {
               </div>
             )}
           </div>
-    
-          {/* Website Link */}
           {startup.website && (
             <div className="pt-6 border-t border-gray-200">
               <a 
@@ -198,6 +190,7 @@ export default function DirectoryPage() {
       );
   };
 
+  // PaginationControl remains unchanged
   const PaginationControl = ({ totalItems }: { totalItems: number }) => {
     const totalPages = Math.ceil(totalItems / startupsPerPage);
     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -297,8 +290,23 @@ export default function DirectoryPage() {
         if (error) {
           throw error;
         }
-        // Assume data is an array of startups
-        const sortedData = data.sort((a: Startup, b: Startup) => {
+        // Compute filter options from the data
+        const industries = data
+          .map((startup: Startup) => startup.industry?.split(',').map(i => i.trim()))
+          .filter((value): value is string[] => value !== undefined)
+          .flat();
+        const uniqueIndustries = ['All', ...new Set(industries)].sort();
+        const uniqueStages = ['All', ...new Set(data.map((startup: Startup) => startup.stage).filter((value): value is string => value !== undefined))];
+        const uniqueTeam = ['All', ...new Set(data.map((startup: Startup) => startup.team).filter((value): value is string => value !== undefined))];
+
+        setFilterOptions({
+          industry: uniqueIndustries,
+          stage: uniqueStages,
+          team: uniqueTeam
+        });
+
+        // Sort the data by name
+        const sortedData = (data as Startup[]).sort((a, b) => {
           const nameA = (a.name || '').toLowerCase();
           const nameB = (b.name || '').toLowerCase();
           return nameA.localeCompare(nameB);
@@ -316,12 +324,11 @@ export default function DirectoryPage() {
   useEffect(() => {
     setCurrentPage(1);
     const filtered = startups.filter(startup => {
-      const matchesSearch =
-        (startup.name?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
-        (startup.description?.toLowerCase() || '').includes(searchTerm.toLowerCase());
-      const matchesFilter =
-        selectedFilter === 'All' ||
-        (filterType === 'industry'
+      const matchesSearch = (startup.name?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+                          (startup.description?.toLowerCase() || '').includes(searchTerm.toLowerCase());
+      const matchesFilter = 
+        selectedFilter === 'All' || 
+        (filterType === 'industry' 
           ? startup.industry?.split(',').map(i => i.trim()).includes(selectedFilter)
           : startup[filterType] === selectedFilter);
       return matchesSearch && matchesFilter;
@@ -488,7 +495,7 @@ export default function DirectoryPage() {
           {/* Yale Institutions Section */}
           <YaleInstitutions />
 
-          {/* Modal for Startup Details */}
+          {/* Modal */}
           <Modal 
             isOpen={isModalOpen} 
             onClose={() => {
