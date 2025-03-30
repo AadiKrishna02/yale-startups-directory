@@ -63,6 +63,7 @@ export default function Header() {
                 <img
                   src="/Logo.png"
                   alt="YUCP Logo"
+{/*                   href= "/team", */}
                   className="h-8 w-auto group-hover:opacity-80 transition-opacity"
                 />
               </div>
