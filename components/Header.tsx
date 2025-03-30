@@ -6,24 +6,24 @@ import { useAuth } from '@/context/AuthContext';
 
 const navItems = [
   { 
-    name: 'Startup Directory', 
+    name: 'Directory', 
     href: '/directory',
     isExternal: false 
   },
   { 
-    name: 'Startup Pitchbook', 
+    name: 'Pitchbook', 
     href: '#',
     isExternal: false,
     disabled: true
   },
   { 
-    name: 'Submit Your Startup', 
+    name: 'Submit Startup', 
     href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform',
     isExternal: true
   },
   { 
-    name: 'YUCP', 
-    href: 'https://www.yucp.org',
+    name: 'Team', 
+    href: '/team',
     isExternal: true 
   }
 ];
