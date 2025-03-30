@@ -60,12 +60,13 @@ export default function Header() {
                   </span>
                   <span className="text-gray-500 text-sm font-normal ml-1 mr-2">by</span>
                 </div>
-                <img
-                  src="/Logo.png"
-                  alt="YUCP Logo"
-{/*                   href= "/team", */}
-                  className="h-8 w-auto group-hover:opacity-80 transition-opacity"
-                />
+                <a href="https://yucp.org" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="/Logo.png"
+                    alt="YUCP Logo"
+                    className="h-8 w-auto group-hover:opacity-80 transition-opacity"
+                  />
+                </a>
               </div>
             </Link>
           </div>
