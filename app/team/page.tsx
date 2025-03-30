@@ -224,8 +224,8 @@ export default function TeamPage() {
           
           {/* Tech Team Section */}
           <TeamSection 
-            title="Tech Team" 
-            description="Building and maintaining our digital presence and tools." 
+            title="Tech Lead" 
+            description="Building and maintaining the website." 
             members={techMembers}
             accentColor="blue"
           />
