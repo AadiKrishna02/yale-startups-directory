@@ -67,7 +67,12 @@ export default function Header() {
                   </span>
                   <span className="text-gray-500 text-sm font-normal ml-1 mr-2">by</span>
                 </div>
-                <a href="https://yucp.org" target="_blank" rel="noopener noreferrer">
+                <a 
+                  href="https://yucp.org" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <img
                     src="/Logo.png"
                     alt="YUCP Logo"
