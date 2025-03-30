@@ -492,8 +492,8 @@ export default function TeamPage() {
   const teamMembers: TeamMember[] = [
     {
       name: "Aadi Krishna",
-      role: "Founder & Principal",
-      bio: "Yale College '26, Computer Science and Ethics, Politics, and Economics.",
+      role: "Founder",
+      bio: "Yale College '26, Computer Science and Ethics, Politics, and Economics major.",
       imageUrl: "/aadi.JPG",
       linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
       emailUrl: "mailto:aadi.krishna@yale.edu",
@@ -640,9 +640,9 @@ export default function TeamPage() {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto flex justify-center">
           {/* Team Grid - Center Justified */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center justify-center">
             {teamMembers.map((member, index) => (
               <div key={index} className="transform hover:-translate-y-1 transition-transform duration-300 flex justify-center w-full">
                 <TeamMemberCard member={member} />
