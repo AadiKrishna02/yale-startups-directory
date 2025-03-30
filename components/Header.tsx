@@ -24,7 +24,7 @@ const navItems = [
   { 
     name: 'Team', 
     href: '/team',
-    isExternal: true 
+    isExternal: false 
   }
 ];
 
