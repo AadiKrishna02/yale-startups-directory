@@ -67,7 +67,7 @@ export default function Header() {
                 href="https://lu.ma/5d47dx6x" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="ml-2 font-semibold text-white bg-blue-700 hover:bg-blue-600 px-3 py-0.5 rounded-sm transition-colors"
+                className="ml-2 font-semibold text-white bg-red-700 hover:bg-red-600 px-3 py-0.5 rounded-sm transition-colors"
               >
                 RSVP
               </a>
