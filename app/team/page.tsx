@@ -101,8 +101,7 @@ export default function TeamPage() {
         </div>
         
         <div className="p-4">
-          <h3 className="text-lg font-semibold text-blue-900 group-hover:text-blue-700 transition-colors">{member.name}</h3>
-          <div className="text-xs font-medium text-blue-600 mb-2">{member.role}</div>
+          <h3 className="text-lg font-semibold text-blue-900 group-hover:text-blue-700 transition-colors mb-2">{member.name}</h3>
           <p className="text-gray-600 text-xs mb-3">{member.bio}</p>
           
           <div className="flex space-x-2">
@@ -196,17 +195,14 @@ export default function TeamPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow bg-gray-50 pt-20 px-4 sm:px-8 lg:px-16 pb-12">
-        {/* Simple Hero Section */}
-        <div className="max-w-5xl mx-auto mb-12 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-3">Our Team</h1>
-          <div className="w-16 h-1 bg-blue-500 mx-auto rounded-full mb-4"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            A dedicated group of Yale students working to connect the university's entrepreneurs with the resources they need to succeed.
-          </p>
+      <main className="flex-grow bg-gray-50 pt-16 px-4 sm:px-8 lg:px-16 pb-12">
+        {/* Minimal Header */}
+        <div className="max-w-5xl mx-auto mb-10 text-center">
+          <h1 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">Our Team</h1>
+          <div className="w-12 h-0.5 bg-blue-500 mx-auto mb-2"></div>
         </div>
 
-        <div className="max-w-5xl mx-auto space-y-6">
+        <div className="max-w-5xl mx-auto space-y-16">
           {/* Leadership Section */}
           <TeamSection 
             title="Leadership" 
