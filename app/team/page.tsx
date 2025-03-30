@@ -503,7 +503,7 @@ export default function TeamPage() {
       name: "Rebecca Lynn",
       role: "Analyst",
       bio: "Yale College '26, Economics and Political Science.",
-      imageUrl: "/rebecca.jpeg",
+      imageUrl: "/Aadi_copy.jpeg",
       linkedinUrl: "https://www.linkedin.com/in/rebecca-lynn-640715257/",
       category: 'analyst'
     },
@@ -511,7 +511,7 @@ export default function TeamPage() {
       name: "Oliver Hime",
       role: "Analyst",
       bio: "Yale College '28, Computer Science and Economics.",
-      imageUrl: "/oliver.jpeg",
+      imageUrl: "/aadi2.JPG",
       linkedinUrl: "https://www.linkedin.com/in/oliverhime/",
       category: 'analyst'
     },
@@ -519,7 +519,7 @@ export default function TeamPage() {
       name: "Sofiia Domochka",
       role: "Analyst",
       bio: "Yale College '27, Biotech and Economics.",
-      imageUrl: "/sofiia.jpeg",
+      imageUrl: "/aadi.heic",
       linkedinUrl: "https://www.linkedin.com/in/sofiia-domochka-372aab333/",
       category: 'analyst'
     },
