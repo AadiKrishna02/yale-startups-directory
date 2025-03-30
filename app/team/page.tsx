@@ -181,9 +181,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mt-3 text-sm">{description}</p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center">
+        <div className="flex flex-wrap justify-center gap-5">
           {members.map((member, index) => (
-            <div key={index} className="transform hover:-translate-y-1 transition-transform duration-300 w-full max-w-xs mx-auto">
+            <div key={index} className="transform hover:-translate-y-1 transition-transform duration-300 w-full sm:w-48 md:w-56 lg:w-64">
               <TeamMemberCard member={member} />
             </div>
           ))}
