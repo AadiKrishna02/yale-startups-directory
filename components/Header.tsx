@@ -57,26 +57,22 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
-      {/* Static announcement banner */}
-      <div className="bg-blue-600 text-white py-2">
+      {/* Enhanced announcement banner */}
+      <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 text-white py-2.5 shadow-inner">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="text-sm font-medium">
+          <div className="flex items-center justify-center">
+            <div className="text-sm font-medium text-center">
+              <span className="mr-2">🚀</span> 
               Join us to celebrate Yale Pitchbook's launch - Network with investors & founders
+              <a 
+                href="https://lu.ma/5d47dx6x" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="ml-2 font-semibold text-blue-100 hover:text-white underline inline-flex items-center"
+              >
+                RSVP <span className="ml-0.5">→</span>
+              </a>
             </div>
-            <a 
-              href="https://lu.ma/5d47dx6x" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-white hover:text-blue-100 underline flex items-center"
-            >
-              RSVP 
-              {/* Use ExternalLinkIcon if you imported with an alias */}
-              <ExternalLinkIcon className="h-3.5 w-3.5 ml-1" />
-              
-              {/* Or if ExternalLink isn't available, you can use this instead: */}
-              {/* <ArrowUpRight className="h-3.5 w-3.5 ml-1" /> */}
-            </a>
           </div>
         </div>
       </div>
