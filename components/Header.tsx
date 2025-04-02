@@ -61,7 +61,7 @@ export default function Header() {
       <div className="bg-blue-800 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center">
-            <div className="text-sm font-small text-center">
+            <div className="text-sm font-medium text-center">
               Join us to celebrate Yale Pitchbook's launch - Network with investors, founders & alumni - 8:30 PM, April 3rd
               <a 
                 href="https://lu.ma/5d47dx6x" 
