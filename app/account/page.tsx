@@ -33,17 +33,16 @@ function EditableStartupCard({
   const [saving, setSaving] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, type, value, checked } = e.target;
-
+    // Common properties on the event target
+    const { name, type, value } = e.target;
+  
+    // For checkboxes, we explicitly cast e.target to an HTMLInputElement
     if (type === 'checkbox') {
-      // For checkbox fields (like display_founders)
-      setFormData({ ...formData, [name]: checked });
+      const checkboxTarget = e.target as HTMLInputElement;
+      setFormData({ ...formData, [name]: checkboxTarget.checked });
     } else {
-      // For text/textarea/select fields
       setFormData({ ...formData, [name]: value });
     }
   };
