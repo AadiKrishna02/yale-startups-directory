@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     return NextResponse.redirect(`${origin}/`);
   }
 
-  // Validate the CAS ticket
+  // 1) Validate the CAS ticket
   const serviceUrl = `${origin}/api/cas/callback`;
   const casValidateUrl = new URL('https://secure.its.yale.edu/cas/serviceValidate');
   casValidateUrl.searchParams.set('ticket', ticket);
@@ -20,7 +20,7 @@ export async function GET(request: Request) {
   const casRes = await fetch(casValidateUrl.toString());
   const casText = await casRes.text();
 
-  // Extract the netid from the CAS XML response
+  // 2) Extract the netid from CAS XML response
   const netidMatch = casText.match(/<cas:user>([^<]+)<\/cas:user>/);
   if (!netidMatch) {
     console.error("No netid found in CAS response");
@@ -29,9 +29,10 @@ export async function GET(request: Request) {
   const netid = netidMatch[1];
   console.log(`Extracted netid: ${netid}`);
 
+  // Default name fallback to netid
   let fullName = netid;
 
-  // Use the Yalies API to search for the person by netid
+  // 3) Use the Yalies API V2 to search for the person by netid
   try {
     const yaliesToken = process.env.YALIES_API_TOKEN;
     if (!yaliesToken) {
@@ -39,33 +40,33 @@ export async function GET(request: Request) {
     } else {
       const searchPayload = {
         filters: { netid: [netid] },
-        page: 1,
-        page_size: 1
+        page: 0,           // page is now zero-indexed in V2
+        page_size: 1       // just need one record
       };
 
-      const peopleRes = await fetch("https://yalies.io/api/people", {
+      const peopleRes = await fetch("https://api.yalies.io/v2/people", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${yaliesToken}`
+          "Authorization": `Bearer ${yaliesToken}`,
         },
-        body: JSON.stringify(searchPayload)
+        body: JSON.stringify(searchPayload),
       });
 
       if (peopleRes.ok) {
         const peopleData = await peopleRes.json();
-        // Expect the API to return an array of person objects
         if (Array.isArray(peopleData) && peopleData.length > 0) {
           const person = peopleData[0];
-          if (person.first_name && person.last_name) {
-            // Swap order: First Name Last Name
-            fullName = `${person.first_name} ${person.last_name}`;
-          } else if (person.name) {
-            fullName = person.name;
+          const { first_name, last_name, name } = person;
+          if (first_name && last_name) {
+            fullName = `${first_name} ${last_name}`;
+          } else if (name) {
+            // Fallback if the API returns a "name" field
+            fullName = name;
           }
           console.log(`Mapped netid ${netid} to full name via Yalies API: ${fullName}`);
         } else {
-          console.warn(`No person found for netid ${netid} using Yalies API`);
+          console.warn(`No person found for netid ${netid} using Yalies V2 API`);
         }
       } else {
         console.error(`Yalies API returned error: ${peopleRes.status} ${peopleRes.statusText}`);
@@ -75,6 +76,7 @@ export async function GET(request: Request) {
     console.error("Error calling Yalies API:", error);
   }
 
+  // 4) Set a cookie with user info, then redirect
   const user = { netid, name: fullName };
 
   const response = NextResponse.redirect(`${origin}/account`);
