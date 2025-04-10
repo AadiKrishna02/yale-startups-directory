@@ -35,14 +35,16 @@ function EditableStartupCard({
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    // Common properties on the event target
-    const { name, type, value } = e.target;
+    // 1) Check if the target is an <input type="checkbox">
+    // 2) Else, handle it as text/textarea/select
   
-    // For checkboxes, we explicitly cast e.target to an HTMLInputElement
-    if (type === 'checkbox') {
-      const checkboxTarget = e.target as HTMLInputElement;
-      setFormData({ ...formData, [name]: checkboxTarget.checked });
+    if (e.target instanceof HTMLInputElement && e.target.type === 'checkbox') {
+      // Checkbox logic
+      const { name, checked } = e.target;
+      setFormData({ ...formData, [name]: checked });
     } else {
+      // Text/textarea/select logic
+      const { name, value } = e.target;
       setFormData({ ...formData, [name]: value });
     }
   };
