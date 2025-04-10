@@ -194,6 +194,20 @@ function EditableStartupCard({
         </div>
       </div>
 
+      <div className="mb-4 flex items-center">
+        <input
+          type="checkbox"
+          name="display_founders"
+          checked={!!formData.display_founders}
+          onChange={handleChange}
+          disabled={!editMode}
+          className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+        />
+        <label className="ml-2 text-gray-700">
+          Show Founders in Directory
+        </label>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div className="mb-2">
           <label className="block font-medium text-gray-700 mb-1">Stage</label>
@@ -265,21 +279,6 @@ function EditableStartupCard({
             />
           )}
         </div>
-      </div>
-
-      {/* NEW: Show Founders in Directory */}
-      <div className="mb-4 flex items-center">
-        <input
-          type="checkbox"
-          name="display_founders"
-          checked={!!formData.display_founders}
-          onChange={handleChange}
-          disabled={!editMode}
-          className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-        />
-        <label className="ml-2 text-gray-700">
-          Show Founders in Directory
-        </label>
       </div>
 
       <div className="mb-4">
