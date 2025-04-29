@@ -494,7 +494,7 @@ export default function TeamPage() {
       name: "Aadi Krishna",
       role: "Founder & Principal",
       bio: "Yale College '26, Computer Science and Ethics, Politics, and Economics.",
-      imageUrl: "/aadi3.jpg",
+      imageUrl: "/aadi.JPG",
       linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
       emailUrl: "mailto:aadi.krishna@yale.edu",
       category: 'leadership'
