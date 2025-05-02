@@ -11,7 +11,7 @@ import Link from 'next/link';
 // Swap these with your actual assets:
 import flyerPdf from '@/public/Yale Pitchbook & Launch - Latest.jpg';
 import photo1 from '@/public/event-photo1.PNG';
-import photo2 from '@/public/event-photo2.HEIC';
+import photo2 from '@/public/event-photo2.jpg';
 import photo3 from '@/public/event-photo3.JPG';
 const XFUND_LOGO = '/xfund-logo.png';
 // ——————————————————————————
