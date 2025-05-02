@@ -3,21 +3,18 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
-
-// ——————————————————————————
-// Swap these with your actual assets:
-import flyerPdf from '@/public/Yale Pitchbook & Launch - Latest.jpg';
-import photo1 from '@/public/event-photo1.PNG';
-import photo2 from '@/public/event-photo2.jpg';
-import photo3 from '@/public/event-photo3.JPG';
-const XFUND_LOGO = '/xfund-logo.png';
-// ——————————————————————————
 
 export default function LaunchPage() {
-  const eventPhotos = [photo1, photo2, photo3];
+  const eventPhotos = [
+    '/event-photo1.PNG',
+    '/event-photo2.jpg',
+    '/event-photo3.JPG',
+  ];
+  const flyerUrl = '/Yale Pitchbook & Launch - Latest.jpg';   // or '/launch-flyer.pdf'
+  const xfundLogo = '/xfund-logo.png';
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800 text-white">
@@ -40,10 +37,10 @@ export default function LaunchPage() {
             students, and alumni, all having fantastic conversations.
           </p>
           <p className="text-lg">
-            I’ve attached a few photos from the evening, and you can download the full event flyer below:
+            Check out the flyer below for more details:
           </p>
           <Link
-            href={flyerPdf}
+            href={flyerUrl}
             target="_blank"
             className="inline-block mt-2 bg-white text-blue-800 px-5 py-3 rounded-lg font-medium hover:bg-blue-50 transition"
           >
@@ -100,7 +97,7 @@ export default function LaunchPage() {
           <h2 className="text-2xl font-semibold mb-4">Presented by</h2>
           <div className="inline-block p-4 bg-white rounded-lg shadow-md">
             <Image
-              src={XFUND_LOGO}
+              src={xfundLogo}
               alt="Xfund Logo"
               width={200}
               height={80}
@@ -114,3 +111,4 @@ export default function LaunchPage() {
     </div>
   );
 }
+
