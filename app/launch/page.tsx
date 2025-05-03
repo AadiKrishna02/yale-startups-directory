@@ -9,7 +9,7 @@ import Footer from '@/components/Footer';
 export default function LaunchPage() {
   const eventPhotos = [
     '/event-photo1.PNG',
-    '/event-photo2.jpg',
+    '/event-photo2 2.jpg',
     '/event-photo3.JPG',
     '/event-photo4.jpg',
     '/event-photo5.jpg',
