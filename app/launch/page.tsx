@@ -80,7 +80,7 @@ export default function LaunchPage() {
                     src={src}
                     alt={`Event Photo ${idx + 1}`}
                     width={600}
-                    height={400}
+                    height={300}
                     className="object-cover w-full h-full"
                   />
                 </div>
