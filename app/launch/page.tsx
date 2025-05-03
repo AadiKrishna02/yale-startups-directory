@@ -39,8 +39,7 @@ export default function LaunchPage() {
             <div className="max-w-3xl mx-auto space-y-6 text-lg mb-12">
               <p>
                 To launch <span className="font-semibold">Yale Pitchbook</span>, we held a mixer for alumni investors & founders, leading VC firms, Yale entrepreneurs, and students on
-                <time dateTime="2025-04-03" className="font-semibold"> April 3, 2025</time>
-                from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
+                <time dateTime="2025-04-03" className="font-semibold"> April 3, 2025</time> from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
               </p>
               <p>Check out the flyer below for more details:</p>
               <div className="inline-block">
@@ -80,8 +79,8 @@ export default function LaunchPage() {
                   <Image
                     src={src}
                     alt={`Event Photo ${idx + 1}`}
-                    width={400}
-                    height={300}
+                    width={600}
+                    height={400}
                     className="object-cover w-full h-full"
                   />
                 </div>
