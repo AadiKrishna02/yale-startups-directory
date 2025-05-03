@@ -22,13 +22,13 @@ export default function LaunchPage() {
         <meta name="description" content="Recap of our mixer launch event" />
       </Head>
 
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+      <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
         <Header />
 
         <main className="flex-1 py-20">
           <div className="container mx-auto px-6 text-center">
             {/* Title */}
-            <h1 className="text-5xl md:text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-8 text-[#0F4D92]">
               Launch Mixer Recap
             </h1>
 
@@ -38,12 +38,12 @@ export default function LaunchPage() {
                 To launch <span className="font-semibold">Yale Pitchbook</span>, we held a mixer for alumni investors & founders, leading VC firms,
                 Yale entrepreneurs, and students on
                 <time dateTime="2025-04-03" className="font-semibold"> April 3, 2025</time>
-                from 8:30–10:30&nbsp;PM at Steep Café, sponsored by Xfund.
+                from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
               </p>
               <p>Check out the flyer below for more details:</p>
               <div className="inline-block">
                 <Link href={flyerUrl} target="_blank">
-                  <a className="inline-block bg-white text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition">
+                  <a className="inline-block bg-[#0F4D92] text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">
                     Download Event Flyer
                   </a>
                 </Link>
@@ -57,8 +57,11 @@ export default function LaunchPage() {
                 { icon: Briefcase, label: 'VC Firms', value: '5+' },
                 { icon: Lightbulb, label: 'Founders', value: '25+' },
               ].map(({ icon: Icon, label, value }) => (
-                <div key={label} className="bg-gray-800 p-6 rounded-2xl shadow-md text-center">
-                  <Icon className="mx-auto mb-2 h-8 w-8 text-purple-400" />
+                <div
+                  key={label}
+                  className="bg-gray-50 p-6 rounded-2xl shadow-sm text-center"
+                >
+                  <Icon className="mx-auto mb-2 h-8 w-8 text-[#0F4D92]" />
                   <div className="text-4xl font-bold">{value}</div>
                   <div className="mt-1">{label}</div>
                 </div>
@@ -85,7 +88,9 @@ export default function LaunchPage() {
 
             {/* Sponsor */}
             <div className="mt-20 text-center">
-              <h2 className="text-2xl font-semibold mb-4">Presented by</h2>
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+                Presented by
+              </h2>
               <Link href="https://xfund.com" target="_blank" rel="noopener noreferrer">
                 <a className="inline-block bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow">
                   <Image
@@ -106,6 +111,3 @@ export default function LaunchPage() {
     </>
   );
 }
-
-
-
