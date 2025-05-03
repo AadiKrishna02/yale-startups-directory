@@ -11,10 +11,10 @@ import Footer from '@/components/Footer';
 export default function LaunchPage() {
   const eventPhotos = [
     '/event-photo1.PNG',
-    '/event-photo2 2.jpg',
+    '/event-photo2 3.jpg',
     '/event-photo3.JPG',
     '/event-photo4.jpg',
-    '/event-photo5 2.jpg',
+    '/event-photo5 3.jpg',
     '/event-photo6 2.jpg',
   ];
   const flyerUrl = '/Yale Pitchbook & Launch - Latest.jpg';
