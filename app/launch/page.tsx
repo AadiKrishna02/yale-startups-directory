@@ -12,7 +12,7 @@ export default function LaunchPage() {
     '/event-photo2 2.jpg',
     '/event-photo3.JPG',
     '/event-photo4.jpg',
-    '/event-photo5.jpg',
+    '/event-photo5 2.jpg',
     '/event-photo6.jpg',
   ];
   const flyerUrl = '/Yale Pitchbook & Launch - Latest.jpg';
