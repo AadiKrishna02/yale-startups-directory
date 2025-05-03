@@ -1,9 +1,13 @@
 // app/launch/page.tsx
-'use client';
-
 import React from 'react';
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Container } from '@/components/ui/container';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Users, Briefcase, Lightbulb } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -13,105 +17,127 @@ export default function LaunchPage() {
     '/event-photo2.jpg',
     '/event-photo3.JPG',
   ];
-  const flyerUrl = '/Yale Pitchbook & Launch - Latest.jpg';   // or '/launch-flyer.pdf'
+  const flyerUrl = '/Yale Pitchbook & Launch - Latest.jpg';
   const xfundLogo = '/xfund-logo.png';
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800 text-white">
-      <Header />
+    <> 
+      <Head>
+        <title>Launch Mixer Recap | Yale Pitchbook</title>
+        <meta name="description" content="Recap of our mixer launch event" />
+      </Head>
 
-      <main className="flex-1 px-6 py-20">
-        {/* Title */}
-        <h1 className="text-5xl md:text-6xl font-bold text-center mb-12">
-          Launch Mixer Recap
-        </h1>
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+        <Header />
 
-        {/* Recap Text */}
-        <div className="max-w-3xl mx-auto mb-12 space-y-4 text-center">
-{/*           <p className="italic">
-            Apologies for the delay — I’ve been buried in exams and recovering from an illness.
-          </p> */}
-          <p className="text-lg">
-{/*             Despite a last-minute location change, our launch mixer at Steep Café was a huge
-            success: over <strong>125 attendees</strong>, from founders and VCs to scouts,
-            students, and alumni, all having fantastic conversations. */}
+        <main className="flex-1 py-20">
+          <Container className="text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-5xl md:text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
+            >
+              Launch Mixer Recap
+            </motion.h1>
 
-            To launch Yale Pitchbook, we held a mixer for alumni investors & founders, leading VC firms, Yale entrepreneurs and students 
-            on Thursday, April 3 from 8:30 - 10:30 PM in Steep Cafe. 
-          </p>
-          <p className="text-lg">
-            Check out the flyer below for more details:
-          </p>
-          <Link
-            href={flyerUrl}
-            target="_blank"
-            className="inline-block mt-2 bg-white text-blue-800 px-5 py-3 rounded-lg font-medium hover:bg-blue-50 transition"
-          >
-            Download Event Flyer
-          </Link>
-        </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="max-w-3xl mx-auto space-y-6 text-lg"
+            >
+              <p>
+                To launch <span className="font-semibold">Yale Pitchbook</span>, we held a mixer for alumni investors & founders, leading VC firms, Yale entrepreneurs, and students on
+                <time dateTime="2025-04-03" className="font-semibold"> April 3, 2025</time> from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
+              </p>
+              <p>Check out the flyer below for more details:</p>
+              <Card className="bg-gray-900 mx-auto shadow-lg">
+                <CardContent className="py-6 px-8 flex justify-center">
+                  <Link href={flyerUrl} target="_blank" passHref>
+                    <Button variant="outline" size="lg">
+                      Download Event Flyer
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-        {/* Key Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 mb-16 text-center max-w-4xl mx-auto">
-          <div>
-            <div className="text-6xl font-extrabold">125+</div>
-            <div className="mt-2 text-lg">Attendees</div>
-          </div>
-          <div>
-            <div className="text-6xl font-extrabold">5+</div>
-            <div className="mt-2 text-lg">VCs</div>
-          </div>
-          <div>
-            <div className="text-6xl font-extrabold">25+</div>
-            <div className="mt-2 text-lg">Founders</div>
-          </div>
-        </div>
+            {/* Key Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto"
+            >
+              <Card className="bg-gray-800 text-center p-6 shadow-md">
+                <Users className="mx-auto mb-2 h-8 w-8 text-purple-400" />
+                <div className="text-4xl font-bold">125+</div>
+                <div className="mt-1">Attendees</div>
+              </Card>
 
-        {/* Photo Gallery */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16 max-w-5xl mx-auto">
-          {eventPhotos.map((src, idx) => (
-            <div key={idx} className="overflow-hidden rounded-lg shadow-lg">
-              <Image
-                src={src}
-                alt={`Launch event photo ${idx + 1}`}
-                width={400}
-                height={300}
-                className="object-cover"
-              />
-            </div>
-          ))}
-        </div>
+              <Card className="bg-gray-800 text-center p-6 shadow-md">
+                <Briefcase className="mx-auto mb-2 h-8 w-8 text-purple-400" />
+                <div className="text-4xl font-bold">5+</div>
+                <div className="mt-1">VC Firms</div>
+              </Card>
 
-        {/* Event Details */}
-{/*         <div className="max-w-md mx-auto mb-16 space-y-2 text-center">
-          <p className="text-xl">
-            <strong>Date:</strong> Thursday, April 3
-          </p>
-          <p className="text-xl">
-            <strong>Time:</strong> 8:30 – 10:30 pm
-          </p>
-          <p className="text-xl">
-            <strong>Location:</strong> Steep Café, Kline Tower
-          </p>
-        </div> */}
+              <Card className="bg-gray-800 text-center p-6 shadow-md">
+                <Lightbulb className="mx-auto mb-2 h-8 w-8 text-purple-400" />
+                <div className="text-4xl font-bold">25+</div>
+                <div className="mt-1">Founders</div>
+              </Card>
+            </motion.div>
 
-        {/* Sponsor */}
-        <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-4">Presented by</h2>
-          <div className="inline-block p-4 bg-white rounded-lg shadow-md">
-            <Image
-              src={xfundLogo}
-              alt="Xfund Logo"
-              width={200}
-              height={80}
-              className="object-contain"
-            />
-          </div>
-        </div>
-      </main>
+            {/* Photo Gallery */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto"
+            >
+              {eventPhotos.map((src, idx) => (
+                <motion.div
+                  key={src}
+                  whileHover={{ scale: 1.05 }}
+                  className="overflow-hidden rounded-2xl shadow-lg"
+                >
+                  <Image
+                    src={src}
+                    alt={`Event Photo ${idx + 1}`}
+                    width={400}
+                    height={300}
+                    className="object-cover w-full h-full"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
 
-      <Footer />
-    </div>
+            {/* Sponsor */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+              className="mt-20 text-center"
+            >
+              <h2 className="text-2xl font-semibold mb-4">Presented by</h2>
+              <Card className="inline-block p-6 bg-white rounded-2xl shadow-xl">
+                <Image
+                  src={xfundLogo}
+                  alt="Xfund Logo"
+                  width={180}
+                  height={80}
+                  className="object-contain"
+                />
+              </Card>
+            </motion.div>
+          </Container>
+        </main>
+
+        <Footer />
+      </div>
+    </>
   );
 }
+
 
