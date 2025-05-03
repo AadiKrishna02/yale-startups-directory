@@ -28,13 +28,16 @@ export default function LaunchPage() {
 
         {/* Recap Text */}
         <div className="max-w-3xl mx-auto mb-12 space-y-4 text-center">
-          <p className="italic">
+{/*           <p className="italic">
             Apologies for the delay — I’ve been buried in exams and recovering from an illness.
-          </p>
+          </p> */}
           <p className="text-lg">
-            Despite a last-minute location change, our launch mixer at Steep Café was a huge
+{/*             Despite a last-minute location change, our launch mixer at Steep Café was a huge
             success: over <strong>125 attendees</strong>, from founders and VCs to scouts,
-            students, and alumni, all having fantastic conversations.
+            students, and alumni, all having fantastic conversations. */}
+
+            To launch Yale Pitchbook, we held a mixer for alumni investors & founders, leading VC firms, Yale entrepreneurs and students 
+            on Thursday, April 3 from 8:30 - 10:30 PM in Steep Cafe. 
           </p>
           <p className="text-lg">
             Check out the flyer below for more details:
@@ -56,11 +59,11 @@ export default function LaunchPage() {
           </div>
           <div>
             <div className="text-6xl font-extrabold">5+</div>
-            <div className="mt-2 text-lg">Investors</div>
+            <div className="mt-2 text-lg">VCs</div>
           </div>
           <div>
-            <div className="text-6xl font-extrabold">1</div>
-            <div className="mt-2 text-lg">Sponsor</div>
+            <div className="text-6xl font-extrabold">25+</div>
+            <div className="mt-2 text-lg">Founders</div>
           </div>
         </div>
 
@@ -80,7 +83,7 @@ export default function LaunchPage() {
         </div>
 
         {/* Event Details */}
-        <div className="max-w-md mx-auto mb-16 space-y-2 text-center">
+{/*         <div className="max-w-md mx-auto mb-16 space-y-2 text-center">
           <p className="text-xl">
             <strong>Date:</strong> Thursday, April 3
           </p>
@@ -90,7 +93,7 @@ export default function LaunchPage() {
           <p className="text-xl">
             <strong>Location:</strong> Steep Café, Kline Tower
           </p>
-        </div>
+        </div> */}
 
         {/* Sponsor */}
         <div className="text-center">
