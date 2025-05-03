@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { Users, Briefcase, Lightbulb } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -28,21 +27,13 @@ export default function LaunchPage() {
 
         <main className="flex-1 py-20">
           <div className="container mx-auto px-6 text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl md:text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
-            >
+            {/* Title */}
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
               Launch Mixer Recap
-            </motion.h1>
+            </h1>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="max-w-3xl mx-auto space-y-6 text-lg"
-            >
+            {/* Recap Text */}
+            <div className="max-w-3xl mx-auto space-y-6 text-lg mb-12">
               <p>
                 To launch <span className="font-semibold">Yale Pitchbook</span>, we held a mixer for alumni investors & founders, leading VC firms,
                 Yale entrepreneurs, and students on
@@ -50,23 +41,17 @@ export default function LaunchPage() {
                 from 8:30–10:30&nbsp;PM at Steep Café, sponsored by Xfund.
               </p>
               <p>Check out the flyer below for more details:</p>
-
-              <div className="inline-block mt-4">
+              <div className="inline-block">
                 <Link href={flyerUrl} target="_blank">
                   <a className="inline-block bg-white text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition">
                     Download Event Flyer
                   </a>
                 </Link>
               </div>
-            </motion.div>
+            </div>
 
             {/* Key Stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto"
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto mb-16">
               {[
                 { icon: Users, label: 'Attendees', value: '125+' },
                 { icon: Briefcase, label: 'VC Firms', value: '5+' },
@@ -78,20 +63,14 @@ export default function LaunchPage() {
                   <div className="mt-1">{label}</div>
                 </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Photo Gallery */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto"
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto mb-16">
               {eventPhotos.map((src, idx) => (
-                <motion.div
+                <div
                   key={src}
-                  whileHover={{ scale: 1.05 }}
-                  className="overflow-hidden rounded-2xl shadow-lg"
+                  className="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
                 >
                   <Image
                     src={src}
@@ -100,20 +79,15 @@ export default function LaunchPage() {
                     height={300}
                     className="object-cover w-full h-full"
                   />
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Sponsor */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-              className="mt-20 text-center"
-            >
+            <div className="mt-20 text-center">
               <h2 className="text-2xl font-semibold mb-4">Presented by</h2>
               <Link href="https://xfund.com" target="_blank" rel="noopener noreferrer">
-                <a className="inline-block bg-white p-6 rounded-2xl shadow-xl">
+                <a className="inline-block bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow">
                   <Image
                     src={xfundLogo}
                     alt="Xfund Logo"
@@ -123,7 +97,7 @@ export default function LaunchPage() {
                   />
                 </a>
               </Link>
-            </motion.div>
+            </div>
           </div>
         </main>
 
@@ -132,5 +106,6 @@ export default function LaunchPage() {
     </>
   );
 }
+
 
 
