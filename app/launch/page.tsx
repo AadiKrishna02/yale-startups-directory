@@ -1,3 +1,5 @@
+// pages/launch.tsx
+
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -13,7 +15,7 @@ export default function LaunchPage() {
     '/event-photo3.JPG',
     '/event-photo4.jpg',
     '/event-photo5 2.jpg',
-    '/event-photo6.jpg',
+    '/event-photo6 2.jpg',
   ];
   const flyerUrl = '/Yale Pitchbook & Launch - Latest.jpg';
   const xfundLogo = '/xfund-logo.png';
@@ -38,8 +40,14 @@ export default function LaunchPage() {
             {/* Recap Text */}
             <div className="max-w-3xl mx-auto space-y-6 text-lg mb-12">
               <p>
-                To launch <span className="font-semibold">Yale Pitchbook</span>, we held a mixer for alumni investors & founders, leading VC firms, Yale entrepreneurs, and students on
-                <time dateTime="2025-04-03" className="font-semibold"> April 3, 2025</time> from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
+                To launch <span className="font-semibold">Yale Pitchbook</span>,
+                we held a mixer for alumni investors & founders, leading VC firms,
+                Yale entrepreneurs, and students on
+                <time dateTime="2025-04-03" className="font-semibold">
+                  {' '}
+                  April 3, 2025
+                </time>{' '}
+                from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
               </p>
               <p>Check out the flyer below for more details:</p>
               <div className="inline-block">
@@ -69,20 +77,19 @@ export default function LaunchPage() {
               ))}
             </div>
 
-            {/* Photo Gallery */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto mb-16">
+            {/* Masonry Photo Gallery */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
               {eventPhotos.map((src, idx) => (
                 <div
-                  key={src}
-                  className="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
+                  key={idx}
+                  className="break-inside-avoid overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
                 >
                   <Image
                     src={src}
                     alt={`Event Photo ${idx + 1}`}
-                    layout="responsive"
-                    width={600}
-                    height={200}
-                    className="object-cover w-full h-full"
+                    width={650}   // only used for Next’s optimizer
+                    height={400}  // arbitrary; we let CSS flow control actual size
+                    className="w-full block object-cover"
                   />
                 </div>
               ))}
@@ -93,7 +100,11 @@ export default function LaunchPage() {
               <h2 className="text-2xl font-semibold mb-4 text-gray-800">
                 Sponsored by
               </h2>
-              <Link href="https://xfund.com" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="https://xfund.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <a className="inline-block bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow">
                   <Image
                     src={xfundLogo}
@@ -113,3 +124,4 @@ export default function LaunchPage() {
     </>
   );
 }
+
