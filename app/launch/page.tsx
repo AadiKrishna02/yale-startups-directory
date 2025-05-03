@@ -11,6 +11,9 @@ export default function LaunchPage() {
     '/event-photo1.PNG',
     '/event-photo2.jpg',
     '/event-photo3.JPG',
+    '/event-photo4.jpg',
+    '/event-photo5.jpg',
+    '/event-photo6.jpg',
   ];
   const flyerUrl = '/Yale Pitchbook & Launch - Latest.jpg';
   const xfundLogo = '/xfund-logo.png';
@@ -35,8 +38,7 @@ export default function LaunchPage() {
             {/* Recap Text */}
             <div className="max-w-3xl mx-auto space-y-6 text-lg mb-12">
               <p>
-                To launch <span className="font-semibold">Yale Pitchbook</span>, we held a mixer for alumni investors & founders, leading VC firms,
-                Yale entrepreneurs, and students on
+                To launch <span className="font-semibold">Yale Pitchbook</span>, we held a mixer for alumni investors & founders, leading VC firms, Yale entrepreneurs, and students on
                 <time dateTime="2025-04-03" className="font-semibold"> April 3, 2025</time>
                 from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
               </p>
@@ -89,7 +91,7 @@ export default function LaunchPage() {
             {/* Sponsor */}
             <div className="mt-20 text-center">
               <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-                Presented by
+                Sponsored by
               </h2>
               <Link href="https://xfund.com" target="_blank" rel="noopener noreferrer">
                 <a className="inline-block bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow">
