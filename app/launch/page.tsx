@@ -1,12 +1,8 @@
-// app/launch/page.tsx
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Container } from '@/components/ui/container';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Users, Briefcase, Lightbulb } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -21,7 +17,7 @@ export default function LaunchPage() {
   const xfundLogo = '/xfund-logo.png';
 
   return (
-    <> 
+    <>
       <Head>
         <title>Launch Mixer Recap | Yale Pitchbook</title>
         <meta name="description" content="Recap of our mixer launch event" />
@@ -31,7 +27,7 @@ export default function LaunchPage() {
         <Header />
 
         <main className="flex-1 py-20">
-          <Container className="text-center">
+          <div className="container mx-auto px-6 text-center">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -48,19 +44,20 @@ export default function LaunchPage() {
               className="max-w-3xl mx-auto space-y-6 text-lg"
             >
               <p>
-                To launch <span className="font-semibold">Yale Pitchbook</span>, we held a mixer for alumni investors & founders, leading VC firms, Yale entrepreneurs, and students on
-                <time dateTime="2025-04-03" className="font-semibold"> April 3, 2025</time> from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
+                To launch <span className="font-semibold">Yale Pitchbook</span>, we held a mixer for alumni investors & founders, leading VC firms,
+                Yale entrepreneurs, and students on
+                <time dateTime="2025-04-03" className="font-semibold"> April 3, 2025</time>
+                from 8:30–10:30&nbsp;PM at Steep Café, sponsored by Xfund.
               </p>
               <p>Check out the flyer below for more details:</p>
-              <Card className="bg-gray-900 mx-auto shadow-lg">
-                <CardContent className="py-6 px-8 flex justify-center">
-                  <Link href={flyerUrl} target="_blank" passHref>
-                    <Button variant="outline" size="lg">
-                      Download Event Flyer
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+
+              <div className="inline-block mt-4">
+                <Link href={flyerUrl} target="_blank">
+                  <a className="inline-block bg-white text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition">
+                    Download Event Flyer
+                  </a>
+                </Link>
+              </div>
             </motion.div>
 
             {/* Key Stats */}
@@ -70,23 +67,17 @@ export default function LaunchPage() {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto"
             >
-              <Card className="bg-gray-800 text-center p-6 shadow-md">
-                <Users className="mx-auto mb-2 h-8 w-8 text-purple-400" />
-                <div className="text-4xl font-bold">125+</div>
-                <div className="mt-1">Attendees</div>
-              </Card>
-
-              <Card className="bg-gray-800 text-center p-6 shadow-md">
-                <Briefcase className="mx-auto mb-2 h-8 w-8 text-purple-400" />
-                <div className="text-4xl font-bold">5+</div>
-                <div className="mt-1">VC Firms</div>
-              </Card>
-
-              <Card className="bg-gray-800 text-center p-6 shadow-md">
-                <Lightbulb className="mx-auto mb-2 h-8 w-8 text-purple-400" />
-                <div className="text-4xl font-bold">25+</div>
-                <div className="mt-1">Founders</div>
-              </Card>
+              {[
+                { icon: Users, label: 'Attendees', value: '125+' },
+                { icon: Briefcase, label: 'VC Firms', value: '5+' },
+                { icon: Lightbulb, label: 'Founders', value: '25+' },
+              ].map(({ icon: Icon, label, value }) => (
+                <div key={label} className="bg-gray-800 p-6 rounded-2xl shadow-md text-center">
+                  <Icon className="mx-auto mb-2 h-8 w-8 text-purple-400" />
+                  <div className="text-4xl font-bold">{value}</div>
+                  <div className="mt-1">{label}</div>
+                </div>
+              ))}
             </motion.div>
 
             {/* Photo Gallery */}
@@ -121,17 +112,19 @@ export default function LaunchPage() {
               className="mt-20 text-center"
             >
               <h2 className="text-2xl font-semibold mb-4">Presented by</h2>
-              <Card className="inline-block p-6 bg-white rounded-2xl shadow-xl">
-                <Image
-                  src={xfundLogo}
-                  alt="Xfund Logo"
-                  width={180}
-                  height={80}
-                  className="object-contain"
-                />
-              </Card>
+              <Link href="https://xfund.com" target="_blank" rel="noopener noreferrer">
+                <a className="inline-block bg-white p-6 rounded-2xl shadow-xl">
+                  <Image
+                    src={xfundLogo}
+                    alt="Xfund Logo"
+                    width={180}
+                    height={80}
+                    className="object-contain"
+                  />
+                </a>
+              </Link>
             </motion.div>
-          </Container>
+          </div>
         </main>
 
         <Footer />
