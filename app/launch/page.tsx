@@ -79,7 +79,8 @@ export default function LaunchPage() {
                   <Image
                     src={src}
                     alt={`Event Photo ${idx + 1}`}
-                    width={650}
+                    layout="responsive"
+                    width={600}
                     height={200}
                     className="object-cover w-full h-full"
                   />
