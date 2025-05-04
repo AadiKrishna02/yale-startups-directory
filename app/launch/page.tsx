@@ -48,7 +48,6 @@ export default function LaunchPage() {
                 </time>{' '}
                 from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
               </p>
-              <p>Check out the highlights below:</p>
             </div>
 
             {/* Key Stats */}
@@ -89,6 +88,7 @@ export default function LaunchPage() {
 
             {/* Download Flyer */}
             <div className="text-center mt-12 mb-16">
+              <p>Check out more event details:</p>
               <Link href={flyerUrl} target="_blank" rel="noopener noreferrer">
                 <a className="inline-block bg-[#0F4D92] text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">
                   Download Event Flyer
