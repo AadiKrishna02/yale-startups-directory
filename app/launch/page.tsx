@@ -41,22 +41,14 @@ export default function LaunchPage() {
             <div className="max-w-3xl mx-auto space-y-6 text-lg mb-12">
               <p>
                 To launch <span className="font-semibold">Yale Pitchbook</span>,
-                we held a mixer for alumni investors & founders, leading VC firms,
-                Yale entrepreneurs, and students on
+                we held a mixer for alumni investors &amp; founders, leading VC firms,
+                Yale entrepreneurs, and students on{' '}
                 <time dateTime="2025-04-03" className="font-semibold">
-                  {' '}
                   April 3, 2025
                 </time>{' '}
                 from 8:30–10:30 PM at Steep Café, sponsored by Xfund.
               </p>
-              <p>Check out the flyer below for more details:</p>
-              <div className="inline-block">
-                <Link href={flyerUrl} target="_blank">
-                  <a className="inline-block bg-[#0F4D92] text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">
-                    Download Event Flyer
-                  </a>
-                </Link>
-              </div>
+              <p>Check out the highlights below:</p>
             </div>
 
             {/* Key Stats */}
@@ -87,12 +79,21 @@ export default function LaunchPage() {
                   <Image
                     src={src}
                     alt={`Event Photo ${idx + 1}`}
-                    width={650}   // only used for Next’s optimizer
-                    height={400}  // arbitrary; we let CSS flow control actual size
+                    width={650}
+                    height={400}
                     className="w-full block object-cover"
                   />
                 </div>
               ))}
+            </div>
+
+            {/* Download Flyer */}
+            <div className="text-center mt-12 mb-16">
+              <Link href={flyerUrl} target="_blank" rel="noopener noreferrer">
+                <a className="inline-block bg-[#0F4D92] text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">
+                  Download Event Flyer
+                </a>
+              </Link>
             </div>
 
             {/* Sponsor */}
@@ -124,4 +125,5 @@ export default function LaunchPage() {
     </>
   );
 }
+
 
