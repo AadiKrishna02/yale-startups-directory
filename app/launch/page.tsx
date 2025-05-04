@@ -86,11 +86,14 @@ export default function LaunchPage() {
               ))}
             </div>
 
-            {/* Download Flyer */}
             <div className="text-center mt-12 mb-16">
-              <p>Check out more event details:</p>
+              <p className="text-lg mb-6">
+                Check out more event details:
+              </p>
               <Link href={flyerUrl} target="_blank" rel="noopener noreferrer">
-                <a className="inline-block bg-[#0F4D92] text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition">
+                <a
+                  className="inline-block bg-[#0F4D92] text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition"
+                >
                   Download Event Flyer
                 </a>
               </Link>
