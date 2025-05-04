@@ -79,6 +79,11 @@ export default function Footer() {
                     Meet the Team
                   </Link>
                 </li>
+                <li>
+                  <Link href="/launch" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
+                    Launch Event
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
