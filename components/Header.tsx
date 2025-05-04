@@ -27,6 +27,11 @@ const navItems = [
     name: 'Team', 
     href: '/team',
     isExternal: false 
+  },
+  { 
+    name: 'Launch Event', 
+    href: '/launch',
+    isExternal: false 
   }
 ];
 
