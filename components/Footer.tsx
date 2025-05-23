@@ -51,7 +51,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link href="#" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
-                    Startup Pitchbook
+                    Opportunities to Join a Startup
                   </Link>
                 </li>
                 <li>
