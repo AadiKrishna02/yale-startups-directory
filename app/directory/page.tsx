@@ -86,102 +86,102 @@ export default function DirectoryPage() {
   };
 
   // ----- StartupCard -----
-  // const StartupCard = ({ startup }: { startup: Startup }) => {
-  //   const industries =
-  //     startup.industry?.split(',').map((i) => i.trim()) || [];
-
-  //   return (
-  //     <div
-  //       className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-blue-200 h-48 relative overflow-hidden"
-  //       onClick={() => {
-  //         setSelectedStartup(startup);
-  //         setIsModalOpen(true);
-  //       }}
-  //     >
-  //       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-100/0 group-hover:from-blue-50/50 group-hover:to-blue-100/50 transition-all duration-300"></div>
-
-  //       <div className="relative p-4 flex flex-col h-full">
-  //         <div className="mb-2">
-  //           <h3 className="text-lg font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">
-  //             {startup.name}
-  //           </h3>
-  //           <p className="text-sm text-gray-600 mt-1 line-clamp-2 group-hover:text-gray-700 transition-colors">
-  //             {startup.description}
-  //           </p>
-  //         </div>
-
-  //         <div className="mt-auto">
-  //           <div className="flex flex-wrap items-center gap-1">
-  //             {industries.map((industry, index) => (
-  //               <span
-  //                 key={index}
-  //                 className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100"
-  //               >
-  //                 {industry}
-  //               </span>
-  //             ))}
-  //             {startup.stage && (
-  //               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
-  //                 {startup.stage}
-  //               </span>
-  //             )}
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // };
   const StartupCard = ({ startup }: { startup: Startup }) => {
-    const industries = startup.industry?.split(',').map((i) => i.trim()) || [];
+    const industries =
+      startup.industry?.split(',').map((i) => i.trim()) || [];
+
     return (
       <div
-        className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 cursor-pointer"
-        onClick={() => { setSelectedStartup(startup); setIsModalOpen(true); }}
+        className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-blue-200 h-48 relative overflow-hidden"
+        onClick={() => {
+          setSelectedStartup(startup);
+          setIsModalOpen(true);
+        }}
       >
-        <div className="p-6 flex flex-col h-full">
-          {/* Name Header */}
-          <div className="flex justify-between items-start mb-4">
-            <h3 className="text-xl font-semibold text-blue-900">{startup.name}</h3>
-          </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-100/0 group-hover:from-blue-50/50 group-hover:to-blue-100/50 transition-all duration-300"></div>
 
-          {/* About Section */}
-          <div className="mb-4">
-            <h4 className="text-sm font-medium text-gray-600 flex items-center">
-              <Info className="h-4 w-4 mr-1.5" /> About
-            </h4>
-            <p className="text-sm text-gray-700 line-clamp-2 mt-1">
+        <div className="relative p-4 flex flex-col h-full">
+          <div className="mb-2">
+            <h3 className="text-lg font-semibold text-blue-950 group-hover:text-blue-800 transition-colors">
+              {startup.name}
+            </h3>
+            <p className="text-sm text-gray-600 mt-1 line-clamp-2 group-hover:text-gray-700 transition-colors">
               {startup.description}
             </p>
           </div>
 
-          {/* Stage Section */}
-          <div className="mb-5">
-            <h4 className="text-sm font-medium text-gray-600 flex items-center">
-              <Briefcase className="h-4 w-4 mr-1.5" /> Stage
-            </h4>
-            <p className="text-sm text-gray-700 mt-1">
-              {startup.stage || 'Not specified'}
-            </p>
-          </div>
-
-          {/* Badges */}
-          <div className="flex flex-wrap items-center gap-2 mb-5">
-            {industries.map((industry, idx) => (
-              <span
-                key={idx}
-                className="px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100"
-              >{industry}</span>
-            ))}
-            {startup.team && (
-              <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 flex items-center">
-                <Users className="h-3 w-3 mr-1" />{startup.team}
-              </span>
-            )}
+          <div className="mt-auto">
+            <div className="flex flex-wrap items-center gap-1">
+              {industries.map((industry, index) => (
+                <span
+                  key={index}
+                  className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100"
+                >
+                  {industry}
+                </span>
+              ))}
+              {startup.stage && (
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
+                  {startup.stage}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>
     );
   };
+  // const StartupCard = ({ startup }: { startup: Startup }) => {
+  //   const industries = startup.industry?.split(',').map((i) => i.trim()) || [];
+  //   return (
+  //     <div
+  //       className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 cursor-pointer"
+  //       onClick={() => { setSelectedStartup(startup); setIsModalOpen(true); }}
+  //     >
+  //       <div className="p-6 flex flex-col h-full">
+  //         {/* Name Header */}
+  //         <div className="flex justify-between items-start mb-4">
+  //           <h3 className="text-xl font-semibold text-blue-900">{startup.name}</h3>
+  //         </div>
+
+  //         {/* About Section */}
+  //         <div className="mb-4">
+  //           <h4 className="text-sm font-medium text-gray-600 flex items-center">
+  //             <Info className="h-4 w-4 mr-1.5" /> About
+  //           </h4>
+  //           <p className="text-sm text-gray-700 line-clamp-2 mt-1">
+  //             {startup.description}
+  //           </p>
+  //         </div>
+
+  //         {/* Stage Section */}
+  //         <div className="mb-5">
+  //           <h4 className="text-sm font-medium text-gray-600 flex items-center">
+  //             <Briefcase className="h-4 w-4 mr-1.5" /> Stage
+  //           </h4>
+  //           <p className="text-sm text-gray-700 mt-1">
+  //             {startup.stage || 'Not specified'}
+  //           </p>
+  //         </div>
+
+  //         {/* Badges */}
+  //         <div className="flex flex-wrap items-center gap-2 mb-5">
+  //           {industries.map((industry, idx) => (
+  //             <span
+  //               key={idx}
+  //               className="px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100"
+  //             >{industry}</span>
+  //           ))}
+  //           {startup.team && (
+  //             <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-100 flex items-center">
+  //               <Users className="h-3 w-3 mr-1" />{startup.team}
+  //             </span>
+  //           )}
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   // ----- StartupDetails (in Modal) -----
   const StartupDetails = ({ startup }: { startup: Startup }) => {
