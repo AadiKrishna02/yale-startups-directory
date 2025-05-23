@@ -284,7 +284,7 @@ function EditableStartupCard({
       <div className="mb-4">
         <div className="flex justify-between items-center mb-1">
           <label className="block font-medium text-gray-700">
-            Announcement
+            Opportunities
             {editMode && (
               <span className="text-sm font-normal text-gray-500 ml-2">
                 (Looking for talent? Post an announcement here)
