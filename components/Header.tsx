@@ -16,7 +16,7 @@ const navItems = [
     name: 'Opportunities', 
     href: '/opportunities',
     isExternal: false,
-    disabled: true
+    // disabled: true
   },
   { 
     name: 'Submit Startup', 
