@@ -284,9 +284,11 @@ export default function OpportunitiesPage() {
           
           {/* Announcements Grid */}
           {filteredStartups.length > 0 ? (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  items-start">
+            <div className="columns-1 lg:columns-2 gap-8 space-y-8">
               {filteredStartups.map((startup, index) => (
-                <AnnouncementCard key={index} startup={startup} />
+                <div key={index} className="break-inside-avoid">
+                  <AnnouncementCard startup={startup} />
+                </div>
               ))}
             </div>
           ) : (
