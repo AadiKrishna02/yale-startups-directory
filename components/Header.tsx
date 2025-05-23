@@ -13,8 +13,8 @@ const navItems = [
     isExternal: false 
   },
   { 
-    name: 'Pitchbook', 
-    href: '#',
+    name: 'Opportunities', 
+    href: '/opportunities',
     isExternal: false,
     disabled: true
   },
