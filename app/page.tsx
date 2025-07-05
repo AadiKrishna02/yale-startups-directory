@@ -172,7 +172,7 @@ export default function HomePage() {
 {/*                 <div className="text-2xl font-bold text-blue-600 tracking-wide">
                   Coming Soon!
                 </div> */}
-              </div>
+{/*               </div> */}
             </div>
           </div>
 
