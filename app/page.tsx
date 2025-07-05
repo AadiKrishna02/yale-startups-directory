@@ -174,6 +174,7 @@ export default function HomePage() {
                   </a>
                 </div>
               </div>
+            </div> 
 
 
           {/* Benefits Section with Enhanced Cards */}
