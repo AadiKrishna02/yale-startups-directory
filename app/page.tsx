@@ -161,6 +161,8 @@ export default function HomePage() {
                 <p className="text-gray-600 mb-8 text-lg">
                   A unique opportunity for select startups to be featured in our curated pitchbook distributed to an extensive set of global investors, including our network.
                 </p>
+                <div className="text-2xl font-bold text-blue-600 tracking-wide">
+                  Coming Soon!
 {/*                 <div className="flex items-center gap-4">
                   <span className="text-2xl font-bold text-blue-600 tracking-wide">
                     Investor?
@@ -173,8 +175,8 @@ export default function HomePage() {
                     <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </a>
                 </div> */}
-              </div>
-            </div> 
+                </div>
+              </div> 
 
 
           {/* Benefits Section with Enhanced Cards */}
