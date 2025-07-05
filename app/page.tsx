@@ -161,20 +161,12 @@ export default function HomePage() {
                 <p className="text-gray-600 mb-8 text-lg">
                   A unique opportunity for select startups to be featured in our curated pitchbook distributed to an extensive set of global investors, including our network.
                 </p>
-                {/* Updated block below */}
-                <div className="flex items-center gap-4">
-                  <span className="text-2xl font-bold text-blue-600 tracking-wide">
-                    Investor?
-                  </span>
-                  <a
-                    href="mailto:aadi.krishna@yale.edu"
-                    className="group relative inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 text-base font-medium overflow-hidden"
-                  >
-                    <span className="relative z-10">Request to View</span>
-                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </a>
+                <div className="text-2xl font-bold text-blue-600 tracking-wide">
+                  Coming Soon!
                 </div>
               </div>
+            </div>
+          </div>
 
 
           {/* Benefits Section with Enhanced Cards */}
