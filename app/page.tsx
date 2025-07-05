@@ -161,9 +161,17 @@ export default function HomePage() {
                 <p className="text-gray-600 mb-8 text-lg">
                   A unique opportunity for select startups to be featured in our curated pitchbook distributed to an extensive set of global investors, including our network.
                 </p>
-                <div className="text-2xl font-bold text-blue-600 tracking-wide">
+                <Link
+                  href="/directory"
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
+                >
+                  View Directory
+                  <ArrowUpRight className="w-5 h-5" />
+                </Link>
+              </div>
+{/*                 <div className="text-2xl font-bold text-blue-600 tracking-wide">
                   Coming Soon!
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
