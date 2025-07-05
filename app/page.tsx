@@ -163,7 +163,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="mailto:aadi.krishna@yale.edu"
-                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
+                  className="inline-flex items-center gap-2 bg-blue-400 text-white px-6 py-3 rounded-lg hover:bg-blue-500 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
                 >
                   Request to View v1
                   <ArrowUpRight className="w-5 h-5" />
