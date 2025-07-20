@@ -2,10 +2,8 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface User {
-  netid?: string;
-  email?: string;
+  netid: string;
   name: string;
-  type: 'student' | 'investor';
 }
 
 interface AuthContextType {
@@ -35,20 +33,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         try {
           // Decode the cookie value before parsing as JSON
           const parsed = JSON.parse(decodeURIComponent(userCookie));
-          if (!parsed.type) {
-            parsed.type = parsed.netid ? 'student' : 'investor';
-          }
           setUser(parsed);
         } catch (error) {
           console.error("Error parsing user cookie:", error);
-          setUser({ netid: userCookie, name: userCookie, type: 'student' });
+          setUser({ netid: userCookie, name: userCookie });
         }
       }
     }
   }, []);
 
   const login = () => {
-    window.location.href = "/login";
+    window.location.href = "/api/cas/login";
   };
 
   const logout = () => {
