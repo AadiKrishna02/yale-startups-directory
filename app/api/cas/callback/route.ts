@@ -77,7 +77,7 @@ export async function GET(request: Request) {
   }
 
   // 4) Set a cookie with user info, then redirect
-  const user = { netid, name: fullName };
+  const user = { netid, name: fullName, type: 'student' };
 
   const response = NextResponse.redirect(`${origin}/account`);
   response.cookies.set('user', JSON.stringify(user), {
