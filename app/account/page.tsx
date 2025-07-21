@@ -368,10 +368,13 @@ export default function AccountPage() {
   const { user, logout } = useAuth();
   const [userStartups, setUserStartups] = useState<Startup[]>([]);
   const [loading, setLoading] = useState(true);
+  const [affiliations, setAffiliations] = useState('');
+  const [loadingAff, setLoadingAff] = useState(true);
+  const [savingAff, setSavingAff] = useState(false);
 
   useEffect(() => {
     async function loadUserStartups() {
-      if (!user) {
+      if (!user || user.type !== 'student') {
         setLoading(false);
         return;
       }
@@ -403,6 +406,35 @@ export default function AccountPage() {
     loadUserStartups();
   }, [user]);
 
+  useEffect(() => {
+    async function loadAffiliations() {
+      if (!user || user.type !== 'student') {
+        setLoadingAff(false);
+        return;
+      }
+      const { data, error } = await supabase
+        .from('students')
+        .select('affiliations')
+        .eq('netid', user.netid!)
+        .single();
+      if (!error && data) {
+        setAffiliations(data.affiliations || '');
+      }
+      setLoadingAff(false);
+    }
+    loadAffiliations();
+  }, [user]);
+
+  const handleSaveAffiliations = async () => {
+    if (!user) return;
+    setSavingAff(true);
+    await supabase
+      .from('students')
+      .update({ affiliations })
+      .eq('netid', user.netid!);
+    setSavingAff(false);
+  };
+
   const handleUpdateStartup = (updatedStartup: Startup) => {
     setUserStartups((prev) =>
       prev.map((s) => (s.name === updatedStartup.name ? updatedStartup : s))
@@ -417,12 +449,10 @@ export default function AccountPage() {
           <div className="flex justify-between items-center mb-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
             <div>
               {user && (
-                <p className="text-xl font-medium text-blue-700">
-                  Hi, {user.name}!
-                </p>
+                <p className="text-xl font-medium text-blue-700">Hi, {user.name}!</p>
               )}
               <h1 className="text-3xl font-bold text-blue-900">
-                Your Startup Dashboard
+                {user?.type === 'investor' ? 'Investor Account' : 'Your Startup Dashboard'}
               </h1>
             </div>
             <button
@@ -433,35 +463,67 @@ export default function AccountPage() {
             </button>
           </div>
 
-          {loading ? (
-            <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 text-center">
-              <p className="text-lg text-gray-600">Loading your startups...</p>
-            </div>
-          ) : (
-            <>
-              {userStartups.length === 0 ? (
-                <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 text-center">
-                  <p className="text-lg text-gray-600 mb-4">
-                    You are not listed as a founder for any startups.
-                  </p>
-                  <p className="text-gray-500">
-                    If your startup should be listed here, please make sure your
-                    name is included in the founders list exactly as it appears
-                    in your Yale account.
-                  </p>
-                </div>
+          {user?.type === 'student' && (
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
+              <label className="block text-sm font-medium mb-1">
+                If you are an investor or work with any fund, please list your affiliations
+              </label>
+              {loadingAff ? (
+                <p className="text-gray-500 text-sm">Loading...</p>
               ) : (
-                <div className="space-y-8">
-                  {userStartups.map((startup, index) => (
-                    <EditableStartupCard
-                      key={startup.name || index}
-                      startup={startup}
-                      onUpdate={handleUpdateStartup}
-                    />
-                  ))}
-                </div>
+                <>
+                  <textarea
+                    value={affiliations}
+                    onChange={(e) => setAffiliations(e.target.value)}
+                    className="w-full border rounded px-3 py-2 mb-2"
+                  />
+                  <button
+                    onClick={handleSaveAffiliations}
+                    disabled={savingAff}
+                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  >
+                    {savingAff ? 'Saving...' : 'Save'}
+                  </button>
+                </>
               )}
-            </>
+            </div>
+          )}
+
+          {user?.type === 'student' ? (
+            loading ? (
+              <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 text-center">
+                <p className="text-lg text-gray-600">Loading your startups...</p>
+              </div>
+            ) : (
+              <>
+                {userStartups.length === 0 ? (
+                  <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 text-center">
+                    <p className="text-lg text-gray-600 mb-4">
+                      You are not listed as a founder for any startups.
+                    </p>
+                    <p className="text-gray-500">
+                      If your startup should be listed here, please make sure your
+                      name is included in the founders list exactly as it appears
+                      in your Yale account.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="space-y-8">
+                    {userStartups.map((startup, index) => (
+                      <EditableStartupCard
+                        key={startup.name || index}
+                        startup={startup}
+                        onUpdate={handleUpdateStartup}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
+            )
+          ) : (
+            <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 text-center">
+              <p className="text-lg text-gray-600">Investor accounts currently have no editable information.</p>
+            </div>
           )}
         </div>
       </main>
