@@ -5,8 +5,10 @@ import { ArrowUpRight, Users, Eye, Briefcase, Database, BookOpen, ChevronDown } 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 
 export default function HomePage() {
+  const { user } = useAuth();
   const benefits = [
     {
       icon: <Eye className="w-6 h-6" />,
@@ -162,7 +164,9 @@ export default function HomePage() {
                   A unique opportunity for select startups to be featured in our curated pitchbook distributed to an extensive set of global investors, including our network.
                 </p>
                 <Link
-                  href="mailto:aadi.krishna@yale.edu"
+                  href={user?.type === 'investor'
+                    ? '/YUCP%20-%20Pitchbook%20Sample%20(5).pdf'
+                    : 'mailto:aadi.krishna@yale.edu'}
                   className="inline-flex items-center gap-2 bg-blue-400 text-white px-6 py-3 rounded-lg hover:bg-blue-500 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
                 >
                   Request to View v1

@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 import { NextResponse } from 'next/server';
+import { supabase } from '@/lib/supabaseClient';
 
 export async function GET(request: Request) {
   const { origin } = new URL(request.url);
@@ -74,6 +75,20 @@ export async function GET(request: Request) {
     }
   } catch (error) {
     console.error("Error calling Yalies API:", error);
+  }
+
+  // Ensure a row exists for this student in Supabase
+  try {
+    const { data: existing, error } = await supabase
+      .from('students')
+      .select('netid')
+      .eq('netid', netid)
+      .single();
+    if (error || !existing) {
+      await supabase.from('students').insert({ netid, affiliations: '' });
+    }
+  } catch (err) {
+    console.error('Error ensuring student row:', err);
   }
 
   // 4) Set a cookie with user info, then redirect
