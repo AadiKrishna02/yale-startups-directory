@@ -165,7 +165,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href={user?.type === 'investor'
-                    ? '/YUCP%20-%20Pitchbook%20Sample%20(5).pdf'
+                    ? '/yucp-pitchbook-sample-5.pdf'
                     : 'mailto:aadi.krishna@yale.edu'}
                   className="inline-flex items-center gap-2 bg-blue-400 text-white px-6 py-3 rounded-lg hover:bg-blue-500 transition-all duration-300 text-lg font-medium transform hover:-translate-y-1"
                 >
