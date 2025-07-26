@@ -98,7 +98,7 @@ export async function GET(request: Request) {
   response.cookies.set('user', JSON.stringify(user), {
     path: '/',
     maxAge: 60 * 60 * 24 * 7, // 7 days
-    secure: true,
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict',
     httpOnly: false,
   });
