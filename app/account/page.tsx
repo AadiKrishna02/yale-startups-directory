@@ -502,9 +502,11 @@ export default function AccountPage() {
                 <p className="text-gray-500 text-sm">Loading...</p>
               ) : (
                 <>
-                  <textarea
+                  <input
+                    type="text"
                     value={investorAffiliation}
                     onChange={(e) => setInvestorAffiliation(e.target.value)}
+                    placeholder="please input your investor affiliation"
                     className="w-full border rounded px-3 py-2 mb-2"
                   />
                   <button
@@ -528,7 +530,8 @@ export default function AccountPage() {
                 <p className="text-gray-500 text-sm">Loading...</p>
               ) : (
                 <>
-                  <textarea
+                  <input
+                    type="text"
                     value={affiliations}
                     onChange={(e) => setAffiliations(e.target.value)}
                     className="w-full border rounded px-3 py-2 mb-2"
@@ -545,7 +548,7 @@ export default function AccountPage() {
             </div>
           )}
 
-          {user?.type === 'student' ? (
+          {user?.type === 'student' && (
             loading ? (
               <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 text-center">
                 <p className="text-lg text-gray-600">Loading your startups...</p>
@@ -576,10 +579,6 @@ export default function AccountPage() {
                 )}
               </>
             )
-          ) : (
-            <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 text-center">
-              <p className="text-lg text-gray-600">No startup dashboard available for investors.</p>
-            </div>
           )}
         </div>
       </main>
