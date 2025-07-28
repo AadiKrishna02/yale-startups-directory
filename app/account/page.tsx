@@ -371,6 +371,9 @@ export default function AccountPage() {
   const [affiliations, setAffiliations] = useState('');
   const [loadingAff, setLoadingAff] = useState(true);
   const [savingAff, setSavingAff] = useState(false);
+  const [investorAffiliation, setInvestorAffiliation] = useState('');
+  const [loadingInvestorAff, setLoadingInvestorAff] = useState(true);
+  const [savingInvestorAff, setSavingInvestorAff] = useState(false);
 
   useEffect(() => {
     async function loadUserStartups() {
@@ -425,6 +428,25 @@ export default function AccountPage() {
     loadAffiliations();
   }, [user]);
 
+  useEffect(() => {
+    async function loadInvestorAffiliation() {
+      if (!user || user.type !== 'investor') {
+        setLoadingInvestorAff(false);
+        return;
+      }
+      const { data, error } = await supabase
+        .from('investors')
+        .select('affiliation')
+        .eq('email', user.email!)
+        .single();
+      if (!error && data) {
+        setInvestorAffiliation(data.affiliation || '');
+      }
+      setLoadingInvestorAff(false);
+    }
+    loadInvestorAffiliation();
+  }, [user]);
+
   const handleSaveAffiliations = async () => {
     if (!user) return;
     setSavingAff(true);
@@ -433,6 +455,16 @@ export default function AccountPage() {
       .update({ affiliations })
       .eq('netid', user.netid!);
     setSavingAff(false);
+  };
+
+  const handleSaveInvestorAffiliation = async () => {
+    if (!user) return;
+    setSavingInvestorAff(true);
+    await supabase
+      .from('investors')
+      .update({ affiliation: investorAffiliation })
+      .eq('email', user.email!);
+    setSavingInvestorAff(false);
   };
 
   const handleUpdateStartup = (updatedStartup: Startup) => {
@@ -462,6 +494,30 @@ export default function AccountPage() {
               Logout
             </button>
           </div>
+
+          {user?.type === 'investor' && (
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
+              <label className="block text-sm font-medium mb-1">Affiliation</label>
+              {loadingInvestorAff ? (
+                <p className="text-gray-500 text-sm">Loading...</p>
+              ) : (
+                <>
+                  <textarea
+                    value={investorAffiliation}
+                    onChange={(e) => setInvestorAffiliation(e.target.value)}
+                    className="w-full border rounded px-3 py-2 mb-2"
+                  />
+                  <button
+                    onClick={handleSaveInvestorAffiliation}
+                    disabled={savingInvestorAff}
+                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  >
+                    {savingInvestorAff ? 'Saving...' : 'Save'}
+                  </button>
+                </>
+              )}
+            </div>
+          )}
 
           {user?.type === 'student' && (
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
@@ -522,7 +578,7 @@ export default function AccountPage() {
             )
           ) : (
             <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 text-center">
-              <p className="text-lg text-gray-600">Investor accounts currently have no editable information.</p>
+              <p className="text-lg text-gray-600">No startup dashboard available for investors.</p>
             </div>
           )}
         </div>
