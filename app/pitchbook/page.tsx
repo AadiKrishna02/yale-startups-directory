@@ -43,17 +43,13 @@ export default function PitchbookPage() {
             If you are interested in learning more about a startup or its founders, feel free to reach out to the founder directly, or let us know if you would like an introduction. We simply request that you let us know if you do—this is the primary mechanism for us to learn about the impact of our work.
           </p>
         </div>
-        {notLoggedIn ? (
+        {notLoggedIn && (
           <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 rounded p-4 mb-6">
             <p className="mb-2">Please log in to view the pitchbook.</p>
             <div className="flex gap-3">
               <button onClick={login} className="bg-blue-600 text-white px-4 py-2 rounded">Go to Login</button>
               <Link href="/login?redirect=/pitchbook" className="underline text-blue-700">Login with redirect</Link>
             </div>
-          </div>
-        ) : (
-          <div className="bg-green-50 border border-green-200 text-green-800 rounded p-4 mb-6">
-            <p>Logged in as {user.name} ({user.type}).</p>
           </div>
         )}
         {/* Embedded PDF */}
@@ -62,7 +58,7 @@ export default function PitchbookPage() {
             <span className="text-sm text-gray-600">Pitchbook v1 (PDF)</span>
             <a href="/pitchbook/v1.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-700 hover:underline">Open in new tab</a>
           </div>
-          <div className="h-[80vh] w-full">
+          <div className="w-full" style={{ aspectRatio: '8.5 / 11' }}>
             <iframe
               src="/pitchbook/v1.pdf#view=FitH"
               title="Yale Startup Pitchbook v1"
