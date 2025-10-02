@@ -47,8 +47,8 @@ export default function SignupPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow flex items-center justify-center p-4">
-        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
-          <h1 className="text-2xl font-semibold text-center">Investor Signup</h1>
+        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
+          <h1 className="text-2xl font-semibold text-center mt-10">Investor Signup</h1>
           {error && <p className="text-red-600 text-sm">{error}</p>}
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>
