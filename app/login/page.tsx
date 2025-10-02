@@ -1,18 +1,32 @@
 'use client';
-import { useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, FormEvent, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useAuth } from '@/context/AuthContext';
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirect') || '/account';
+  const { user } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    // If already logged in as student, go straight to destination
+    if (user?.type === 'student') {
+      router.replace(redirect);
+    }
+  }, [user, redirect, router]);
+
   const handleStudent = () => {
-    window.location.href = '/api/cas/login';
+    // Pass redirect through CAS login so callback can route properly
+    const url = new URL('/api/cas/login', window.location.origin);
+    if (redirect) url.searchParams.set('redirect', redirect);
+    window.location.href = url.toString();
   };
 
   const handleInvestor = async (e: FormEvent) => {
@@ -26,7 +40,8 @@ export default function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
       if (res.ok) {
-        window.location.href = '/account';
+        // After successful investor login, go to requested destination
+        window.location.href = redirect;
       } else {
         const data = await res.json();
         setError(data.error || 'Login failed');
@@ -44,6 +59,9 @@ export default function LoginPage() {
       <main className="flex-grow flex items-center justify-center p-4">
         <div className="w-full max-w-md space-y-6">
           <h1 className="text-2xl font-semibold text-center">Login</h1>
+          {redirect && (
+            <p className="text-center text-sm text-gray-600">You will be redirected to <span className="font-mono">{redirect}</span> after login.</p>
+          )}
           <button
             onClick={handleStudent}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded px-4 py-2"

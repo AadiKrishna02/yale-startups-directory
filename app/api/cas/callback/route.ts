@@ -5,7 +5,8 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabaseClient';
 
 export async function GET(request: Request) {
-  const { origin } = new URL(request.url);
+  const { origin, searchParams } = new URL(request.url);
+  const redirect = searchParams.get('redirect') || '/account';
   const ticket = new URL(request.url).searchParams.get('ticket');
   if (!ticket) {
     console.error("No ticket provided");
@@ -13,7 +14,7 @@ export async function GET(request: Request) {
   }
 
   // 1) Validate the CAS ticket
-  const serviceUrl = `${origin}/api/cas/callback`;
+  const serviceUrl = `${origin}/api/cas/callback${redirect ? `?redirect=${encodeURIComponent(redirect)}` : ''}`;
   const casValidateUrl = new URL('https://secure.its.yale.edu/cas/serviceValidate');
   casValidateUrl.searchParams.set('ticket', ticket);
   casValidateUrl.searchParams.set('service', serviceUrl);
@@ -94,7 +95,7 @@ export async function GET(request: Request) {
   // 4) Set a cookie with user info, then redirect
   const user = { netid, name: fullName, type: 'student' };
 
-  const response = NextResponse.redirect(`${origin}/account`);
+  const response = NextResponse.redirect(`${origin}${redirect}`);
   response.cookies.set('user', JSON.stringify(user), {
     path: '/',
     maxAge: 60 * 60 * 24 * 7, // 7 days
