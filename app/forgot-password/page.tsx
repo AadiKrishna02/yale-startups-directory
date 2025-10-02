@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+'use client';
+
+import React, { useState, Suspense } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useSearchParams } from 'next/navigation';
-
-export default function ForgotPasswordPage() {
+ 
+function ForgotPasswordContent() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState<string>(searchParams.get('email') || '');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -23,7 +25,7 @@ export default function ForgotPasswordPage() {
       });
       if (res.ok) {
         setStatus('success');
-        setMessage('If an account exists for this email, we\'ve sent password reset instructions.');
+        setMessage("If an account exists for this email, we've sent password reset instructions.");
       } else {
         const data = await res.json().catch(() => ({}));
         setStatus('error');
@@ -70,5 +72,13 @@ export default function ForgotPasswordPage() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function ForgotPasswordPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <ForgotPasswordContent />
+    </Suspense>
   );
 }
