@@ -31,16 +31,12 @@ export default function PitchbookPage() {
         <h1 className="text-4xl font-bold mb-4 text-blue-950">Yale Startup Pitchbook — v1</h1>
         <div className="text-gray-700 leading-7 space-y-4 mb-8">
           <p>
-            Yale Startup Pitchbook is a curated collection of startups by Yale founders seeking investment, part of the larger initiative to connect Yale startups with resources, talent, and investment opportunities at <a href="https://yalepitchbook.com" className="text-blue-700 hover:underline" target="_blank" rel="noopener noreferrer">yalepitchbook.com</a>.
-          </p>
-          <p>
-            Analysts use conversations with founders and official material to collate information for each one-pager and form an opinion.
-          </p>
+            Yale Startup Pitchbook is a curated collection of startups by Yale founders seeking investment, part of the larger initiative to connect Yale startups with resources, talent, and investment opportunities.
           <p>
             Version 1 is the first iteration, analyzing 10+ Yale startups seeking investment, primarily in the pre-seed and seed stage. These companies represent high-potential, early-stage ventures with opportunities for mentorship, funding, or partnership.
           </p>
           <p>
-            If you are interested in learning more about a startup or its founders, feel free to reach out to the founder directly, or let us know if you would like an introduction. We simply request that you let us know if you do—this is the primary mechanism for us to learn about the impact of our work.
+            If you are interested in learning more about a startup or its founders, please reach out to us for an introduction.
           </p>
         </div>
         {notLoggedIn && (
