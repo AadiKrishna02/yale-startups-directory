@@ -6,7 +6,7 @@ export const SECURITY_CONFIG = {
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict' as const,
     path: '/',
-  },
+  } as const,
   
   // Session settings
   SESSION: {
@@ -80,10 +80,10 @@ export function isValidPassword(password: string): { valid: boolean; errors: str
 export function isAuthorizedAdmin(user: { email?: string; netid?: string; type?: string }): boolean {
   if (user.type !== 'student') return false;
   
-  return (
-    (user.email && SECURITY_CONFIG.ADMIN.authorizedEmails.includes(user.email)) ||
-    (user.netid && SECURITY_CONFIG.ADMIN.authorizedNetIds.includes(user.netid))
-  );
+  const emailAuthorized = user.email ? SECURITY_CONFIG.ADMIN.authorizedEmails.includes(user.email) : false;
+  const netidAuthorized = user.netid ? SECURITY_CONFIG.ADMIN.authorizedNetIds.includes(user.netid) : false;
+  
+  return emailAuthorized || netidAuthorized;
 }
 
 // Secure logging (only in development)
