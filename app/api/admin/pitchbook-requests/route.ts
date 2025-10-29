@@ -31,7 +31,7 @@ export async function GET() {
     // Check if user is authorized admin
     const isAuthorizedAdmin = 
       (user.type === 'student' && user.email === 'aadi.krishna@yale.edu') ||
-      (user.type === 'student' && user.netid === 'ak2729'); // Your netid as backup
+      (user.type === 'student' && user.netid === 'ack69'); // Your netid as backup
     
     if (!isAuthorizedAdmin) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 });

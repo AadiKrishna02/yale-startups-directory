@@ -37,7 +37,7 @@ export default function PitchbookRequestsAdminPage() {
     // Check if user is authorized admin
     const isAuthorizedAdmin = 
       (user.type === 'student' && user.email === 'aadi.krishna@yale.edu') ||
-      (user.type === 'student' && user.netid === 'ak2729'); // Your netid as backup
+      (user.type === 'student' && user.netid === 'ack69'); // Your netid as backup
 
     if (!isAuthorizedAdmin) {
       router.push('/');
@@ -118,7 +118,7 @@ export default function PitchbookRequestsAdminPage() {
   // Check if user is authorized admin (same logic as useEffect)
   const isAuthorizedAdmin = user && (
     (user.type === 'student' && user.email === 'aadi.krishna@yale.edu') ||
-    (user.type === 'student' && user.netid === 'ak2729')
+    (user.type === 'student' && user.netid === 'ack69')
   );
 
   if (!user || !isAuthorizedAdmin) {
