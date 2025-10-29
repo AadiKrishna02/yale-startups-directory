@@ -13,17 +13,21 @@ export async function GET(request: Request) {
     serviceUrl.searchParams.set('redirect', redirect);
   }
 
-  // Log for debugging
-  console.log('CAS Login Debug:');
-  console.log('Origin:', origin);
-  console.log('Service URL:', serviceUrl.toString());
-  console.log('Redirect param:', redirect);
+  // Log for debugging (only in development)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('CAS Login Debug:');
+    console.log('Origin:', origin);
+    console.log('Service URL:', serviceUrl.toString());
+    console.log('Redirect param:', redirect);
+  }
 
   // Redirect to Yale’s secure CAS login URL
   const casLoginUrl = new URL('https://secure.its.yale.edu/cas/login');
   casLoginUrl.searchParams.set('service', serviceUrl.toString());
 
-  console.log('Final CAS URL:', casLoginUrl.toString());
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Final CAS URL:', casLoginUrl.toString());
+  }
 
   return NextResponse.redirect(casLoginUrl.toString());
 }

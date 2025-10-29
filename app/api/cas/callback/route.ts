@@ -29,7 +29,9 @@ export async function GET(request: Request) {
     return NextResponse.redirect(`${origin}/`);
   }
   const netid = netidMatch[1];
-  console.log(`Extracted netid: ${netid}`);
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`Extracted netid: ${netid}`);
+  }
 
   // Default name fallback to netid
   let fullName = netid;
