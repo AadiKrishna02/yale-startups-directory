@@ -89,7 +89,7 @@ export default function PitchbookPage() {
             />
           </div>
           <div className="bg-gray-50 border-t border-gray-200 px-4 py-3 text-sm text-gray-600">
-            If the PDF does not load, <a href="/202510_Pitchbook_vFinal.pdf" className="text-blue-700 hover:underline">download it here</a>.
+            If the PDF does not load, <a href="/20252910_Investor Pitchbook_vFinal.pdf" className="text-blue-700 hover:underline">download it here</a>.
           </div>
         </div>
       </main>
