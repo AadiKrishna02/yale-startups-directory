@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useAuth } from '@/context/AuthContext';
@@ -8,6 +9,14 @@ import Link from 'next/link';
 
 export default function PitchbookPage() {
   const { user, login } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to login if not authenticated
+    if (!user) {
+      router.push('/login?redirect=/pitchbook');
+    }
+  }, [user, router]);
 
   useEffect(() => {
     const markSeen = async () => {
@@ -22,7 +31,14 @@ export default function PitchbookPage() {
     markSeen();
   }, [user]);
 
-  const notLoggedIn = !user;
+  // Show loading state while checking auth
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-600">Redirecting to login...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -40,15 +56,6 @@ export default function PitchbookPage() {
             If you are interested in learning more about a startup or its founders, please reach out to us for an introduction.
           </p>
         </div>
-        {notLoggedIn && (
-          <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 rounded p-4 mb-6">
-            <p className="mb-2">Please log in to view the pitchbook.</p>
-            <div className="flex gap-3">
-              <button onClick={login} className="bg-blue-600 text-white px-4 py-2 rounded">Go to Login</button>
-              <Link href="/login?redirect=/pitchbook" className="underline text-blue-700">Login with redirect</Link>
-            </div>
-          </div>
-        )}
         {/* Embedded PDF */}
         <div className="w-full bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
           <div className="bg-gray-50 border-b border-gray-200 px-4 py-2 flex items-center justify-between">
