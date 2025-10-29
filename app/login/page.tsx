@@ -40,11 +40,11 @@ function LoginContent() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow flex items-center justify-center p-4">
-        <div className="w-full max-w-md space-y-6">
-          <h1 className="text-2xl font-semibold text-center mt-8">Login</h1>
+      <main className="flex-grow flex items-center justify-center p-4 py-12">
+        <div className="w-full max-w-md space-y-8">
+          <h1 className="text-2xl font-semibold text-center mt-12 mb-8">Login</h1>
           {redirect && (
-            <p className="text-center text-sm text-gray-600 mb-6">You will be redirected to <span className="font-mono">{redirect}</span> after login.</p>
+            <p className="text-center text-sm text-gray-600 mb-8 px-4">You will be redirected to <span className="font-mono">{redirect}</span> after login.</p>
           )}
           <div className="space-y-3">
             <button

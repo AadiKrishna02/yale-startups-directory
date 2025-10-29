@@ -83,10 +83,10 @@ export default function PitchbookAccessPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow flex items-center justify-center p-4">
-        <div className="w-full max-w-md space-y-6">
-          <h1 className="text-2xl font-semibold text-center mt-8">Access Yale Startup Pitchbook</h1>
-          <p className="text-center text-sm text-gray-600">
+      <main className="flex-grow flex items-center justify-center p-4 py-12">
+        <div className="w-full max-w-md space-y-8">
+          <h1 className="text-2xl font-semibold text-center mt-12 mb-8">Access Yale Startup Pitchbook</h1>
+          <p className="text-center text-sm text-gray-600 mb-8 px-4 leading-relaxed">
             To view the pitchbook, you can either enter the access password or request access.
           </p>
 
