@@ -46,14 +46,14 @@ function InvestorLoginContent() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8">
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Header section */}
-              <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl mb-4">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="text-center space-y-3">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl mb-3">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6" />
                   </svg>
                 </div>
-                <h1 className="text-3xl font-bold text-gray-900">Investor Login</h1>
-                <p className="text-gray-600">Access your investor dashboard</p>
+                <h1 className="text-xl font-bold text-gray-900">Investor Login</h1>
+                <p className="text-sm text-gray-600">Access your investor dashboard</p>
               </div>
 
               {/* Redirect notice */}
@@ -103,7 +103,7 @@ function InvestorLoginContent() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-xl px-6 py-4 font-semibold text-lg transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-gray-200 disabled:transform-none disabled:shadow-none"
+                  className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 disabled:from-blue-300 disabled:to-blue-400 text-white rounded-lg px-4 py-3 font-medium text-base transition-all duration-200 transform hover:scale-[1.01] hover:shadow-md focus:outline-none focus:ring-3 focus:ring-blue-200 disabled:transform-none disabled:shadow-none"
                 >
                   {loading ? (
                     <div className="flex items-center justify-center space-x-2">
