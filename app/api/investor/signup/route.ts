@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Too many signup attempts. Please try again later.' }, { status: 429 });
     }
 
-    const { email, name, firm, title, password } = await request.json();
+    const { email, name, firm, title, linkedin, password } = await request.json();
     
     // Input validation
     if (!email || !name || !password) {
@@ -46,6 +46,7 @@ export async function POST(request: Request) {
     const sanitizedName = sanitizeInput(name);
     const sanitizedFirm = firm ? sanitizeInput(firm) : null;
     const sanitizedTitle = title ? sanitizeInput(title) : null;
+    const sanitizedLinkedin = linkedin ? sanitizeInput(linkedin) : null;
 
     // Validate name format
     if (!SECURITY_CONFIG.VALIDATION.name.allowedChars.test(sanitizedName)) {
@@ -60,7 +61,8 @@ export async function POST(request: Request) {
         email: sanitizedEmail, 
         name: sanitizedName, 
         firm: sanitizedFirm, 
-        title: sanitizedTitle, 
+        title: sanitizedTitle,
+        linkedin: sanitizedLinkedin,
         password: hashed 
       });
       
