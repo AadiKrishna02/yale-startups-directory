@@ -35,7 +35,13 @@ export async function GET() {
 
     const user = JSON.parse(userCookie.value);
     const userEmail = user.type === 'student' ? `${user.netid}@yale.edu` : user.email;
+    
+    // Debug logging
+    console.log('Access check for user:', { type: user.type, email: userEmail });
 
+    // For investors, require explicit approval or password access only
+    // No automatic access based on user type
+    
     // Check if they have an approved access request
     if (supabase) {
       try {
@@ -46,6 +52,8 @@ export async function GET() {
           .eq('status', 'approved')
           .single();
 
+        console.log('Database query result:', { data, error });
+
         if (data && !error) {
           return NextResponse.json({ hasAccess: true, method: 'approved' });
         }
@@ -54,6 +62,7 @@ export async function GET() {
       }
     }
 
+    console.log('No access found, returning false');
     return NextResponse.json({ hasAccess: false });
   } catch (error) {
     console.error('Check access error:', error);
