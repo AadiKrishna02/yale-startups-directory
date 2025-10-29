@@ -28,8 +28,12 @@ export async function GET() {
 
     const user = JSON.parse(userCookie.value);
     
-    // Basic admin check - you can make this more sophisticated
-    if (user.type !== 'student' || user.email !== 'aadi.krishna@yale.edu') {
+    // Check if user is authorized admin
+    const isAuthorizedAdmin = 
+      (user.type === 'student' && user.email === 'aadi.krishna@yale.edu') ||
+      (user.type === 'student' && user.netid === 'ak2729'); // Your netid as backup
+    
+    if (!isAuthorizedAdmin) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 });
     }
 

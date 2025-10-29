@@ -28,8 +28,18 @@ export default function PitchbookRequestsAdminPage() {
   const [processingId, setProcessingId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Basic admin check - you can make this more sophisticated
-    if (!user || (user.type === 'student' && user.email !== 'aadi.krishna@yale.edu')) {
+    // Basic admin check - allow access if logged in as student with your email or any investor
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+
+    // Check if user is authorized admin
+    const isAuthorizedAdmin = 
+      (user.type === 'student' && user.email === 'aadi.krishna@yale.edu') ||
+      (user.type === 'student' && user.netid === 'ak2729'); // Your netid as backup
+
+    if (!isAuthorizedAdmin) {
       router.push('/');
       return;
     }
@@ -105,7 +115,13 @@ export default function PitchbookRequestsAdminPage() {
     }
   };
 
-  if (!user || (user.type === 'student' && user.email !== 'aadi.krishna@yale.edu')) {
+  // Check if user is authorized admin (same logic as useEffect)
+  const isAuthorizedAdmin = user && (
+    (user.type === 'student' && user.email === 'aadi.krishna@yale.edu') ||
+    (user.type === 'student' && user.netid === 'ak2729')
+  );
+
+  if (!user || !isAuthorizedAdmin) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p className="text-gray-600">Access denied</p>
