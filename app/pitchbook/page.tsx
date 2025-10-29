@@ -15,7 +15,26 @@ export default function PitchbookPage() {
     // Redirect to login if not authenticated
     if (!user) {
       router.push('/login?redirect=/pitchbook');
+      return;
     }
+
+    // Check if user has pitchbook access
+    const checkAccess = async () => {
+      try {
+        const res = await fetch('/api/pitchbook/check-access');
+        const data = await res.json();
+        
+        if (!data.hasAccess) {
+          // Redirect to access gate
+          router.push('/pitchbook-access');
+        }
+      } catch (err) {
+        console.error('Failed to check access:', err);
+        router.push('/pitchbook-access');
+      }
+    };
+
+    checkAccess();
   }, [user, router]);
 
   useEffect(() => {
