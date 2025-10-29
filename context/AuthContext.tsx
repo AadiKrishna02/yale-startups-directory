@@ -10,6 +10,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
+  loading: boolean;
   login: () => void;
   logout: () => void;
 }
@@ -27,6 +28,7 @@ function getCookie(name: string): string | null {
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (typeof document !== 'undefined') {
@@ -44,6 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser({ netid: userCookie, name: userCookie, type: 'student' });
         }
       }
+      setLoading(false);
     }
   }, []);
 
@@ -58,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

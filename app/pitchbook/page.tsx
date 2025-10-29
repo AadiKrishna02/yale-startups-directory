@@ -8,10 +8,13 @@ import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
 
 export default function PitchbookPage() {
-  const { user, login } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
+    // Don't redirect while still loading
+    if (loading) return;
+    
     // Redirect to login if not authenticated
     if (!user) {
       router.push('/login?redirect=/pitchbook');
@@ -35,7 +38,7 @@ export default function PitchbookPage() {
     };
 
     checkAccess();
-  }, [user, router]);
+  }, [user, loading, router]);
 
   useEffect(() => {
     const markSeen = async () => {
@@ -51,10 +54,10 @@ export default function PitchbookPage() {
   }, [user]);
 
   // Show loading state while checking auth
-  if (!user) {
+  if (loading || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-600">Redirecting to login...</p>
+        <p className="text-gray-600">{loading ? 'Loading...' : 'Redirecting to login...'}</p>
       </div>
     );
   }
@@ -79,11 +82,11 @@ export default function PitchbookPage() {
         <div className="w-full bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
           <div className="bg-gray-50 border-b border-gray-200 px-4 py-2 flex items-center justify-between">
             <span className="text-sm text-gray-600">Pitchbook v1 (PDF)</span>
-            <a href="/202510_Pitchbook_vFinal.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-700 hover:underline">Open in new tab</a>
+            <a href="/20252910_Investor Pitchbook_vFinal.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-700 hover:underline">Open in new tab</a>
           </div>
           <div className="w-full" style={{ aspectRatio: '8.5 / 11' }}>
             <iframe
-              src="/202510_Pitchbook_vFinal.pdf#view=FitH"
+              src="/20252910_Investor Pitchbook_vFinal.pdf#view=FitH"
               title="Yale Startup Pitchbook v1"
               className="w-full h-full"
             />
