@@ -2,23 +2,39 @@ export const dynamic = 'force-dynamic';
 
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { 
+  sanitizeInput, 
+  checkRateLimit,
+  SECURITY_CONFIG 
+} from '@/lib/security';
 
 // Set your pitchbook access password here
 const PITCHBOOK_PASSWORD = process.env.PITCHBOOK_PASSWORD || 'yale2024';
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting
+    const ip = request.headers.get('x-forwarded-for') || 'unknown';
+    if (!checkRateLimit(`password-verify:${ip}`, SECURITY_CONFIG.RATE_LIMITS.passwordVerify)) {
+      return NextResponse.json({ error: 'Too many password attempts. Please try again later.' }, { status: 429 });
+    }
+
     const { password } = await request.json();
 
-    if (password === PITCHBOOK_PASSWORD) {
+    // Input validation
+    if (!password || typeof password !== 'string') {
+      return NextResponse.json({ error: 'Invalid password format' }, { status: 400 });
+    }
+
+    // Sanitize input
+    const sanitizedPassword = sanitizeInput(password);
+
+    if (sanitizedPassword === PITCHBOOK_PASSWORD) {
       // Set a cookie to remember they have access
       const response = NextResponse.json({ success: true });
       response.cookies.set('pitchbook_access', 'granted', {
-        path: '/',
-        maxAge: 60 * 60 * 24 * 30, // 30 days
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-        httpOnly: true,
+        ...SECURITY_CONFIG.COOKIE_SETTINGS,
+        maxAge: SECURITY_CONFIG.SESSION.pitchbookAccessMaxAge,
       });
       return response;
     } else {
