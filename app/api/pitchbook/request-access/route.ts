@@ -4,9 +4,18 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+let supabase: any = null;
+
+try {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  
+  if (supabaseUrl && supabaseKey) {
+    supabase = createClient(supabaseUrl, supabaseKey);
+  }
+} catch (error) {
+  console.error('Supabase initialization failed:', error);
+}
 
 export async function POST(request: Request) {
   try {
@@ -19,6 +28,10 @@ export async function POST(request: Request) {
 
     const user = JSON.parse(userCookie.value);
     const { affiliation, reason } = await request.json();
+
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not available' }, { status: 500 });
+    }
 
     // Insert access request into database
     const { data, error } = await supabase

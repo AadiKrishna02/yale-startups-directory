@@ -4,9 +4,18 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+let supabase: any = null;
+
+try {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  
+  if (supabaseUrl && supabaseKey) {
+    supabase = createClient(supabaseUrl, supabaseKey);
+  }
+} catch (error) {
+  console.error('Supabase initialization failed:', error);
+}
 
 export async function GET() {
   try {
@@ -28,15 +37,21 @@ export async function GET() {
     const userEmail = user.type === 'student' ? `${user.netid}@yale.edu` : user.email;
 
     // Check if they have an approved access request
-    const { data, error } = await supabase
-      .from('pitchbook_access_requests')
-      .select('*')
-      .eq('user_email', userEmail)
-      .eq('status', 'approved')
-      .single();
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('pitchbook_access_requests')
+          .select('*')
+          .eq('user_email', userEmail)
+          .eq('status', 'approved')
+          .single();
 
-    if (data && !error) {
-      return NextResponse.json({ hasAccess: true, method: 'approved' });
+        if (data && !error) {
+          return NextResponse.json({ hasAccess: true, method: 'approved' });
+        }
+      } catch (dbError) {
+        console.error('Database query failed:', dbError);
+      }
     }
 
     return NextResponse.json({ hasAccess: false });
