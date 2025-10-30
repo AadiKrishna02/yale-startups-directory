@@ -83,12 +83,12 @@ export default function PitchbookPage() {
         <div className="w-full bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
           <div className="bg-gray-50 border-b border-gray-200 px-4 py-2 flex items-center justify-between">
             <span className="text-sm text-gray-600">Pitchbook v1 (PDF)</span>
-            <a href="/20252910_Investor%20Pitchbook_vFinal.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-700 hover:underline">Open in new tab</a>
+            <a href="/20252910_Investor_20Pitchbook_vFinal.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-700 hover:underline">Open in new tab</a>
           </div>
           <div className="w-full min-h-[800px] bg-gray-50">
             {!pdfError ? (
               <iframe
-                src="/20252910_Investor%20Pitchbook_vFinal.pdf#view=FitH&toolbar=1"
+                src="/20252910_Investor_20Pitchbook_vFinal.pdf#view=FitH&toolbar=1"
                 title="Yale Startup Pitchbook v1"
                 className="w-full h-[800px] border-0"
                 onLoad={() => console.log('PDF loaded successfully')}
@@ -107,7 +107,7 @@ export default function PitchbookPage() {
                   <p className="text-sm text-gray-500 mb-6">Your browser cannot display this PDF inline.</p>
                   <div className="space-y-3">
                     <a 
-                      href="/20252910_Investor%20Pitchbook_vFinal.pdf" 
+                      href="/20252910_Investor_20Pitchbook_vFinal.pdf" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
