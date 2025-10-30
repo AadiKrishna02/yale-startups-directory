@@ -70,16 +70,16 @@ export default function PitchbookPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow max-w-5xl w-full mx-auto px-4 py-10">
-        <h1 className="text-4xl font-bold mb-4 text-blue-950">Yale Startup Pitchbook — v1</h1>
+        <h1 className="text-4xl font-bold mb-4 text-blue-950">Yale Startup Pitchbook for Investors— v1</h1>
         <div className="text-gray-700 leading-7 space-y-4 mb-8">
           <p>
-            Welcome to the Yale Startup Pitchbook, a curated collection of high-potential startups founded by Yale students, alumni, and faculty. This resource is designed for investors, partners, and collaborators interested in connecting with the Yale entrepreneurial ecosystem.
+            Welcome to the Yale Pitchbook, a curated collection of high-potential startups founded by Yale students, alumni, and faculty. This resource is designed for investors, partners, and collaborators interested in connecting with the Yale entrepreneurial ecosystem.
           </p>
           <p>
             Our startups span diverse industries including technology, healthcare, sustainability, and social impact. Each profile includes key information about the company's mission, market opportunity, team, and current funding needs.
           </p>
           <p>
-            Version 1 is the first iteration, analyzing 10+ Yale startups seeking investment, primarily in the pre-seed and seed stage. These companies represent high-potential, early-stage ventures with opportunities for mentorship, funding, or partnership.
+            Yale Startup Pitchbook for Investors Version 1 is the first iteration, analyzing 10+ Yale startups seeking investment, primarily in the pre-seed and seed stage. These companies represent high-potential, early-stage ventures with opportunities for mentorship, funding, or partnership.
           </p>
           <p>
             If you are interested in learning more about a startup or its founders, please reach out to us for an introduction.
