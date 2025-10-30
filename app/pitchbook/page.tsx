@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,6 +10,7 @@ import Link from 'next/link';
 export default function PitchbookPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const [pdfError, setPdfError] = useState(false);
 
   useEffect(() => {
     // Don't redirect while still loading
@@ -82,17 +83,57 @@ export default function PitchbookPage() {
         <div className="w-full bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
           <div className="bg-gray-50 border-b border-gray-200 px-4 py-2 flex items-center justify-between">
             <span className="text-sm text-gray-600">Pitchbook v1 (PDF)</span>
-            <a href="/20252910_Investor Pitchbook_vFinal.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-700 hover:underline">Open in new tab</a>
+            <a href="/20252910_Investor%20Pitchbook_vFinal.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-700 hover:underline">Open in new tab</a>
           </div>
-          <div className="w-full" style={{ aspectRatio: '8.5 / 11' }}>
-            <iframe
-              src="/20252910_Investor Pitchbook_vFinal.pdf#view=FitH"
-              title="Yale Startup Pitchbook v1"
-              className="w-full h-full"
-            />
+          <div className="w-full min-h-[800px] bg-gray-50">
+            {!pdfError ? (
+              <iframe
+                src="/20252910_Investor%20Pitchbook_vFinal.pdf#view=FitH&toolbar=1"
+                title="Yale Startup Pitchbook v1"
+                className="w-full h-[800px] border-0"
+                onLoad={() => console.log('PDF loaded successfully')}
+                onError={() => {
+                  console.error('PDF iframe failed to load');
+                  setPdfError(true);
+                }}
+              />
+            ) : (
+              <div className="flex items-center justify-center h-[800px] text-center p-8">
+                <div className="text-gray-600">
+                  <svg className="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <p className="text-lg font-medium mb-2">PDF Preview Unavailable</p>
+                  <p className="text-sm text-gray-500 mb-6">Your browser cannot display this PDF inline.</p>
+                  <div className="space-y-3">
+                    <a 
+                      href="/20252910_Investor%20Pitchbook_vFinal.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      Open in New Tab
+                    </a>
+                    <br />
+                    <button 
+                      onClick={() => setPdfError(false)}
+                      className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                      Try Again
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <div className="bg-gray-50 border-t border-gray-200 px-4 py-3 text-sm text-gray-600">
-            If the PDF does not load, <a href="/20252910_Investor Pitchbook_vFinal.pdf" className="text-blue-700 hover:underline">download it here</a>.
+            If the PDF does not load above, <a href="/20252910_Investor%20Pitchbook_vFinal.pdf" className="text-blue-700 hover:underline">download it here</a>.
           </div>
         </div>
       </main>
