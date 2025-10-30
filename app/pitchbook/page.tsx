@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,8 +9,6 @@ import { useAuth } from '@/context/AuthContext';
 export default function PitchbookPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const [showPdf, setShowPdf] = useState(false);
-  const [embedMethod, setEmbedMethod] = useState('iframe'); // 'iframe', 'object', 'google'
 
   useEffect(() => {
     // Don't redirect while still loading
@@ -31,9 +29,6 @@ export default function PitchbookPage() {
         if (!data.hasAccess) {
           // Redirect to access gate
           router.push('/pitchbook-access');
-        } else {
-          // Access granted, show PDF
-          setShowPdf(true);
         }
       } catch (err) {
         console.error('Failed to check access:', err);
@@ -45,7 +40,6 @@ export default function PitchbookPage() {
   }, [user, loading, router]);
 
   useEffect(() => {
-    // Mark PDF as seen for investors
     const markSeen = async () => {
       try {
         if (user?.type === 'investor') {
@@ -55,166 +49,96 @@ export default function PitchbookPage() {
         console.error('Failed to mark PDF as seen', err);
       }
     };
-    
-    if (showPdf) {
-      markSeen();
-    }
-  }, [user, showPdf]);
+    markSeen();
+  }, [user]);
 
   // Show loading state while checking auth
   if (loading || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
-          <p className="text-gray-600">{loading ? 'Loading...' : 'Redirecting to login...'}</p>
-        </div>
+        <p className="text-gray-600">{loading ? 'Loading...' : 'Redirecting to login...'}</p>
       </div>
     );
   }
 
-  const renderPdfEmbed = () => {
-    const pdfUrl = '/Pitchbook.pdf';
-    
-    switch (embedMethod) {
-      case 'iframe':
-        return (
-          <iframe
-            src={`${pdfUrl}#toolbar=1&navpanes=0&scrollbar=1`}
-            title="Yale Startup Pitchbook v1"
-            className="w-full h-[800px] border-0 rounded"
-            style={{ minHeight: '800px' }}
-          />
-        );
-      
-      case 'object':
-        return (
-          <object
-            data={`${pdfUrl}#toolbar=1&navpanes=0`}
-            type="application/pdf"
-            className="w-full h-[800px] rounded"
-            style={{ minHeight: '800px' }}
-          >
-            <embed
-              src={`${pdfUrl}#toolbar=1&navpanes=0`}
-              type="application/pdf"
-              className="w-full h-[800px] rounded"
-              style={{ minHeight: '800px' }}
-            />
-          </object>
-        );
-      
-      case 'google':
-        return (
-          <iframe
-            src={`https://docs.google.com/viewer?url=${encodeURIComponent(window.location.origin + pdfUrl)}&embedded=true`}
-            title="Yale Startup Pitchbook v1"
-            className="w-full h-[800px] border-0 rounded"
-            style={{ minHeight: '800px' }}
-          />
-        );
-      
-      default:
-        return null;
-    }
+  const handleViewPdf = () => {
+    // Open PDF in view-only mode using Google Docs Viewer (no download option)
+    const pdfUrl = encodeURIComponent(window.location.origin + '/Pitchbook.pdf');
+    const googleViewerUrl = `https://docs.google.com/viewer?url=${pdfUrl}&embedded=false`;
+    window.open(googleViewerUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleOpenPdf = () => {
+    // Open PDF directly (may show download option depending on browser)
+    window.open('/Pitchbook.pdf', '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow max-w-6xl w-full mx-auto px-4 py-8">
-        {/* Header Section */}
-        <div className="bg-white rounded-lg shadow-sm p-8 mb-6">
-          <h1 className="text-4xl font-bold mb-6 text-blue-950">Yale Startup Pitchbook — v1</h1>
-          <div className="text-gray-700 leading-7 space-y-4">
-            <p>
-              Welcome to the Yale Startup Pitchbook, a curated collection of high-potential startups founded by Yale students, alumni, and faculty. This resource is designed for investors, partners, and collaborators interested in connecting with the Yale entrepreneurial ecosystem.
-            </p>
-            <p>
-              Our startups span diverse industries including technology, healthcare, sustainability, and social impact. Each profile includes key information about the company's mission, market opportunity, team, and current funding needs.
-            </p>
-            <p>
-              Version 1 is the first iteration, analyzing 10+ Yale startups seeking investment, primarily in the pre-seed and seed stage. These companies represent high-potential, early-stage ventures with opportunities for mentorship, funding, or partnership.
-            </p>
-            <p className="text-blue-700 font-medium">
-              If you are interested in learning more about a startup or its founders, please reach out to us for an introduction.
-            </p>
-          </div>
+      <main className="flex-grow max-w-5xl w-full mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-4 text-blue-950">Yale Startup Pitchbook — v1</h1>
+        <div className="text-gray-700 leading-7 space-y-4 mb-8">
+          <p>
+            Welcome to the Yale Startup Pitchbook, a curated collection of high-potential startups founded by Yale students, alumni, and faculty. This resource is designed for investors, partners, and collaborators interested in connecting with the Yale entrepreneurial ecosystem.
+          </p>
+          <p>
+            Our startups span diverse industries including technology, healthcare, sustainability, and social impact. Each profile includes key information about the company's mission, market opportunity, team, and current funding needs.
+          </p>
+          <p>
+            Version 1 is the first iteration, analyzing 10+ Yale startups seeking investment, primarily in the pre-seed and seed stage. These companies represent high-potential, early-stage ventures with opportunities for mentorship, funding, or partnership.
+          </p>
+          <p>
+            If you are interested in learning more about a startup or its founders, please reach out to us for an introduction.
+          </p>
         </div>
 
-        {/* PDF Viewer Section */}
-        {showPdf ? (
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-            {/* PDF Controls */}
-            <div className="bg-gray-50 border-b border-gray-200 px-6 py-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-gray-800">Pitchbook v1 (PDF)</h2>
-                <div className="flex items-center space-x-4">
-                  {/* Embed Method Selector */}
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-600">View method:</span>
-                    <select
-                      value={embedMethod}
-                      onChange={(e) => setEmbedMethod(e.target.value)}
-                      className="text-sm border border-gray-300 rounded px-2 py-1 bg-white"
-                    >
-                      <option value="iframe">Standard</option>
-                      <option value="object">Object Embed</option>
-                      <option value="google">Google Viewer</option>
-                    </select>
-                  </div>
-                  
-                  {/* External Links */}
-                  <a 
-                    href="/Pitchbook.pdf" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="inline-flex items-center px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-                  >
-                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                    Open in New Tab
-                  </a>
-                  
-                  <a 
-                    href="/Pitchbook.pdf" 
-                    download="Yale-Startup-Pitchbook-v1.pdf"
-                    className="inline-flex items-center px-3 py-1 text-sm bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
-                  >
-                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    Download
-                  </a>
-                </div>
+        {/* PDF Access Section */}
+        <div className="w-full bg-white border border-gray-200 rounded-lg shadow-sm p-8">
+          <div className="text-center">
+            <div className="mb-6">
+              <svg className="w-16 h-16 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Yale Startup Pitchbook v1</h2>
+              <p className="text-gray-600 mb-6">
+                Access the complete pitchbook featuring 10+ high-potential Yale startups seeking investment.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {/* Primary View Button - No Download Option */}
+              <button
+                onClick={handleViewPdf}
+                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white text-lg font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+              >
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                View Pitchbook
+              </button>
+
+              {/* Alternative Open Button */}
+              <div className="text-sm text-gray-500">
+                <span>or </span>
+                <button
+                  onClick={handleOpenPdf}
+                  className="text-blue-600 hover:text-blue-700 underline"
+                >
+                  open PDF directly
+                </button>
               </div>
             </div>
 
-            {/* PDF Embed Container */}
-            <div className="p-4 bg-gray-100">
-              <div className="bg-white rounded shadow-inner">
-                {renderPdfEmbed()}
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div className="bg-gray-50 border-t border-gray-200 px-6 py-3">
-              <p className="text-sm text-gray-600">
-                Having trouble viewing the PDF? Try switching the view method above or{' '}
-                <a href="/Pitchbook.pdf" target="_blank" className="text-blue-600 hover:underline">
-                  open it in a new tab
-                </a>
-                .
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <p className="text-sm text-gray-500">
+                The pitchbook will open in a new tab. If you experience any issues viewing the document, 
+                please try the alternative link above or contact us for assistance.
               </p>
             </div>
           </div>
-        ) : (
-          <div className="bg-white rounded-lg shadow-sm p-8 text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Checking access permissions...</p>
-          </div>
-        )}
+        </div>
       </main>
       <Footer />
     </div>
