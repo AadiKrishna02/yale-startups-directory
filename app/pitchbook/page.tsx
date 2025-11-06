@@ -82,7 +82,7 @@ export default function PitchbookPage() {
             Yale Startup Pitchbook for Investors Version 1 is the first iteration, analyzing 10+ Yale startups seeking investment, primarily in the pre-seed and seed stage. These companies represent high-potential, early-stage ventures with opportunities for mentorship, funding, or partnership.
           </p>
           <p>
-            If you are interested in learning more about a startup or its founders, please reach out to us for an introduction.
+            If you are interested in learning more about a startup or its founders, please reach out to us for an introduction. If you decide to reach out on your own, we would appreciate if you could let us know since that is the only way for us to track our impact. Thank you!
           </p>
         </div>
 
