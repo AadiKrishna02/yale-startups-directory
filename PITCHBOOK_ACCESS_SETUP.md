@@ -25,8 +25,17 @@ NEXT_PUBLIC_BASE_URL=https://yalepitchbook.com
 The system sends emails for:
 - Access request notifications (to aadi.krishna@yale.edu)
 - Approval notifications (to the requester)
+- Password reset instructions (for investor forgot-password)
 
-Make sure your `/api/send-email` endpoint is configured with your email provider.
+Add to your `.env.local`:
+```
+RESEND_API_KEY=re_xxxxxxxxxxxx
+RESEND_FROM=Yale Pitchbook <noreply@yourdomain.com>   # optional; defaults to onboarding@resend.dev
+```
+
+1. Sign up at [resend.com](https://resend.com) (free tier: 100 emails/day)
+2. Create an API key in the Resend dashboard
+3. For production, verify your domain in Resend and set `RESEND_FROM`
 
 ## User Flow
 
