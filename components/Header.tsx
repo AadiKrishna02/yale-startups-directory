@@ -38,23 +38,28 @@ const navItems = [
 const partnerLogos = [
   {
     src: "/partners/y-ventures-removebg.png",
-    alt: "Yale Ventures"
+    alt: "Yale Ventures",
+    href: "https://ventures.yale.edu/"
   },
   {
     src: "/partners/som-bg.png",
-    alt: "School of Management"
+    alt: "School of Management",
+    href: "https://som.yale.edu"
   },
   {
     src: "/partners/tsai-city-bg.png",
-    alt: "Tsai CITY"
+    alt: "Tsai CITY",
+    href: "https://city.yale.edu"
   },
   {
     src: "/partners/y_startup_index_logo.jpeg",
-    alt: "Yale Angels"
-  },  
+    alt: "Yale Angels",
+    href: "https://www.yaleangelsindex.com/"
+  },
   {
     src: "/partners/accelerate_yale.png",
-    alt: "Accelerate Yale"
+    alt: "Accelerate Yale",
+    href: "https://www.accelerateyale.org/"
   }
 ];
 
@@ -245,14 +250,28 @@ export default function Header() {
               <div className="flex flex-col items-start">
                 <p className="text-xs text-gray-500 mb-3">With support from</p>
                 <div className="flex items-center space-x-4 overflow-x-auto w-full pb-1">
-                  {partnerLogos.map((logo) => (
-                    <img
-                      key={logo.alt}
-                      src={logo.src}
-                      alt={logo.alt}
-                      className="h-7 w-auto object-contain"
-                    />
-                  ))}
+                  {partnerLogos.map((logo) => {
+                    const img = (
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        className="h-7 w-auto object-contain hover:opacity-80 transition-opacity"
+                      />
+                    );
+                    return logo.href ? (
+                      <a
+                        key={logo.alt}
+                        href={logo.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={logo.alt}
+                      >
+                        {img}
+                      </a>
+                    ) : (
+                      <span key={logo.alt}>{img}</span>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -264,14 +283,28 @@ export default function Header() {
           <div className="flex items-center justify-start">
             <span className="text-xs text-gray-500 mr-4">With support from</span>
             <div className="flex items-center gap-4">
-              {partnerLogos.map((logo) => (
-                <img
-                  key={logo.alt}
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="h-8 w-auto object-contain"
-                />
-              ))}
+              {partnerLogos.map((logo) => {
+                const img = (
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="h-8 w-auto object-contain hover:opacity-80 transition-opacity"
+                  />
+                );
+                return logo.href ? (
+                  <a
+                    key={logo.alt}
+                    href={logo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={logo.alt}
+                  >
+                    {img}
+                  </a>
+                ) : (
+                  <span key={logo.alt}>{img}</span>
+                );
+              })}
             </div>
           </div>
         </div>
