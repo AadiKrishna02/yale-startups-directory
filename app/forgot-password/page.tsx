@@ -38,8 +38,8 @@ function ForgotPasswordContent() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow flex items-center justify-center p-4">
-        <div className="w-full max-w-md space-y-6">
+      <main className="flex-grow flex flex-col items-center justify-center px-4 py-24">
+        <div className="w-full max-w-md space-y-6 mt-12 mb-12">
           <h1 className="text-2xl font-semibold text-center">Reset your password</h1>
           {message && (
             <p className={`text-sm text-center ${status === 'success' ? 'text-green-700' : status === 'error' ? 'text-red-600' : 'text-gray-600'}`}>{message}</p>

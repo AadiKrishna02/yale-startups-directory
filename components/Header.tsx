@@ -51,11 +51,11 @@ const partnerLogos = [
     alt: "Tsai CITY",
     href: "https://city.yale.edu"
   },
-  // {
-  //   src: "/partners/y_startup_index_logo.jpeg",
-  //   alt: "Yale Angels",
-  //   href: "https://www.yaleangelsindex.com/"
-  // },
+  {
+    src: "/partners/y_startup_index_logo.jpeg",
+    alt: "Yale Angels",
+    href: "https://www.yaleangelsindex.com/"
+  },
   {
     src: "/partners/accelerate_yale.png",
     alt: "Accelerate Yale",
