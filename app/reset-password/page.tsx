@@ -136,14 +136,6 @@ function ResetPasswordContent() {
               </button>
             </form>
           )}
-          <p className="text-center text-sm">
-            <a
-              href="/investor-login"
-              className="text-blue-600 hover:underline"
-            >
-              Back to investor login
-            </a>
-          </p>
         </div>
       </main>
       <Footer />
