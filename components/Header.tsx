@@ -44,7 +44,7 @@ const partnerLogos = [
   {
     src: "/partners/som-bg.png",
     alt: "School of Management",
-    href: "https://som.yale.edu"
+    href: "https://som.yale.edu/centers/program-on-entrepreneurship"
   },
   {
     src: "/partners/tsai-city-bg.png",
