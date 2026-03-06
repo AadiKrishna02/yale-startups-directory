@@ -49,7 +49,7 @@ const partnerLogos = [
     alt: "Tsai CITY"
   },
   {
-    src: "/partners/y_startup_index_logo.jpeg",
+    src: "/partners/y-angels.jpg",
     alt: "Yale Angels"
   },  
   {

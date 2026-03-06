@@ -1,7 +1,5 @@
 'use client';
 
-'use client';
-
 import React, { useState, Suspense } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -66,7 +64,7 @@ function ForgotPasswordContent() {
             </button>
           </form>
           <p className="text-center text-sm">
-            Remembered your password? <a href="/login?mode=investor" className="text-blue-600 hover:underline">Back to investor login</a>
+            Remembered your password? <a href="/investor-login" className="text-blue-600 hover:underline">Back to investor login</a>
           </p>
         </div>
       </main>
