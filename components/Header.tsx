@@ -48,6 +48,14 @@ const partnerLogos = [
     src: "/partners/tsai-city-bg.png",
     alt: "Tsai CITY"
   }
+  {
+    src: "/partners/y_startup_index_logo.jpeg",
+    alt: "Yale Angels"
+  }
+  {
+    src: "/partners/accelerate_yale.png",
+    alt: "Accelerate Yale"
+  }
 ];
 
 export default function Header() {
