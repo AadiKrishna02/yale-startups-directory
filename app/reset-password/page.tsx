@@ -53,8 +53,8 @@ function ResetPasswordContent() {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow flex items-center justify-center px-4 py-24">
-          <div className="w-full max-w-md space-y-6 text-center">
+        <main className="flex-grow flex flex-col items-center justify-center px-4 py-24">
+          <div className="w-full max-w-md space-y-6 text-center mt-12 mb-12">
             <h1 className="text-2xl font-semibold">Invalid reset link</h1>
             <p className="text-gray-600">
               This password reset link is invalid or has expired. Please{' '}
@@ -73,8 +73,8 @@ function ResetPasswordContent() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow flex items-center justify-center px-4 py-24">
-        <div className="w-full max-w-md space-y-6">
+      <main className="flex-grow flex flex-col items-center justify-center px-4 py-24">
+        <div className="w-full max-w-md space-y-6 mt-12 mb-12">
           <h1 className="text-2xl font-semibold text-center">Set new password</h1>
           {message && (
             <p
