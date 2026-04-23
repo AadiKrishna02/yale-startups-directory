@@ -492,7 +492,7 @@ export default function TeamPage() {
   const teamMembers: TeamMember[] = [
     {
       name: "Aadi Krishna",
-      role: "Founder & Principal",
+      role: "Founder & Lead Developer",
       bio: "Yale College '26, Computer Science and Ethics, Politics, and Economics.",
       imageUrl: "/aadi2.JPG",
       linkedinUrl: "https://www.linkedin.com/in/aadi-krishna/",
@@ -541,7 +541,7 @@ export default function TeamPage() {
     },
     {
       name: "Jack Yin",
-      role: "Tech Lead",
+      role: "Tech Team",
       bio: "Yale College '28, Computer Science and Mathematics.",
       imageUrl: "/jack.jpeg",
       linkedinUrl: "https://www.linkedin.com/in/jackjyin/",
