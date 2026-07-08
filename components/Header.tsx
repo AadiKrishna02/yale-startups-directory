@@ -47,11 +47,11 @@ const partnerLogos = [
     alt: "Yale Ventures",
     href: "https://ventures.yale.edu/"
   },
-  {
-    src: "/partners/som-bg.png",
-    alt: "School of Management",
-    href: "https://som.yale.edu/centers/program-on-entrepreneurship"
-  },
+  // {
+  //   src: "/partners/som-bg.png",
+  //   alt: "School of Management",
+  //   href: "https://som.yale.edu/centers/program-on-entrepreneurship"
+  // },
   {
     src: "/partners/tsai-city-bg.png",
     alt: "Tsai CITY",
