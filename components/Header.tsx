@@ -18,12 +18,12 @@ const navItems = [
     isExternal: false,
     disabled: false
   },
-  { 
-    name: 'Opportunities', 
-    href: '/opportunities',
-    isExternal: false,
-    disabled: false
-  },
+  // { 
+  //   name: 'Opportunities', 
+  //   href: '/opportunities',
+  //   isExternal: false,
+  //   disabled: false
+  // },
   { 
     name: 'Submit Startup', 
     href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform',
