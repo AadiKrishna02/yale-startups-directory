@@ -38,7 +38,7 @@ export default function AboutPage() {
       description: "A comprehensive database showcasing the innovative startups emerging from Yale's entrepreneurial ecosystem. Get discovered by investors, potential team members, and collaborators.",
       cta: {
         text: "Submit Your Startup",
-        link: "https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform"
+        link: "/submit-startup"
       }
     },
     {
@@ -126,15 +126,13 @@ export default function AboutPage() {
                       {offering.cta.text}
                     </div>
                   ) : (
-                    <a
-                      href={offering.cta.link}
+                    <Link
+                      href={offering.cta.link || '#'}
                       className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
-                      target="_blank"
-                      rel="noopener noreferrer"
                     >
                       {offering.cta.text}
                       <ArrowUpRight className="w-5 h-5" />
-                    </a>
+                    </Link>
                   )}
                 </div>
               ))}

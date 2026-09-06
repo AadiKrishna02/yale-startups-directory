@@ -3,6 +3,26 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Yale Startup Pitchbook
 A comprehensive platform connecting Yale startups with investors and resources.
 
+## Startup submissions
+
+`/submit-startup` replaces the old Google Form. Submissions go to
+`POST /api/startups/submit`, which writes to the `startups` table with the
+service-role key and sets `status = 'pending'`.
+
+**Before deploying, run `supabase/migrations/20260906_startup_submissions.sql`
+in the Supabase SQL editor.** It adds the remaining form fields, enables RLS on
+`startups`, and creates the `startups_public` view.
+
+Public pages (`/directory`, `/opportunities`) read `startups_public`, which
+exposes only approved rows and only public columns. Private fields
+(`submitter_email`, `contact_person`, `funding_raised`, `funding_timeline`,
+`pitchbook_opt_in`) are readable only through server routes.
+
+To publish a submission, set its `status` to `approved` in Supabase.
+
+Required env vars: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
+`SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_BASE_URL`.
+
 ## Getting Started
 
 First, run the development server:

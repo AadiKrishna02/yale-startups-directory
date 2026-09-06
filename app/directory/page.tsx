@@ -350,7 +350,7 @@ export default function DirectoryPage() {
   useEffect(() => {
     async function loadStartups() {
       try {
-        const { data, error } = await supabase.from('startups').select('*');
+        const { data, error } = await supabase.from('startups_public').select('*');
         if (error) throw error;
 
         // Compute filter options from loaded data

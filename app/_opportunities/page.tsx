@@ -37,7 +37,7 @@ export default function OpportunitiesPage() {
     async function loadStartupsWithAnnouncements() {
       try {
         const { data, error } = await supabase
-          .from('startups')
+          .from('startups_public')
           .select('*')
           .not('problem', 'is', null)
           .not('problem', 'eq', '');

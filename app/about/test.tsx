@@ -111,7 +111,7 @@ export default function AboutPage() {
                     added on a rolling basis afterward.
                   </p>
                   <a 
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform"
+                    href="/submit-startup"
                     className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"

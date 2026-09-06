@@ -47,33 +47,37 @@ function EditableStartupCard({
   const handleSave = async () => {
     setSaving(true);
     try {
-      // Update row with all the form data, matching on the original name
-      const { data, error } = await supabase
-        .from('startups')
-        .update({
-          name: formData.name,
-          description: formData.description,
-          founders: formData.founders,
-          industry: formData.industry,
-          stage: formData.stage,
-          team: formData.team,
-          website: formData.website,
-          problem: formData.problem,
-          display_founders: formData.display_founders, // <-- Include the new field
-        })
-        .eq('name', originalName)
-        .select();
+      // Goes through the API route: `startups` is closed to the anon key, and
+      // the route re-checks that this user is a founder before writing.
+      const res = await fetch('/api/startups/mine', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          originalName,
+          updates: {
+            name: formData.name,
+            description: formData.description,
+            founders: formData.founders,
+            industry: formData.industry,
+            stage: formData.stage,
+            team: formData.team,
+            website: formData.website,
+            problem: formData.problem,
+            display_founders: formData.display_founders, // <-- Include the new field
+          },
+        }),
+      });
+      const payload = await res.json();
 
-      if (error) {
-        console.error('Supabase update error:', error);
-        throw error;
+      if (!res.ok) {
+        console.error('Startup update error:', payload.error);
+        throw new Error(payload.error);
       }
 
-      if (data && data.length > 0) {
-        const updatedRow = data[0];
-        onUpdate(updatedRow);
+      if (payload.startup) {
+        onUpdate(payload.startup);
         // Update the original name in case the user changed it
-        setOriginalName(updatedRow.name);
+        setOriginalName(payload.startup.name);
       } else {
         console.warn('No updated row returned');
       }
@@ -382,24 +386,15 @@ export default function AccountPage() {
         return;
       }
       try {
-        const { data, error } = await supabase.from('startups').select('*');
-        if (error) {
-          throw error;
+        // The route does the founder matching server-side and includes
+        // submissions still awaiting approval.
+        const res = await fetch('/api/startups/mine');
+        const payload = await res.json();
+        if (!res.ok) {
+          throw new Error(payload.error);
         }
 
-        // Normalize the user's full name by removing spaces/lowercasing
-        const normalizedUserName = user.name.replace(/\s+/g, '').toLowerCase();
-
-        // Filter to find startups that list this user as a founder
-        const filtered = (data as Startup[]).filter((startup) => {
-          if (!startup.founders) return false;
-          const foundersList = startup.founders
-            .split(',')
-            .map((f) => f.replace(/\s+/g, '').toLowerCase());
-          return foundersList.includes(normalizedUserName);
-        });
-
-        setUserStartups(filtered);
+        setUserStartups(payload.startups as Startup[]);
       } catch (error) {
         console.error('Error loading startups for account:', error);
       } finally {

@@ -26,8 +26,8 @@ const navItems = [
   // },
   { 
     name: 'Submit Startup', 
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform',
-    isExternal: true
+    href: '/submit-startup',
+    isExternal: false
   },
   { 
     name: 'Team', 

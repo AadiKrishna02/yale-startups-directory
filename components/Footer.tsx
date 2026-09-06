@@ -49,20 +49,21 @@ export default function Footer() {
                     Startup Directory
                   </Link>
                 </li>
-                <li>
+                {/* Hidden for now. Restore this link and rename
+                    app/_opportunities back to app/opportunities to bring the
+                    page back. */}
+                {/* <li>
                   <Link href="/opportunities" className="text-sm text-blue-100/80 hover:text-white/90 transition-colors">
                     Opportunities to Join a Startup
                   </Link>
-                </li>
+                </li> */}
                 <li>
-                  <a 
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfeuaJP4vEFNQuGmkOE4wXpbEUJluGD9gO308-NbzbvduTekQ/viewform" 
+                  <Link
+                    href="/submit-startup"
                     className="text-sm text-blue-100/80 hover:text-white/90 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
                   >
                     Submit Your Startup
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a 
