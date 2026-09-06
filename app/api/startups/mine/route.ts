@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
+import { readSessionCookie } from '@/lib/session';
 
 // `startups` is closed to the anon key now that it holds private submission
 // data, so the account page's reads and writes go through here instead.
@@ -39,15 +40,7 @@ const SELECT_COLUMNS = ['id', 'status', ...EDITABLE_COLUMNS].join(', ');
 const normalize = (value: string) => value.replace(/\s+/g, '').toLowerCase();
 
 function getUser() {
-  const userCookie = cookies().get('user');
-  if (!userCookie) return null;
-  try {
-    // next/headers already percent-decodes the value; decoding again throws
-    // URIError on any name containing a literal '%'.
-    return JSON.parse(userCookie.value);
-  } catch {
-    return null;
-  }
+  return readSessionCookie(cookies().get('user')?.value);
 }
 
 // Mirrors the founder matching the account page used to do client-side.

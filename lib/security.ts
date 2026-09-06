@@ -32,7 +32,9 @@ export const SECURITY_CONFIG = {
     },
     name: {
       maxLength: 100,
-      allowedChars: /^[a-zA-Z\s\-'\.]+$/,
+      // Unicode letters, not just A-Z: the old class rejected "José" and
+      // "Müller" with "Invalid name format" and no way to proceed.
+      allowedChars: /^[\p{L}\p{M}\s\-'\.]+$/u,
     },
   },
   

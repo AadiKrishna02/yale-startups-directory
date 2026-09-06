@@ -7,6 +7,7 @@ import {
   checkRateLimit,
   SECURITY_CONFIG 
 } from '@/lib/security';
+import { signValue } from '@/lib/session';
 
 // Set your pitchbook access password here
 const PITCHBOOK_PASSWORD = process.env.PITCHBOOK_PASSWORD || 'yale2024';
@@ -31,8 +32,16 @@ export async function POST(request: Request) {
 
     if (sanitizedPassword === PITCHBOOK_PASSWORD) {
       // Set a cookie to remember they have access
+      const accessCookie = signValue('granted');
+      if (!accessCookie) {
+        return NextResponse.json(
+          { error: 'Access is temporarily unavailable.' },
+          { status: 503 }
+        );
+      }
+
       const response = NextResponse.json({ success: true });
-      response.cookies.set('pitchbook_access', 'granted', {
+      response.cookies.set('pitchbook_access', accessCookie, {
         ...SECURITY_CONFIG.COOKIE_SETTINGS,
         maxAge: SECURITY_CONFIG.SESSION.pitchbookAccessMaxAge,
       });

@@ -16,8 +16,8 @@ function LoginContent() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // If already logged in as student, go straight to destination (default to /pitchbook)
-    if (user?.type === 'student') {
+    // If already logged in (either type), go straight to the destination
+    if (user) {
       router.replace(redirect || '/pitchbook');
     }
   }, [user, redirect, router]);

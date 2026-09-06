@@ -3,18 +3,37 @@ export const runtime = 'nodejs';
 
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabaseClient';
+import { createSessionCookie } from '@/lib/session';
 
 export async function GET(request: Request) {
   const { origin, searchParams } = new URL(request.url);
-  const redirect = searchParams.get('redirect') || '/account';
-  const ticket = new URL(request.url).searchParams.get('ticket');
+
+  // The service URL must be byte-identical to the one /api/cas/login sent, or
+  // CAS rejects the ticket. Rebuild it from the raw parameter and apply the
+  // default only afterwards -- defaulting first appended a `redirect` that the
+  // login route never sent, so ticket validation failed and the user was
+  // bounced to the homepage with no error.
+  const rawRedirect = searchParams.get('redirect');
+
+  const ticket = searchParams.get('ticket');
   if (!ticket) {
     console.error("No ticket provided");
     return NextResponse.redirect(`${origin}/`);
   }
 
   // 1) Validate the CAS ticket
-  const serviceUrl = `${origin}/api/cas/callback${redirect ? `?redirect=${encodeURIComponent(redirect)}` : ''}`;
+  const serviceUrlBuilder = new URL('/api/cas/callback', origin);
+  if (rawRedirect) {
+    serviceUrlBuilder.searchParams.set('redirect', rawRedirect);
+  }
+  const serviceUrl = serviceUrlBuilder.toString();
+
+  // Only follow same-site paths, so `?redirect=https://evil.example` cannot
+  // turn the login flow into an open redirect.
+  const redirect =
+    rawRedirect && rawRedirect.startsWith('/') && !rawRedirect.startsWith('//')
+      ? rawRedirect
+      : '/account';
   const casValidateUrl = new URL('https://secure.its.yale.edu/cas/serviceValidate');
   casValidateUrl.searchParams.set('ticket', ticket);
   casValidateUrl.searchParams.set('service', serviceUrl);
@@ -95,10 +114,16 @@ export async function GET(request: Request) {
   }
 
   // 4) Set a cookie with user info, then redirect
-  const user = { netid, name: fullName, type: 'student' };
+  const user = { netid, name: fullName, type: 'student' as const };
+
+  const sessionCookie = createSessionCookie(user);
+  if (!sessionCookie) {
+    console.error('Cannot issue a session: SESSION_SECRET is not configured.');
+    return NextResponse.redirect(`${origin}/login?error=session`);
+  }
 
   const response = NextResponse.redirect(`${origin}${redirect}`);
-  response.cookies.set('user', JSON.stringify(user), {
+  response.cookies.set('user', sessionCookie, {
     path: '/',
     maxAge: 60 * 60 * 24 * 7, // 7 days
     secure: process.env.NODE_ENV === 'production',

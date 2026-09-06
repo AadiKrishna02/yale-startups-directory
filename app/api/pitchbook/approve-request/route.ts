@@ -1,7 +1,9 @@
 export const dynamic = 'force-dynamic';
 
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
+import { readSessionCookie, isAdmin } from '@/lib/session';
 
 let supabase: any = null;
 
@@ -18,7 +20,19 @@ try {
 
 export async function POST(request: Request) {
   try {
-    const { requestId, status, adminEmail } = await request.json();
+    // This route had no authentication: anyone who could POST to it could
+    // approve their own pitchbook access request.
+    const user = readSessionCookie(cookies().get('user')?.value);
+
+    if (!user) {
+      return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+    }
+
+    if (!isAdmin(user)) {
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+    }
+
+    const { requestId, status } = await request.json();
 
     if (!['approved', 'denied'].includes(status)) {
       return NextResponse.json({ error: 'Invalid status' }, { status: 400 });
@@ -34,7 +48,7 @@ export async function POST(request: Request) {
       .update({
         status,
         reviewed_at: new Date().toISOString(),
-        reviewed_by: adminEmail || 'admin',
+        reviewed_by: user.email || user.netid || 'admin',
       })
       .eq('id', requestId)
       .select()

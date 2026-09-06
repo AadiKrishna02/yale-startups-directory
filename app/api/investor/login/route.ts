@@ -3,13 +3,17 @@ export const runtime = 'nodejs';
 
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabaseClient';
-import { verifyPassword } from '@/lib/authUtils';
+import { hashPassword, verifyPassword } from '@/lib/authUtils';
+import { createSessionCookie } from '@/lib/session';
 import { 
   sanitizeInput, 
   isValidEmail, 
   checkRateLimit,
   SECURITY_CONFIG 
 } from '@/lib/security';
+
+// A well-formed hash that no password matches, used to equalise timing.
+const DUMMY_PASSWORD_HASH = hashPassword('unused-placeholder-for-timing');
 
 export async function POST(request: Request) {
   try {
@@ -40,19 +44,29 @@ export async function POST(request: Request) {
       .eq('email', sanitizedEmail)
       .single();
       
-    if (error || !data) {
+    // Verify against a dummy hash when the email is unknown, so both paths cost
+    // the same scrypt work. Returning early leaked which emails are registered.
+    const storedHash = data?.password ?? DUMMY_PASSWORD_HASH;
+    const passwordMatches = verifyPassword(storedHash, password);
+
+    if (error || !data || !passwordMatches) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
     
-    if (!verifyPassword(data.password, password)) {
-      return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
+    const user = { email: data.email, name: data.name, type: 'investor' as const };
+
+    const sessionCookie = createSessionCookie(user);
+    if (!sessionCookie) {
+      return NextResponse.json(
+        { error: 'Login is temporarily unavailable.' },
+        { status: 503 }
+      );
     }
-    
-    const user = { email: data.email, name: data.name, type: 'investor' };
+
     const response = NextResponse.json({ success: true });
     
     // Use secure cookie settings
-    response.cookies.set('user', JSON.stringify(user), {
+    response.cookies.set('user', sessionCookie, {
       ...SECURITY_CONFIG.COOKIE_SETTINGS,
       maxAge: SECURITY_CONFIG.SESSION.maxAge,
       httpOnly: false, // Keep false for client-side access in auth context

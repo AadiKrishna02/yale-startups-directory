@@ -23,6 +23,21 @@ To publish a submission, set its `status` to `approved` in Supabase.
 Required env vars: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
 `SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_BASE_URL`.
 
+## Sessions
+
+`SESSION_SECRET` is **required** for anyone to log in. The `user` cookie is
+signed with it (`lib/session.ts`); without it, or with a value under 32
+characters, every session is rejected and login fails closed.
+
+Generate one and set it in Vercel and `.env.local`:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+Changing this value signs everyone out. Deploying it for the first time also
+signs out every existing session, since old cookies carry no signature.
+
 ## Getting Started
 
 First, run the development server:

@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
+import { readSessionCookie, verifySignedValue } from '@/lib/session';
 
 let supabase: any = null;
 
@@ -21,19 +22,18 @@ export async function GET() {
   try {
     const cookieStore = cookies();
     
-    // Check if they have password access via cookie
+    // Check if they have password access via cookie. Signed, so the value
+    // cannot simply be typed into the browser's cookie editor.
     const accessCookie = cookieStore.get('pitchbook_access');
-    if (accessCookie?.value === 'granted') {
+    if (verifySignedValue(accessCookie?.value) === 'granted') {
       return NextResponse.json({ hasAccess: true, method: 'password' });
     }
 
     // Check if user is authenticated
-    const userCookie = cookieStore.get('user');
-    if (!userCookie) {
+    const user = readSessionCookie(cookieStore.get('user')?.value);
+    if (!user) {
       return NextResponse.json({ hasAccess: false });
     }
-
-    const user = JSON.parse(userCookie.value);
     const userEmail = user.type === 'student' ? `${user.netid}@yale.edu` : user.email;
     
     // Debug logging

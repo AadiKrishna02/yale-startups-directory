@@ -30,7 +30,7 @@ export default function PitchbookRequestsAdminPage() {
   useEffect(() => {
     // Basic admin check - allow access if logged in as student with your email or any investor
     if (!user) {
-      router.push('/login');
+      router.push('/login?redirect=/admin/pitchbook-requests');
       return;
     }
 
@@ -73,7 +73,6 @@ export default function PitchbookRequestsAdminPage() {
         body: JSON.stringify({
           requestId,
           status,
-          adminEmail: user?.email || 'admin',
         }),
       });
 

@@ -26,6 +26,30 @@ function getCookie(name: string): string | null {
   return null;
 }
 
+// The session cookie is `<base64url(payload)>.<hmac>`. Only the server can
+// check the signature, so what we read here is for display only — every route
+// that grants access re-verifies it. Never treat this result as proof of
+// identity on the client.
+function decodeSessionPayload(cookieValue: string): User | null {
+  const separator = cookieValue.lastIndexOf('.');
+  if (separator <= 0) return null;
+
+  const base64 = cookieValue
+    .slice(0, separator)
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
+
+  try {
+    const binary = atob(base64.padEnd(Math.ceil(base64.length / 4) * 4, '='));
+    const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+    const parsed = JSON.parse(new TextDecoder().decode(bytes));
+    if (!parsed || typeof parsed.name !== 'string') return null;
+    return parsed as User;
+  } catch {
+    return null;
+  }
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -34,16 +58,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (typeof document !== 'undefined') {
       const userCookie = getCookie('user');
       if (userCookie) {
-        try {
-          // Decode the cookie value before parsing as JSON
-          const parsed = JSON.parse(decodeURIComponent(userCookie));
+        const parsed = decodeSessionPayload(userCookie);
+        if (parsed) {
           if (!parsed.type) {
             parsed.type = parsed.netid ? 'student' : 'investor';
           }
           setUser(parsed);
-        } catch (error) {
-          console.error("Error parsing user cookie:", error);
-          setUser({ netid: userCookie, name: userCookie, type: 'student' });
+        } else {
+          // An unreadable cookie means a stale or tampered session. Treat it as
+          // signed out rather than inventing a user from the raw cookie text.
+          setUser(null);
         }
       }
       setLoading(false);

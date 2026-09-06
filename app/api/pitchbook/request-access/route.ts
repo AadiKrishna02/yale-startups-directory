@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
+import { readSessionCookie } from '@/lib/session';
 
 let supabase: any = null;
 
@@ -19,14 +20,12 @@ try {
 
 export async function POST(request: Request) {
   try {
-    const cookieStore = cookies();
-    const userCookie = cookieStore.get('user');
-    
-    if (!userCookie) {
+    const user = readSessionCookie(cookies().get('user')?.value);
+
+    if (!user) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
 
-    const user = JSON.parse(userCookie.value);
     const { affiliation, reason } = await request.json();
 
     if (!supabase) {
