@@ -4,8 +4,6 @@ export const runtime = 'nodejs';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     if (!process.env.RESEND_API_KEY) {
@@ -15,6 +13,11 @@ export async function POST(request: Request) {
         { status: 503 }
       );
     }
+
+    // Constructed here rather than at module scope: Resend throws on a missing
+    // key, and `next build` imports this module to read its route config, so a
+    // module-scope client turns an unset env var into a failed build.
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const { to, subject, html } = await request.json();
 
